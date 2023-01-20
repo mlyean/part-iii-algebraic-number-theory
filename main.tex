@@ -1,0 +1,203 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{commath}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{stmaryrd}
+\usepackage{thmtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{titlesec}
+% \usepackage{mathrsfs}
+\usepackage[cal=boondox]{mathalfa}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{notation}[definition]{Notation}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Aut}{Aut}
+
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cp}{\mathcal{p}}
+\newcommand{\up}{{\underline{\smash{p}}}}
+\newcommand{\fq}{\mathfrak{q}}
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+
+\setlist[enumerate,1]{label=\arabic*), nosep}
+\setlist[itemize,1]{nosep}
+
+% Uncomment to exclude proofs
+% \excludecomment{proof}
+
+\title{Part III Algebraic Number Theory Lecture Notes}
+\author{Ming Yean Lim}
+
+\begin{document}
+
+\maketitle
+
+\noindent These lecture notes were based on the Part III course Algebraic Number Theory taught during Lent 2023 by Dr. Hanneke Wiersema.
+
+% \tableofcontents
+
+% \newcommand{\sectionbreak}{\clearpage}
+
+\stepcounter{section}
+
+\subsection{Recap of Algebraic Number Theory}
+
+Let $K$ be a number field, $\cO_K$ the ring of integers of $K$. Let $L/K$ be a finite extension of number fields. Let $\up$ be a prime ideal of $\cO_K$, then $\up \cO_L$ is an ideal in $\cO_L$, and factors as $\up \cO_L = \cp_1^{e_1} \ldots, \cp_g^{e_g}$, where $\cp_i$ are distinct primes ideals of $\cO_L$.
+
+Suppose $\cp \subseteq \cO_L$. If $\cp \mid \up \cO_L$, then we say that $\cp$ \emph{lies above} $\up$, or $\up$ \emph{lies under} $\cp$. Note that
+\begin{equation*}
+    \cp \mid \up \cO_L \iff \up = \cp \cap \cO_K \iff \up \subseteq \cp
+\end{equation*}
+
+The $e_i = e_{\cp_i / \up}$ is called the \emph{ramification index} of $\cp_i$ over $\up$. We say that $\up$ \emph{ramifies} in $L$ if $e_i > 1$ for some $i$.
+
+For $\cp \subseteq \cO_L$, write $k_\cp = \cO_L / \cp$ for the corresponding residue field. Similarly, set $k_\up = \cO_K / \up$.
+
+If $\cp \mid \up$, we have an extension of residue fields $k_\cp / k_\up$. The degree of this extension is called the \emph{inertial degree} of $\cp$ over $\up$, denoted $f = f_{\cp / \up}$.
+
+\begin{theorem}\label{thm:1_1}
+    Let $\up \subseteq \cO_K$ and $\up \cO_K = \cp_1^{e_1} \ldots \cp_g^{e_g}$ as above. Then
+    \begin{equation*}
+        [L : K] = \sum_{i=1}^{\infty} e_i f_i
+    \end{equation*}
+\end{theorem}
+
+\subsubsection*{Galois Extensions}
+
+Let $L/K$ be Galois.
+
+\begin{theorem}\label{thm:1_2}
+    Let $\up \subseteq \cO_K$ be a prime ideal.
+    \begin{enumerate}
+        \item The Galois group $\Gal(L/K)$ acts transitively on primes of $\cO_L$ lying above $\up$, i.e. if $\cp, \cp' \mid \up$, then there is a $\sigma \in \Gal(L/K)$ such that $\sigma(\cp) = \cp'$.
+
+        \item Primes $\cp_1, \ldots, \cp_g$ of $\cO_L$ lying above $\up$ have the same ramification index $e$ and inertial degree $f$, so that $[L : K] = e f g$.
+    \end{enumerate}
+\end{theorem}
+
+\noindent Let $\cp \subseteq \cO_L$ be such that $\cp \mid \up$.
+
+\begin{definition}
+    The \emph{decomposition group} of $\cp$ is
+    \begin{equation*}
+        D_{\cp / \up} = \{\sigma \in \Gal(L/K) \mid \sigma(\cp) = \cp\}
+    \end{equation*}
+    and the \emph{inertial group} is
+    \begin{equation*}
+        I_{\cp / \up} = \{\sigma \in \Gal(L/K) \mid \forall \alpha \in \cO_L, \sigma(\alpha) \equiv \alpha \pmod{\cp}\}
+    \end{equation*}
+    Note that $I_{\cp/\up} \subseteq D_{\cp/\up}$.
+\end{definition}
+
+The extension of residue fields $k_\cp / k_\up$ is Galois. Each $\sigma \in D_{\cp / \up}$ induces an automorphism $\widetilde{\sigma}$ on $k_\cp$, which is the identity on $k_\up$. We have a map $D_{\cp / \up} \to \Gal(k_\cp / k_\up)$, $\sigma \mapsto \widetilde{\sigma}$.
+
+\begin{proposition}\label{prop:1_4}\phantom{}
+    \begin{enumerate}
+        \item $\Gal(k_\cp / k_\up)$ is a cyclic group with canonical generator the Frobenius automorphism $x \mapsto x^q$, where $q = \abs{\cO_K / \up}$.
+
+        \item We have a surjective homomorphism $D_{\cp / \up} \to \Gal(k_\cp / k_\up)$, $\sigma \mapsto \widetilde{\sigma}$ with kernel $I_{\cp / \up}$.
+
+        \item $\abs{I_{\cp / \up}} = e_{\cp / \up}$, $\abs{D_{\cp / \up}} = e_{\cp / \up} f_{\cp / \up}$.
+    \end{enumerate}
+\end{proposition}
+
+\subsection{The Artin Symbol}
+
+\begin{lemma}\label{lem:1_5}
+    Let $L/K$ be Galois, and $\up \subseteq \cO_K$ unramified in $L$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \up$. Then there exists a unique $\sigma \in \Gal(L/K)$ such that for all $\alpha \in \cO_L, \sigma(\alpha) \equiv \alpha^{N(\up)} \pmod{\cp}$, where $N(\up) = \abs{\cO_K / \up}$.
+\end{lemma}
+\begin{proof}
+    By \autoref{prop:1_4}, and since $\up$ is unramified, $\abs{I_{\cp / \up}} = 0$, and so $D_{\cp / \up} \cong \Gal(k_\cp / k_\up)$. Let $\sigma \in D_{\cp / \up}$ be the unique element mapping to the Frobenius automorphism $x \mapsto x^q$. Note that $q = N(\up)$, so we find that
+    \begin{equation}\label{eqn:1_5_star}
+        \sigma(\alpha) \equiv a^{N(\up)} \pmod{\cp} \qquad \forall \alpha \in \cO_L
+    \end{equation}
+    Note that any $\sigma \in \Gal(L/K)$ satisfying \eqref{eqn:1_5_star} is an element of $D_{\cp / \up}$, so uniqueness follows.
+\end{proof}
+
+\begin{definition}\label{def:1_6}
+    The unique element from \autoref{lem:1_5} is called the \emph{Artin symbol}, denoted $\leg{L/K}{\cp}$.
+\end{definition}
+
+\begin{corollary}\label{cor:1_7}
+    Let $L/K$ be Galois, $\up \subseteq \cO_K$ unramified, $\cp \subseteq \cO_L$ lying above $\up$. Then
+    \begin{enumerate}
+        \item $\leg{L/K}{\sigma(\cp)} = \sigma \leg{L/K}{\cp} \sigma^{-1}$ for all $\sigma \in \Gal(L/K)$;
+
+        \item The order of $\leg{L/K}{\cp}$ is $f = f_{\cp / \up}$;
+
+        \item $\up$ splits completely in $L$ if and only if $\leg{L/K}{\cp} = 1$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}\phantom{}
+    \begin{enumerate}
+        \item Follows from uniqueness of the Artin symbol, details will be an exercise.
+
+        \item Since $\abs{I_{\cp / \up}} = 1$, we have $D_{\cp / \up} \cong \Gal(k_\cp / k_\up)$. The Artin symbol maps to a generator of $\Gal(k_\cp / k_\up)$, which has order $f_{\cp / \up}$.
+
+        \item Note that $\up$ splits completely in $L$ means that $e = f = 1$. Since $\up$ is unramified, $e = 1$. Thus by $2)$, $\leg{L/K}{\cp} = 1$ if and only if $f = 1$. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}\label{def:1_8}
+    We say $L/K$ is an \emph{abelian extension} if $L/K$ is Galois with abelian Galois group.
+\end{definition}
+
+If $L/K$ is abelian, then $\leg{L/K}{\cp}$ depends only on $\up$: Let $\cp' \subseteq \cO_L$ be a prime lying over $\up$. Then $\cp' = \sigma(\cp)$ for some $\sigma \in \Gal(L/K)$ by \autoref{thm:1_2}. Then
+\begin{equation*}
+    \leg{L/K}{\cp'} = \leg{L/K}{\sigma(\cp)} = \sigma \leg{L/K}{\cp} \sigma^{-1} = \leg{L/K}{\cp}
+\end{equation*}
+by \autoref{cor:1_7}.
+
+\begin{notation}\label{not:1_9}
+    If $L/K$ is abelian, write $\leg{L/K}{\up}$ for the Artin symbol for any $\cp / \up$.
+\end{notation}
+
+\begin{example}\label{eg:1_10}
+    Let $K = \QQ$, $L = \QQ(\sqrt{d})$, where $d \in \ZZ$ is squarefree. Recall that the discriminant is
+    \begin{equation*}
+        D = D_{L/K} =
+        \begin{cases}
+            d &\text{if } d \equiv 1 \pmod{4}\\
+            4d &\text{otherwise}
+        \end{cases}
+    \end{equation*}
+    and that $\up = (p)$ ramifies in $L$ if and only if $p \mid D$. Identify $\Gal(L/K)$ with the multiplicative group $\{\pm 1\}$. Let $(p)$ be unramified. Then
+    \begin{equation*}
+        \leg{\QQ(\sqrt{d}) / \QQ}{(p)} = \leg{D}{p}
+    \end{equation*}
+    where $\leg{D}{p}$ is the Kronecker symbol.
+\end{example}
+
+\end{document}
