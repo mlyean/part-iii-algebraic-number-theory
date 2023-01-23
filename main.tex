@@ -15,7 +15,6 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{titlesec}
-% \usepackage{mathrsfs}
 \usepackage[cal=boondox]{mathalfa}
 
 \theoremstyle{definition}
@@ -30,7 +29,7 @@
 \newtheorem{corollary}[definition]{Corollary}
 
 \theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+\newtheorem{remark}[definition]{Remark}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
@@ -46,7 +45,8 @@
 \newcommand{\cD}{\mathcal{D}}
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cp}{\mathcal{p}}
-\newcommand{\up}{{\underline{\smash{p}}}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fp}{\mathfrak{p}}
 \newcommand{\fq}{\mathfrak{q}}
 \newcommand{\fm}{\mathfrak{m}}
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
@@ -70,25 +70,25 @@
 
 % \newcommand{\sectionbreak}{\clearpage}
 
-\stepcounter{section}
+\section{Lecture 1}
 
 \subsection{Recap of Algebraic Number Theory}
 
-Let $K$ be a number field, $\cO_K$ the ring of integers of $K$. Let $L/K$ be a finite extension of number fields. Let $\up$ be a prime ideal of $\cO_K$, then $\up \cO_L$ is an ideal in $\cO_L$, and factors as $\up \cO_L = \cp_1^{e_1} \ldots, \cp_g^{e_g}$, where $\cp_i$ are distinct primes ideals of $\cO_L$.
+Let $K$ be a number field, $\cO_K$ the ring of integers of $K$. Let $L/K$ be a finite extension of number fields. Let $\fp$ be a prime ideal of $\cO_K$, then $\fp \cO_L$ is an ideal in $\cO_L$, and factors as $\fp \cO_L = \cp_1^{e_1} \ldots, \cp_g^{e_g}$, where $\cp_i$ are distinct primes ideals of $\cO_L$.
 
-Suppose $\cp \subseteq \cO_L$. If $\cp \mid \up \cO_L$, then we say that $\cp$ \emph{lies above} $\up$, or $\up$ \emph{lies under} $\cp$. Note that
+Suppose $\cp \subseteq \cO_L$. If $\cp \mid \fp \cO_L$, then we say that $\cp$ \emph{lies above} $\fp$, or $\fp$ \emph{lies under} $\cp$. Note that
 \begin{equation*}
-    \cp \mid \up \cO_L \iff \up = \cp \cap \cO_K \iff \up \subseteq \cp
+    \cp \mid \fp \cO_L \iff \fp = \cp \cap \cO_K \iff \fp \subseteq \cp
 \end{equation*}
 
-The $e_i = e_{\cp_i / \up}$ is called the \emph{ramification index} of $\cp_i$ over $\up$. We say that $\up$ \emph{ramifies} in $L$ if $e_i > 1$ for some $i$.
+The $e_i = e_{\cp_i / \fp}$ is called the \emph{ramification index} of $\cp_i$ over $\fp$. We say that $\fp$ \emph{ramifies} in $L$ if $e_i > 1$ for some $i$.
 
-For $\cp \subseteq \cO_L$, write $k_\cp = \cO_L / \cp$ for the corresponding residue field. Similarly, set $k_\up = \cO_K / \up$.
+For $\cp \subseteq \cO_L$, write $k_\cp = \cO_L / \cp$ for the corresponding residue field. Similarly, set $k_\fp = \cO_K / \fp$.
 
-If $\cp \mid \up$, we have an extension of residue fields $k_\cp / k_\up$. The degree of this extension is called the \emph{inertial degree} of $\cp$ over $\up$, denoted $f = f_{\cp / \up}$.
+If $\cp \mid \fp$, we have an extension of residue fields $k_\cp / k_\fp$. The degree of this extension is called the \emph{inertial degree} of $\cp$ over $\fp$, denoted $f = f_{\cp / \fp}$.
 
 \begin{theorem}\label{thm:1_1}
-    Let $\up \subseteq \cO_K$ and $\up \cO_K = \cp_1^{e_1} \ldots \cp_g^{e_g}$ as above. Then
+    Let $\fp \subseteq \cO_K$ and $\fp \cO_K = \cp_1^{e_1} \ldots \cp_g^{e_g}$ as above. Then
     \begin{equation*}
         [L : K] = \sum_{i=1}^{\infty} e_i f_i
     \end{equation*}
@@ -99,51 +99,51 @@ If $\cp \mid \up$, we have an extension of residue fields $k_\cp / k_\up$. The d
 Let $L/K$ be Galois.
 
 \begin{theorem}\label{thm:1_2}
-    Let $\up \subseteq \cO_K$ be a prime ideal.
+    Let $\fp \subseteq \cO_K$ be a prime ideal.
     \begin{enumerate}
-        \item The Galois group $\Gal(L/K)$ acts transitively on primes of $\cO_L$ lying above $\up$, i.e. if $\cp, \cp' \mid \up$, then there is a $\sigma \in \Gal(L/K)$ such that $\sigma(\cp) = \cp'$.
+        \item The Galois group $\Gal(L/K)$ acts transitively on primes of $\cO_L$ lying above $\fp$, i.e. if $\cp, \cp' \mid \fp$, then there is a $\sigma \in \Gal(L/K)$ such that $\sigma(\cp) = \cp'$.
 
-        \item Primes $\cp_1, \ldots, \cp_g$ of $\cO_L$ lying above $\up$ have the same ramification index $e$ and inertial degree $f$, so that $[L : K] = e f g$.
+        \item Primes $\cp_1, \ldots, \cp_g$ of $\cO_L$ lying above $\fp$ have the same ramification index $e$ and inertial degree $f$, so that $[L : K] = e f g$.
     \end{enumerate}
 \end{theorem}
 
-\noindent Let $\cp \subseteq \cO_L$ be such that $\cp \mid \up$.
+\noindent Let $\cp \subseteq \cO_L$ be such that $\cp \mid \fp$.
 
 \begin{definition}
     The \emph{decomposition group} of $\cp$ is
     \begin{equation*}
-        D_{\cp / \up} = \{\sigma \in \Gal(L/K) \mid \sigma(\cp) = \cp\}
+        D_{\cp / \fp} = \{\sigma \in \Gal(L/K) \mid \sigma(\cp) = \cp\}
     \end{equation*}
     and the \emph{inertial group} is
     \begin{equation*}
-        I_{\cp / \up} = \{\sigma \in \Gal(L/K) \mid \forall \alpha \in \cO_L, \sigma(\alpha) \equiv \alpha \pmod{\cp}\}
+        I_{\cp / \fp} = \{\sigma \in \Gal(L/K) \mid \forall \alpha \in \cO_L, \sigma(\alpha) \equiv \alpha \pmod{\cp}\}
     \end{equation*}
-    Note that $I_{\cp/\up} \subseteq D_{\cp/\up}$.
+    Note that $I_{\cp/\fp} \subseteq D_{\cp/\fp}$.
 \end{definition}
 
-The extension of residue fields $k_\cp / k_\up$ is Galois. Each $\sigma \in D_{\cp / \up}$ induces an automorphism $\widetilde{\sigma}$ on $k_\cp$, which is the identity on $k_\up$. We have a map $D_{\cp / \up} \to \Gal(k_\cp / k_\up)$, $\sigma \mapsto \widetilde{\sigma}$.
+The extension of residue fields $k_\cp / k_\fp$ is Galois. Each $\sigma \in D_{\cp / \fp}$ induces an automorphism $\widetilde{\sigma}$ on $k_\cp$, which is the identity on $k_\fp$. We have a map $D_{\cp / \fp} \to \Gal(k_\cp / k_\fp)$, $\sigma \mapsto \widetilde{\sigma}$.
 
 \begin{proposition}\label{prop:1_4}\phantom{}
     \begin{enumerate}
-        \item $\Gal(k_\cp / k_\up)$ is a cyclic group with canonical generator the Frobenius automorphism $x \mapsto x^q$, where $q = \abs{\cO_K / \up}$.
+        \item $\Gal(k_\cp / k_\fp)$ is a cyclic group with canonical generator the Frobenius automorphism $x \mapsto x^q$, where $q = \abs{\cO_K / \fp}$.
 
-        \item We have a surjective homomorphism $D_{\cp / \up} \to \Gal(k_\cp / k_\up)$, $\sigma \mapsto \widetilde{\sigma}$ with kernel $I_{\cp / \up}$.
+        \item We have a surjective homomorphism $D_{\cp / \fp} \to \Gal(k_\cp / k_\fp)$, $\sigma \mapsto \widetilde{\sigma}$ with kernel $I_{\cp / \fp}$.
 
-        \item $\abs{I_{\cp / \up}} = e_{\cp / \up}$, $\abs{D_{\cp / \up}} = e_{\cp / \up} f_{\cp / \up}$.
+        \item $\abs{I_{\cp / \fp}} = e_{\cp / \fp}$, $\abs{D_{\cp / \fp}} = e_{\cp / \fp} f_{\cp / \fp}$.
     \end{enumerate}
 \end{proposition}
 
 \subsection{The Artin Symbol}
 
 \begin{lemma}\label{lem:1_5}
-    Let $L/K$ be Galois, and $\up \subseteq \cO_K$ unramified in $L$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \up$. Then there exists a unique $\sigma \in \Gal(L/K)$ such that for all $\alpha \in \cO_L, \sigma(\alpha) \equiv \alpha^{N(\up)} \pmod{\cp}$, where $N(\up) = \abs{\cO_K / \up}$.
+    Let $L/K$ be Galois, and $\fp \subseteq \cO_K$ unramified in $L$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$. Then there exists a unique $\sigma \in \Gal(L/K)$ such that for all $\alpha \in \cO_L, \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp}$, where $N(\fp) = \abs{\cO_K / \fp}$.
 \end{lemma}
 \begin{proof}
-    By \autoref{prop:1_4}, and since $\up$ is unramified, $\abs{I_{\cp / \up}} = 0$, and so $D_{\cp / \up} \cong \Gal(k_\cp / k_\up)$. Let $\sigma \in D_{\cp / \up}$ be the unique element mapping to the Frobenius automorphism $x \mapsto x^q$. Note that $q = N(\up)$, so we find that
+    By \autoref{prop:1_4}, since $\fp$ is unramified, $\abs{I_{\cp / \fp}} = 0$, and so $D_{\cp / \fp} \cong \Gal(k_\cp / k_\fp)$. Let $\sigma \in D_{\cp / \fp}$ be the unique element mapping to the Frobenius automorphism $x \mapsto x^q$. Note that $q = N(\fp)$, so we find that
     \begin{equation}\label{eqn:1_5_star}
-        \sigma(\alpha) \equiv a^{N(\up)} \pmod{\cp} \qquad \forall \alpha \in \cO_L
+        \sigma(\alpha) \equiv a^{N(\fp)} \pmod{\cp} \qquad \forall \alpha \in \cO_L
     \end{equation}
-    Note that any $\sigma \in \Gal(L/K)$ satisfying \eqref{eqn:1_5_star} is an element of $D_{\cp / \up}$, so uniqueness follows.
+    Note that any $\sigma \in \Gal(L/K)$ satisfying \eqref{eqn:1_5_star} is an element of $D_{\cp / \fp}$, so uniqueness follows.
 \end{proof}
 
 \begin{definition}\label{def:1_6}
@@ -151,22 +151,22 @@ The extension of residue fields $k_\cp / k_\up$ is Galois. Each $\sigma \in D_{\
 \end{definition}
 
 \begin{corollary}\label{cor:1_7}
-    Let $L/K$ be Galois, $\up \subseteq \cO_K$ unramified, $\cp \subseteq \cO_L$ lying above $\up$. Then
+    Let $L/K$ be Galois, $\fp \subseteq \cO_K$ unramified, $\cp \subseteq \cO_L$ lying above $\fp$. Then
     \begin{enumerate}
         \item $\leg{L/K}{\sigma(\cp)} = \sigma \leg{L/K}{\cp} \sigma^{-1}$ for all $\sigma \in \Gal(L/K)$;
 
-        \item The order of $\leg{L/K}{\cp}$ is $f = f_{\cp / \up}$;
+        \item The order of $\leg{L/K}{\cp}$ is $f = f_{\cp / \fp}$;
 
-        \item $\up$ splits completely in $L$ if and only if $\leg{L/K}{\cp} = 1$.
+        \item $\fp$ splits completely in $L$ if and only if $\leg{L/K}{\cp} = 1$.
     \end{enumerate}
 \end{corollary}
 \begin{proof}\phantom{}
     \begin{enumerate}
         \item Follows from uniqueness of the Artin symbol, details will be an exercise.
 
-        \item Since $\abs{I_{\cp / \up}} = 1$, we have $D_{\cp / \up} \cong \Gal(k_\cp / k_\up)$. The Artin symbol maps to a generator of $\Gal(k_\cp / k_\up)$, which has order $f_{\cp / \up}$.
+        \item Since $\abs{I_{\cp / \fp}} = 1$, we have $D_{\cp / \fp} \cong \Gal(k_\cp / k_\fp)$. The Artin symbol maps to a generator of $\Gal(k_\cp / k_\fp)$, which has order $f_{\cp / \fp}$.
 
-        \item Note that $\up$ splits completely in $L$ means that $e = f = 1$. Since $\up$ is unramified, $e = 1$. Thus by $2)$, $\leg{L/K}{\cp} = 1$ if and only if $f = 1$. \qedhere
+        \item Note that $\fp$ splits completely in $L$ means that $e = f = 1$. Since $\fp$ is unramified, $e = 1$. Thus by $2)$, $\leg{L/K}{\cp} = 1$ if and only if $f = 1$. \qedhere
     \end{enumerate}
 \end{proof}
 
@@ -174,14 +174,14 @@ The extension of residue fields $k_\cp / k_\up$ is Galois. Each $\sigma \in D_{\
     We say $L/K$ is an \emph{abelian extension} if $L/K$ is Galois with abelian Galois group.
 \end{definition}
 
-If $L/K$ is abelian, then $\leg{L/K}{\cp}$ depends only on $\up$: Let $\cp' \subseteq \cO_L$ be a prime lying over $\up$. Then $\cp' = \sigma(\cp)$ for some $\sigma \in \Gal(L/K)$ by \autoref{thm:1_2}. Then
+If $L/K$ is abelian, then $\leg{L/K}{\cp}$ depends only on $\fp$: Let $\cp' \subseteq \cO_L$ be a prime lying over $\fp$. Then $\cp' = \sigma(\cp)$ for some $\sigma \in \Gal(L/K)$ by \autoref{thm:1_2}. Then
 \begin{equation*}
     \leg{L/K}{\cp'} = \leg{L/K}{\sigma(\cp)} = \sigma \leg{L/K}{\cp} \sigma^{-1} = \leg{L/K}{\cp}
 \end{equation*}
 by \autoref{cor:1_7}.
 
 \begin{notation}\label{not:1_9}
-    If $L/K$ is abelian, write $\leg{L/K}{\up}$ for the Artin symbol for any $\cp / \up$.
+    If $L/K$ is abelian, write $\leg{L/K}{\fp}$ for the Artin symbol for any $\cp / \fp$.
 \end{notation}
 
 \begin{example}\label{eg:1_10}
@@ -193,11 +193,140 @@ by \autoref{cor:1_7}.
             4d &\text{otherwise}
         \end{cases}
     \end{equation*}
-    and that $\up = (p)$ ramifies in $L$ if and only if $p \mid D$. Identify $\Gal(L/K)$ with the multiplicative group $\{\pm 1\}$. Let $(p)$ be unramified. Then
+    and that $\fp = (p)$ ramifies in $L$ if and only if $p \mid D$. Identify $\Gal(L/K)$ with the multiplicative group $\{\pm 1\}$. Let $(p)$ be unramified. Then
     \begin{equation*}
         \leg{\QQ(\sqrt{d}) / \QQ}{(p)} = \leg{D}{p}
     \end{equation*}
     where $\leg{D}{p}$ is the Kronecker symbol.
 \end{example}
+
+\section{Lecture 2}
+
+\subsection{Some Background and Recap}
+
+\begin{definition}\label{def:2_1}
+    A \emph{fractional ideal} of $K$ is a non-zero $\cO_K$-submodule $\fa$ of $K$ such that there is a non-zero $x \in \cO_K$ such that $x \fa \subseteq \cO_K$.
+\end{definition}
+
+\begin{notation}\label{not:2_2}
+    The set of fractional $\cO_K$-ideals is a group, which we denote by $I_K$. We write $P_K$ for the subgroup of principal fractional ideals.
+\end{notation}
+
+\begin{remark}\label{rem:2_3}
+    Recall that for any $\fa \in I_K$, we have a unique prime factorisation
+    \begin{equation}\label{eqn:2_3_fact}
+        \fa = \prod_{i=1}^\infty \fp_i^{r_i}
+    \end{equation}
+    where $r_i \in \ZZ$, and the $\fp_i$'s are distinct prime ideals of $\cO_K$.
+\end{remark}
+
+\subsection{The Artin Map for Unramified Extensions}
+We will extend the Artin symbol to non-prime ideals, in particular, we can use the above factorisation to extend it to any $\fa \in I_K$.
+
+\begin{definition}\label{def:2_4}
+    Suppose $L/K$ is abelian and unramified, then we define the \emph{Artin map} to be the homomorphism $\leg{L/K}{\cdot} : I_K \to \Gal(L/K)$ by setting
+    \begin{equation}\label{eqn:2_4_star}
+        \leg{L/K}{\fa} = \prod_{i=1}^r \leg{L/K}{\fp_i}^{r_i}
+    \end{equation}
+    for $\fa$ with factorisation \eqref{eqn:2_3_fact}.
+\end{definition}
+
+\subsection{The Artin Map for Abelian Extensions}
+
+If $L/K$ is unramified, we can define the Artin symbol for unramified primes, but not all primes. To define the Artin map, we work with a subgroup of $I_K$.
+
+\begin{definition}[Modulus]\label{def:2_5}
+    Let $K$ be a number field, then a \emph{modulus} in $K$ is a formal product
+    \begin{equation*}
+        \fm = \prod_\fp \fp^{n_\fp}
+    \end{equation*}
+    over all primes\footnote{also known as a \emph{place} from the Local Fields course} $\fp$, finite\footnote{non-archimedian, corresponds to a prime ideal $\fp$} and infinite\footnote{archimedian, corresponds to an embedding $\sigma : K \to \RR \text{ or } \CC$}, such that
+    \begin{enumerate}
+        \item $n_\fp \ge 0$ and at most finitely many are non-zero;
+        \item $n_\fp = 0$ if $\fp$ is a complex infinite prime;
+        \item $n_\fp \le 1$ is $\fp$ is a real infinite prime.
+    \end{enumerate}
+    When all exponents $n_\fp = 0$, then we set $\fm = 1$.
+\end{definition}
+
+\begin{example}\label{eg:2_6}
+    If $K$ is a purely imaginary field\footnote{a number field that cannot be embedded into $\RR$}, then a modulus is just an ideal of $\cO_K$.
+\end{example}
+
+\begin{definition}\label{def:2_7}
+    Let $\fm$ be a modulus, we define $I_K(\fm)$ to be the group of all fractional $\cO_K$-ideals of $\cO_K$ are relatively prime to $\fm$.
+\end{definition}
+
+For any $\fm$, we can write $\fm = \fm_0 \fm_\infty$, where $\fm_0$ is the finite part, and $\fm_\infty$ is the infinite part. Paing relatively prime to $\fm$ means being relatively prime to $\fm_0$.
+
+\begin{example}\label{eg:2_8}
+    If $\fm = 1$, then $I_K(\fm) = I_K$.
+\end{example}
+
+\begin{example}\label{eg:2_9}
+    If $K = \QQ$, $\fm = (m)$ where $m$ is any integer, then
+    \begin{equation*}
+        I_\QQ(\fm) = \bigg\{ \frac{a}{b}\ZZ \,\bigg\vert\, (a, m) = (b, m) = 1 \bigg\}
+    \end{equation*}
+\end{example}
+
+Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all unramified primes of $K$, then for each $\fp$ in $I_K(\fm)$, we can define the Artin symbol $\leg{L/K}{\fp} \in \Gal(L/K)$.
+
+\begin{definition}\label{def:2_10}
+    Let $\fm$ be as above, then the \emph{Artin map} for $L/K$ and $\fm$ is a homomorphism $\Phi_{\fm} : I_K(\fm) \to \Gal(L/K)$ defined by extending the Artin symbol multiplicatively as in \eqref{eqn:2_4_star}.
+\end{definition}
+
+\begin{example}\label{eg:2_11}
+    Let $\fm$ be a positive integer, $\zeta_m$ a primitive $m$\textsuperscript{th} root of unity. Let $K = \QQ$, $L = \QQ(\zeta_m)$. Recall that
+    \begin{enumerate}
+        \item $\Gal(\QQ(\zeta_m) / \QQ) \cong (\ZZ / m \ZZ)^\times$, where the isomorphism sends $\sigma : \zeta_m \mapsto \zeta_m^h$ to $[h]$;
+        \item If a prime $\fp$ ramifies in $\QQ(\zeta_m)$, then $p \mid m$.
+    \end{enumerate}
+    Write $\infty$ for the real infinite prime of $\QQ$. Let $\fm = (m) \infty$. Then $\fm$ contains all ramified primes, so we have a well-defined map $\Phi_\fm : I_\QQ(\fm) \to \Gal(\QQ(\zeta_m) / \QQ)$.
+
+    For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Then by definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Write $\sigma(\zeta_m) = \zeta_m^h$ for some $h \in \ZZ$. Then $1 - \zeta_m^{h-p} \in \cp$, but $1 - \zeta_m^{h-p}$ is a unit unless $h \equiv p \pmod{m}$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
+
+    Let $\frac{a}{b}\ZZ \in I_\QQ(\fm)$, then $\Phi_\fm(\frac{a}{b} \ZZ) = [a][b]^{-1} \in (\ZZ / m \ZZ)^\times$.
+    The map is clearly surjective.
+\end{example}
+
+\subsection{Generalised Ideal Class Group}
+
+\begin{definition}\label{def:2_12}
+    Let $P_K(\fm)$ be the subgroup of $I_K(\fm)$ consisting of all principal fractional ideals $(\alpha)$, where $\alpha \in K$ is such that
+    \begin{itemize}
+        \item $v_\fp(\alpha - 1) \ge v_\fp(\fm_0) = n_\fp$ for any $\fp \mid \fm_0$;
+        \item $\sigma(\alpha) > 0$ for every real infinite prime $\sigma \mid \fm_\infty$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}\label{eg:2_13}
+    Let $\fm = 1$, then $P_K(\fm) = P_K$.
+\end{example}
+
+\begin{example}\label{eg:2_14}
+    Let $K = \QQ$, $\fm = (m)$. Note a fractional ideal $(\alpha)$ is generated by both $+\alpha$ and $-\alpha$. If $(\alpha) \in P_\QQ(\fm)$, then we must have $v_p(\alpha - 1) \ge v_p(m)$ for $p \mid m$, so
+    \begin{equation*}
+        P_\QQ(\fm) = \bigg\{\frac{a}{b}\ZZ \in I_\QQ(\fm) \,\big\vert\, a \equiv b \pmod{m}\bigg\}
+    \end{equation*}
+
+    \noindent Next let $\fm' = (m) \infty$, then $I_\QQ(\fm') = I_\QQ(\fm')$, but $P_\QQ(\fm) \neq P_\QQ(\fm')$, as
+    \begin{equation*}
+        P_\QQ(\fm') = \bigg\{\frac{a}{b}\ZZ \in I_\QQ(\fm) \,\big\vert\, a \equiv b \pmod{m},\, \sigma\left(\frac{a}{b}\right) > 0\bigg\}
+    \end{equation*}
+\end{example}
+
+\begin{remark}\label{remark:2_15}
+    In the setting of \autoref{eg:2_11}, we have $\ker \Phi_\fm = P_\QQ(\fm)$ for $\fm = (m) \infty$.
+\end{remark}
+
+The group $P_K(\fm)$ for any $K$ or $\fm$ is sometimes called a \emph{ray}, or the \emph{ray group}.
+
+\begin{proposition}\label{prop:2_16}
+    The subgroup $P_K(\fm)$ has finite index in $I_K(\fm)$.
+\end{proposition}
+\begin{proof}
+    Omitted, a special case will be an exercise.
+\end{proof}
 
 \end{document}
