@@ -20,6 +20,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
+\newtheorem*{example*}{Example}
 \newtheorem{notation}[definition]{Notation}
 
 \theoremstyle{plain}
@@ -30,11 +31,14 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}[definition]{Remark}
+\newtheorem*{remark*}{Remark}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\res}{res}
 
 \newcommand{\FF}{\mathbb{F}}
 \newcommand{\NN}{\mathbb{N}}
@@ -46,9 +50,11 @@
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cp}{\mathcal{p}}
 \newcommand{\fa}{\mathfrak{a}}
+\newcommand{\ff}{\mathfrak{f}}
 \newcommand{\fp}{\mathfrak{p}}
 \newcommand{\fq}{\mathfrak{q}}
 \newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fn}{\mathfrak{n}}
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
 
 \setlist[enumerate,1]{label=\arabic*), nosep}
@@ -70,7 +76,7 @@
 
 % \newcommand{\sectionbreak}{\clearpage}
 
-\section{Lecture 1}
+\stepcounter{section}
 
 \subsection{Recap of Algebraic Number Theory}
 
@@ -200,7 +206,7 @@ by \autoref{cor:1_7}.
     where $\leg{D}{p}$ is the Kronecker symbol.
 \end{example}
 
-\section{Lecture 2}
+\stepcounter{section}
 
 \subsection{Some Background and Recap}
 
@@ -240,7 +246,7 @@ If $L/K$ is unramified, we can define the Artin symbol for unramified primes, bu
     \begin{equation*}
         \fm = \prod_\fp \fp^{n_\fp}
     \end{equation*}
-    over all primes\footnote{also known as a \emph{place} from the Local Fields course} $\fp$, finite\footnote{non-archimedian, corresponds to a prime ideal $\fp$} and infinite\footnote{archimedian, corresponds to an embedding $\sigma : K \to \RR \text{ or } \CC$}, such that
+    over all primes $\fp$, finite and infinite\footnote{see the section on finite and infinite primes later}, such that
     \begin{enumerate}
         \item $n_\fp \ge 0$ and at most finitely many are non-zero;
         \item $n_\fp = 0$ if $\fp$ is a complex infinite prime;
@@ -312,7 +318,7 @@ Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all unr
 
     \noindent Next let $\fm' = (m) \infty$, then $I_\QQ(\fm') = I_\QQ(\fm')$, but $P_\QQ(\fm) \neq P_\QQ(\fm')$, as
     \begin{equation*}
-        P_\QQ(\fm') = \bigg\{\frac{a}{b}\ZZ \in I_\QQ(\fm) \,\big\vert\, a \equiv b \pmod{m},\, \sigma\left(\frac{a}{b}\right) > 0\bigg\}
+        P_\QQ(\fm') = \bigg\{\frac{a}{b}\ZZ \in I_\QQ(\fm) \,\big\vert\, a \equiv b \pmod{m},\, \frac{a}{b} > 0\bigg\}
     \end{equation*}
 \end{example}
 
@@ -328,5 +334,140 @@ The group $P_K(\fm)$ for any $K$ or $\fm$ is sometimes called a \emph{ray}, or t
 \begin{proof}
     Omitted, a special case will be an exercise.
 \end{proof}
+
+\subsubsection*{Interlude -- Finite an Infinite Primes}
+A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is determined by embeddings of $K \hookrightarrow \CC$.
+\begin{itemize}
+    \item A \emph{real infinite prime} is an embedding $K \hookrightarrow \RR$;
+    \item A \emph{complex infinite prime} is a pair of complex conjugate embeddings $\sigma, \overline{\sigma} \hookrightarrow \CC$, $\sigma \neq \overline{\sigma}$.
+\end{itemize}
+
+\begin{remark*}
+    Compare this with places or absolute values, archimedian and non-archimedian, from the Local Fields course.
+\end{remark*}
+
+\begin{example*}\phantom{}
+    \begin{itemize}
+        \item $\QQ$ has one real infinite prime, which is the identity.
+        \item $\QQ(\sqrt{2})$ has two real infinite primes, determined by $\sigma(\sqrt{2}) = \sqrt{2}$ and $\sigma(\sqrt{2}) = -\sqrt{2}$.
+        \item $\QQ(\sqrt{-2})$ has one pair of complex infinite primes, $\sigma(\sqrt{-2}) = \sqrt{-2}$ and $\overline{\sigma}(\sqrt{-2}) = -\sqrt{-2}$.
+    \end{itemize}
+\end{example*}
+
+\begin{remark*}
+    Let $L/K$ be an extension of number fields, an infinite prime $\sigma$ of $K$ ramifies in $L$ if $\sigma$ is real and extends to a complex prime of $L$.
+\end{remark*}
+
+\begin{example*}
+    The real infinite prime of $\QQ$ is unramified in $\QQ(\sqrt{2})$, but ramified in $\QQ(\sqrt{-2})$.
+\end{example*}
+
+\noindent Now we return to the topic of generalised ideal class groups.
+
+\begin{definition}\label{def:2_17}
+    A subgroup $H \subseteq I_K(\fm)$ is a \emph{congruence subgroup} for $\fm$ if $P_K(\fm) \subseteq H \subseteq I_K(\fm)$.
+\end{definition}
+
+\begin{definition}\label{def:2_18}
+    Let $H$ be a congruence subgroup for $\fm$. Then the quotient $I_K(\fm)/H$ is a \emph{generalised ideal class group}.
+\end{definition}
+
+\begin{definition}\label{def:2_19}
+    The quotient $I_K(\fm)/P_K(\fm)$ is called the \emph{ray class group}.
+\end{definition}
+
+\begin{example}\label{eg:2_20}
+    Let $\fm = 1$, $I_K(\fm)/P_K(\fm) = I_K/P_K = \Cl(K)$, where $\Cl(K)$ is the ideal class group of $K$.
+\end{example}
+
+\begin{proposition}\label{prop:2_21}
+    Write $P_\fm \subseteq I_K(\fm)$ for the subgroup of principal fractional ideals that are relatively prime to $\fm$. Thern we have an exact sequence
+    \begin{equation*}
+        1 \longrightarrow P_\fm/P_K(\fm) \longrightarrow I_K(\fm)/P_K(\fm) \longrightarrow \Cl(K) \longrightarrow 1
+    \end{equation*}
+\end{proposition}
+
+\begin{remark}\label{rem:2_22}
+    In fact, writing $h_K(\fm) = \abs{I_K(\fm)/P_K(\fm)}$, we can use this to show $h_K \mid h_K(\fm)$, where $h_K$ is the class number of $K$.
+\end{remark}
+
+\begin{remark}\label{rem:2_23}
+    If we have any $\cO_K$-ideal $I$, then every ideal class in $\Cl(K)$ can be represented by an ideal coprime to $I$.
+\end{remark}
+
+\begin{proof}[Proof of \autoref{prop:2_21} (Sketch)]
+    Let $\fa \in I_K(\fm)$. Define $h : I_K(\fm) \to \Cl(K)$ by $h(\fa) = [\fa] \in \Cl(K)$. This is a surjective\footnote{use \autoref{rem:2_23}} group homomorphism with kernel $P_\fm$. Thus we have an exact sequence
+    \begin{equation*}
+        1 \longrightarrow P_\fm \longrightarrow I_K(\fm) \longrightarrow \Cl(K) \longrightarrow 1
+    \end{equation*}
+    Since $h$ is trivial on $P_K(\fm)$, we can rewrite this as
+    \begin{equation*}
+        1 \longrightarrow P_\fm/P_K(\fm) \longrightarrow I_K(\fm)/P_K(\fm) \longrightarrow \Cl(K) \longrightarrow 1 \qedhere
+    \end{equation*}
+\end{proof}
+
+\begin{example}\label{eg:2_24}
+    Let $K = \QQ$, and $m$ a positive integer. Then $I_\QQ((m))/P_\QQ((m)) \cong (\ZZ/m\ZZ)^\times / \{\pm 1\}$, and $I_\QQ((m)\infty)/P_\QQ((m)\infty) \cong (\ZZ/m\ZZ)^\times$ (c.f. \autoref{eg:2_9} and \autoref{eg:2_14}).
+
+    Recall the Artin map $\Phi_\fm : I_\QQ(\fm) \to \Gal(\QQ(\zeta_\fm) / \QQ)$ for $\QQ(\zeta_m)/\QQ$ from \autoref{eg:2_11}, where $\fm = (m) \infty$. It is surjective with $\ker \Phi_\fm = P_\QQ(\fm)$, so we see that $I_\QQ(\fm)/P_\QQ(\fm) \cong \Gal(\QQ(\zeta_m)/\QQ) \cong (\ZZ/m\ZZ)^\times$.
+\end{example}
+
+\begin{remark}\label{rem:2_25}
+    The idea of class field theory is that generalised ideal class groups are Galois group of abelian extensions of $K$, and that the link is given by the Artin map.
+\end{remark}
+
+\noindent We need to know how the Artin map behaves in field towers:
+
+\begin{proposition}\label{prop:2_26}
+    Let $K \subseteq L \subseteq M$ be a tower of abelian extensions. Suppose $\fm$ contains all primes of $\cO_K$ that ramify in $M$. Then we have a commutative diagram
+    \begin{equation*}
+    \begin{tikzcd}
+        I_K(\fm) \arrow[r, "\Psi_{M/K,\fm}"] \arrow[rd, "\Phi_{L/K,\fm}"'] & \Gal(M/K) \arrow[d, "\res"] & \sigma \arrow[d, mapsto]\\
+                                                                           & \Gal(L/K) & \sigma \vert_L
+    \end{tikzcd}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\section{Statements of Global Class Field Theory}
+
+\subsection{The Conductor}
+
+\begin{lemma}\label{lem:3_1}
+    Let $L/K$ be abelian, and let $\fm$ be a modulus containing all ramified primes\footnote{finite and infinite} of $K$. Let $\fn$ be another modulus with $\fm \mid \fn$. If $P_K(\fm) \subseteq \ker \Phi_\fm$, then $P_K(\fn) \subseteq \ker \Phi_\fn$.
+\end{lemma}
+\begin{proof}
+    Since $\fm \mid \fn$, $P_K(\fn) \subseteq P_K(\fm)$, and $\Phi_\fn = \Phi_\fm \vert_{I_K(\fn)}$. Then
+    \begin{equation*}
+        P_K(\fn) \subseteq P_K(\fm) \cap I_K(\fn) \subseteq \ker \Phi_\fm \cap I_K(\fn) = \ker \Phi_\fn \qedhere
+    \end{equation*}
+\end{proof}
+
+\noindent In the setting of the lemma, this means that if $\ker \Phi_\fm$ is a congruence subgroup for $\fm$, then so is $\ker \Phi_\fn$ for $\fn$.
+
+The is one special modulus:
+
+\begin{theorem}[The Conductor Theorem]\label{thm:3_2}
+    Let $L/K$ be abelian, then there is a modulus $\ff$ such that
+    \begin{enumerate}
+        \item a prime of $K$, finite or infinite, ramifies in $L$ if and only if it divides $\ff(L/K)$;
+        \item if $\fm$ is a modulus divisible by all primes of $K$ that ramify in $L$, then $\ker \Phi_\fm$ is a congruence subgroup for $\fm$ if and only if $\ff(L/K) \mid \fm$.
+    \end{enumerate}
+    The modulus is uniquely determined by $L/K$, and is called the \emph{conductor} of $L/K$.
+\end{theorem}
+
+\begin{example}\label{eg:3_3}
+    Let $K = \QQ$, and $L = K(\sqrt{d})$, with $d \in \ZZ$ squarefree. Then
+    \begin{equation*}
+        \ff(L/K) =
+        \begin{cases}
+            \abs{D} & \text{if } d>0\\
+            \abs{D}\infty & \text{if } d<0
+        \end{cases}
+    \end{equation*}
+    where $D$ is the discriminant of $L$.
+\end{example}
 
 \end{document}
