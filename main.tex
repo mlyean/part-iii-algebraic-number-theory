@@ -467,7 +467,89 @@ The is one special modulus:
             \abs{D}\infty & \text{if } d<0
         \end{cases}
     \end{equation*}
-    where $D$ is the discriminant of $L$.
+    where $D$ is the discriminant of $L$, and $\infty$ is the real infinite prime of $\QQ$.
+\end{example}
+
+\begin{example}\label{eg:3_4}
+    The conductor of the cyclotomic extensions $\QQ(\zeta_m)/\QQ$ is
+    \begin{equation*}
+        \ff(L/K) =
+        \begin{cases}
+            1 & \text{if } m \le 2\\
+            (\frac{m}{2}) \infty &\text{if } m = 2n, n>1 \text{ odd}\\
+            (m) \infty &\text{otherwise}
+        \end{cases}
+    \end{equation*}
+\end{example}
+
+\begin{remark}\label{rem:3_5}
+    The conductor is not always the product of ramified primes. In the example sheet, we will see an example of a cubic extensions $L/\QQ$ ramified only at $3$, but for $\fm = (3), (3)\infty$, $\ker(\Phi_{L/\QQ, \fm})$ is not a congruence subgroup, so $\ff(L/Q) \nmid (3)$ or $(3) \infty$.
+\end{remark}
+
+\subsection{Artin Reciprocity}
+
+For each abelian extension $L/K$, $\Gal(L/K)$ is a generalised ideal class group:
+
+\begin{theorem}\label{thm:3_6}
+    Let $L/K$ be an abelian extension. Let $\fm$ be a modulus divisible by $\ff(L/K)$. Then the Artin map $\Phi_\fm : I_K(\fm) \to \Gal(L/K)$ is surjective, $\ker{\Phi_\fm}$ is a congruence subgroup, and we have an isomorphism $I_K(\fm)/\ker \Phi_\fm \cong \Gal(L/K)$ induced by $\Phi_\fm$.
+\end{theorem}
+
+We will next describe the kernel.
+
+\begin{notation}\label{not:3_7}
+    Write $N_{L/K} : I_L \to I_K$ for the norm map defined by
+    \begin{equation*}
+        \prod_i \cp_i^{n_i} \mapsto \prod_i \fp_i^{f_{\cp_i / \fp_i} n_i}
+    \end{equation*}
+    so in particular, if $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}}$.
+\end{notation}
+
+\begin{definition}\label{def:3_8}
+    Let $L/K$ be abelian, $\fm$ a modulus divisible by $\ff_{L/K}$. Then the \emph{norm group} (also known as \emph{Takagi group}) associated to $\fm$ is the congruence subgroup
+    \begin{equation*}
+        T_{L/K}(\fm) = N_{L/K}(I_L(\fm))P_K(\fm)
+    \end{equation*}
+    where $I_L(\fm) \subseteq I_L$ consists of fractional ideals that are coprime to $\fm \cO_L$.
+\end{definition}
+
+\begin{theorem}[Artin Reciprocity Continued]
+    We have $\ker \Phi_\fm = T_{L/K}(\fm)$.
+\end{theorem}
+
+We will prove surjectivity of $\Phi_\fm$ using density theorems later in the course.
+
+\begin{proposition}
+    Let $L/K$ be abelian, $\fm$ divisible by $\ff(L/K)$. Then $\ker \Phi_\fm \subseteq T_{L/K}(\fm)$.
+\end{proposition}
+\begin{proof}
+    We will prove if for primes, then the result follows\footnote{why?} from multiplicativity of $\Phi_\fm$. Suppose that $\fp \subseteq \cO_K$ is such that $\fp \in \ker \Phi_\fm$. Then $\leg{L/K}{\fp} = 1$, so we know by \autoref{cor:1_7} that $\fp$ splits completely in $L$, and $f_{\cp / \fp} = 1$ for any $\cp \mid \fp$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$, so $\fp \in N_{L/K}(I_L(\fm)) \subseteq T_{L/K}(\fm)$.
+\end{proof}
+
+\noindent Artin reciprocity gives us information about the decomposition of primes:
+
+\begin{theorem}[Decomposition Theorem]\label{thm:3_10}
+    Let $L/K$ be an abelian extension of degree $n$. Let $\fp \subseteq \cO_K$ be unramified in $L$. Let $\fm$ be divisible by $\ff(L/K)$, but not divisible by $\fp$. Write $H = \ker \Phi_\fm$ for the congruence subgroup for $\fm$. Suppose $f$ is the smallest positive integer such that $\fp^f \in H$, i.e. the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. Then $\fp$ decomposes in $L$ into a product $\fp = \cp_1 \ldots \cp_g$, of $g = \frac{n}{f}$ distinct prime ideals of degree $f$ over $\fp$.
+\end{theorem}
+\begin{proof}
+    Let $\fp = \cp_1 \ldots \cp_g$ be the prime decomposition of $\fp$ in $L$. The $\cp_i$ are distinct a $\fp$ is unramified. They have the same inertia degree $f$ (by \autoref{thm:1_2}). We know $f$ is the order of $\leg{L/K}{\fp}$, so under the isomorphism $I_K(\fm) / H \cong \Gal(L/K)$, this means that it is also the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. The result follows from $n = fg$ by \autoref{thm:1_2}.
+\end{proof}
+
+\subsection{The Existence Theorem}
+
+Every generalised ideal class group is the Galois group of some abelian extension.
+
+\begin{theorem}[Existence Theorem]\label{thm:3_12}
+    Let $\fm$ be a modulus of $F$, and $H$ any congruence subgroup for $\fm$, i.e. $P_K(\fm) \subseteq H \subseteq I_K(\fm)$. Then there is a unique abelian extension $L/K$ with the property that all its ramified (finite and infinite) primes divide $\fm$, such that $H = N_{L/K}(I_L(\fm)) P_K(\fm)$ and $I_K(\fm) / H \xrightarrow{\sim} \Gal(L/K)$ under $\Phi_\fm$.
+\end{theorem}
+
+\begin{definition}[Ray Class Field]\label{def:3_13}
+    Let $\fm$ be any modulus. Let $H$ be the congruence subgroup $P_K(\fm)$. Then the \emph{ray class field} is the unique abelian extension $K_\fm$ of $K$ such that $P_K(\fm) = \ker(\Phi_{K_\fm / K, \fm})$, given by the Existence Theorem \ref{thm:3_12}.
+
+    In particular, $\Gal(K_\fm / K) \cong I_K(\fm)/P_K(\fm)$ is the ray class group.
+\end{definition}
+
+\begin{example}
+    Let $m$ be a positive integer, $m \not\equiv 2 \pmod{4}$. Let $K = \QQ$. If $\fm = (m) \infty$, then $K_\fm = \QQ(\zeta_m)$. If $\fm = (m)$, then $K_\fm = \QQ(\zeta_m + \zeta_m^{-1})$, the maximal real subfield of $\QQ(\zeta_m)$.
 \end{example}
 
 \end{document}
