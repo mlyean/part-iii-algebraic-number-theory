@@ -422,7 +422,7 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
     Let $K \subseteq L \subseteq M$ be a tower of abelian extensions. Suppose $\fm$ contains all primes of $\cO_K$ that ramify in $M$. Then we have a commutative diagram
     \begin{equation*}
     \begin{tikzcd}
-        I_K(\fm) \arrow[r, "\Psi_{M/K,\fm}"] \arrow[rd, "\Phi_{L/K,\fm}"'] & \Gal(M/K) \arrow[d, "\res"] & \sigma \arrow[d, mapsto]\\
+        I_K(\fm) \arrow[r, "\Phi_{M/K,\fm}"] \arrow[rd, "\Phi_{L/K,\fm}"'] & \Gal(M/K) \arrow[d, "\res"] & \sigma \arrow[d, mapsto]\\
                                                                            & \Gal(L/K) & \sigma \vert_L
     \end{tikzcd}
     \end{equation*}
@@ -522,7 +522,7 @@ We will prove surjectivity of $\Phi_\fm$ using density theorems later in the cou
     Let $L/K$ be abelian, $\fm$ divisible by $\ff(L/K)$. Then $\ker \Phi_\fm \subseteq T_{L/K}(\fm)$.
 \end{proposition}
 \begin{proof}
-    We will prove if for primes, then the result follows\footnote{why?} from multiplicativity of $\Phi_\fm$. Suppose that $\fp \subseteq \cO_K$ is such that $\fp \in \ker \Phi_\fm$. Then $\leg{L/K}{\fp} = 1$, so we know by \autoref{cor:1_7} that $\fp$ splits completely in $L$, and $f_{\cp / \fp} = 1$ for any $\cp \mid \fp$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$, so $\fp \in N_{L/K}(I_L(\fm)) \subseteq T_{L/K}(\fm)$.
+    We will prove if for primes, then the result follows\footnote{we will see why later} from multiplicativity of $\Phi_\fm$. Suppose that $\fp \subseteq \cO_K$ is such that $\fp \in \ker \Phi_\fm$. Then $\leg{L/K}{\fp} = 1$, so we know by \autoref{cor:1_7} that $\fp$ splits completely in $L$, and $f_{\cp / \fp} = 1$ for any $\cp \mid \fp$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$, so $\fp \in N_{L/K}(I_L(\fm)) \subseteq T_{L/K}(\fm)$.
 \end{proof}
 
 \noindent Artin reciprocity gives us information about the decomposition of primes:
@@ -543,13 +543,93 @@ Every generalised ideal class group is the Galois group of some abelian extensio
 \end{theorem}
 
 \begin{definition}[Ray Class Field]\label{def:3_13}
-    Let $\fm$ be any modulus. Let $H$ be the congruence subgroup $P_K(\fm)$. Then the \emph{ray class field} is the unique abelian extension $K_\fm$ of $K$ such that $P_K(\fm) = \ker(\Phi_{K_\fm / K, \fm})$, given by the Existence Theorem \ref{thm:3_12}.
+    Let $\fm$ be any modulus. Let $H$ be the congruence subgroup $P_K(\fm)$. Then the \emph{ray class field} is the unique abelian extension $K_\fm$ of $K$ such that $P_K(\fm) = \ker(\Phi_{K_\fm / K, \fm})$, given by the Existence \autoref{thm:3_12}.
 
     In particular, $\Gal(K_\fm / K) \cong I_K(\fm)/P_K(\fm)$ is the ray class group.
 \end{definition}
 
-\begin{example}
+\begin{example}\label{eg:3_14}
     Let $m$ be a positive integer, $m \not\equiv 2 \pmod{4}$. Let $K = \QQ$. If $\fm = (m) \infty$, then $K_\fm = \QQ(\zeta_m)$. If $\fm = (m)$, then $K_\fm = \QQ(\zeta_m + \zeta_m^{-1})$, the maximal real subfield of $\QQ(\zeta_m)$.
 \end{example}
+
+\begin{corollary}\label{cor:3_15}
+    Let $L/K$, $M/K$ be abelian extensions. Then $L \subseteq M$ iff there is a modulus $\fm$ divisible by all primes of $K$ ramified in either $L$ or $M$, such that $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$.
+\end{corollary}
+
+\begin{remark}\label{rem:3_16}
+    This implies every abelian extension is contained in a ray class field: If $L/K$ is abelian and $\ff(L/K) \mid \fm$, then $H = \ker \Phi_{L/K, \fm}$ is a congruence subgroup by \autoref{thm:3_6}, $P_K(\fm) \subseteq H$, so by \autoref{cor:3_15}, $L \subseteq K_\fm$.
+\end{remark}
+
+\begin{proof}[Proof of \autoref{cor:3_15} (Sketch)]
+    ($\Rightarrow$) Suppose that $L \subseteq M$, so by Artin Reciprocity \autoref{thm:3_6}, there exist moduli $\fm_1$ and $\fm_2$ such that $P_K(\fm_1) \subseteq \ker \Phi_{L/K, \fm_1}$ and $P_K(\fm_2) \subseteq \ker \Phi_{M/K, \fm_2}$. Let $\fm$ be a modulus divisible by both $\fm_1$ and $\fm_2$. By \autoref{lem:3_1}, $P_K(\fm) \subseteq \ker \Phi_{L/K,\fm}$, and $P_K(\fm) \subseteq \ker \Phi_{M/K,\fm}$. By \autoref{prop:2_26}, $\Phi_{L/K, \fm} = \res \circ \Phi_{M/K, \fm}$, where $\res : \Gal(M/K) \to \Gal(L/K)$. The result follows.
+
+    ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. Then under $\Phi_{M/K, \fm} : I_K(\fm) \to \Gal(M/K)$, the subgroup $\ker \Phi_{L/K, \fm}$ maps to a subgroup $H \subseteq \Gal(M/K)$. By Galois theory, $H$ corresponds to an intermediate field $K \subseteq \widetilde{L} \subseteq M$. Now the first part of the proof applied to $\widetilde{L} \subseteq M$ shows that we have $\ker \Phi_{\widetilde{L}/K, \fm} = \ker \Phi_{L/K, \fm}$. Then by the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
+\end{proof}
+
+\begin{theorem}\label{thm:3_17}
+    Let $K$ be a number field. There is a 1-to-1 inclusion reversing correspondence
+    \begin{equation*}
+        \{\text{abelian extensions of } K\} \longleftrightarrow \{\text{generalised ideal class groups of } K\}
+    \end{equation*}
+\end{theorem}
+
+\section{Applications of Global Class Field Theory}
+
+\subsection{Kronecker-Weber}
+
+\begin{theorem}\label{thm:4_1}
+    Let $L/\QQ$ be an abelian extension. Then there is a positive integer $\fm$ such that $L \subseteq \QQ(\zeta_m)$.
+\end{theorem}
+\begin{proof}
+    By Artin reciprocity, there is a modulus $\fm$ such that $P_\QQ(\fm) \subseteq \ker \Phi_{L/\QQ, \fm}$. By \autoref{lem:3_1}, we may assume that $\fm = (m) \infty$. We have seen (see \autoref{remark:2_15}) that $P_\QQ(\fm) = \ker \Phi_{\QQ(\zeta_m)/\QQ, \fm}$, so $P_\QQ(\fm) = \ker \Phi_{\QQ(\zeta_m)/\QQ, \fm} \subseteq \ker \Phi_{L/\QQ, \fm}$. Then $L \subseteq \QQ(\zeta_m)$ by \autoref{cor:3_15}.
+\end{proof}
+
+\subsection{Hilbert Class Field}
+
+The Existence \autoref{thm:3_12} gives us an abelian extension that is unramified and has Galois group equal to the ideal class group of $K$. Let $\fm = 1$ and let $K_\fm$ be the corresponding ray class field. Then $K_\fm / K$ is unramified\footnote{at finite and infinite primes, also for \autoref{thm:4_5}} and $\Gal(K_\fm/K) \cong I_K(1) / P_K(1) \cong \Cl(K)$.
+
+\stepcounter{definition} % Numbering issue
+
+\begin{definition}\label{def:4_3}
+    This is called the \emph{Hilbert class field}.
+\end{definition}
+
+\begin{example}\label{eg:4_4}
+    If $K = \QQ$, then the Hilbert class field is $\QQ$.
+\end{example}
+
+\begin{theorem}\label{thm:4_5}
+    The Hilbert class field is the maximal unramified abelian extension of $K$.
+\end{theorem}
+\begin{proof}
+    Write $F$ for the Hilbert class field of $K$. Suppose $M/K$ is an unramified abelian extension. By the Conductor \autoref{thm:3_2}, $\ff(M/K) = 1$ and $P_K(\ff(M/K)) = P_K(1) \subseteq \ker \Phi_{M/K, 1}$ also by the Conductor Theorem. Thus $P_K(1) = P_K = \ker \Phi_{F/K, 1}$, so $M \subseteq F$ by \autoref{cor:3_15}.
+\end{proof}
+
+\begin{corollary}[Class Field Theory for Unramified Extensions]\label{cor:4_6}
+    Let $K$ be a number field. Then there is a 1-to-1 inclusion reversing correspondence
+    \begin{equation*}
+        \{\text{unramified abelian extensions of } K\} \longrightarrow \{\text{subgroups of } \Cl(K)\}
+    \end{equation*}
+    If $M/K$ corresponds to $H \subseteq \Cl(K)$, then the Artin map induces an isomorphism $\Cl(K)/H \xrightarrow{\sim} \Gal(M/K)$.
+\end{corollary}
+
+\begin{example}\label{eg:4_7}
+    Let $K = \QQ(\sqrt{-5})$. We show that the Hilbert class field $F$ is equal to $L = \QQ(\sqrt{-5}, i)$.
+
+    We use (without proof) that $h_K = 2$, so
+    \begin{equation*}
+        \abs{\Gal(F/K)} = \abs{I_K/P_K} = \abs{\Cl(K)} = 2
+    \end{equation*}
+    so $F$ is an unramified quadratic extension.
+    \begin{equation*}
+    \begin{tikzcd}
+        & \QQ(\sqrt{-5}, i) \arrow[dl, dash] \arrow[d, dash] \arrow[dr, dash] &\\
+        \QQ(i) \arrow[dr, dash, "\text{only } 2 \text{ ramifies}"'] & \QQ(\sqrt{-5}) \arrow[d, dash] & \QQ(\sqrt{5}) \arrow[dl, dash, "\text{only } 5 \text{ ramifies}"]\\
+        & \QQ
+    \end{tikzcd}
+    \end{equation*}
+    If $p \neq 2, 5$, then $p$ is unramified in both $\QQ(\sqrt{5})$ and $\QQ(i)$. Therefore in $\QQ(\sqrt{-5}, i)$. Thus primes of $\QQ(\sqrt{-5})$ not above $2$ or $5$ are unramified. Note that $2, 5$ are already ramified in $\QQ(\sqrt{-5})$, so primes above them are unramified in $\QQ(\sqrt{-5}, i)/\QQ(\sqrt{-5})$. Thus $F = \QQ(\sqrt{-5}, i)$.
+\end{example}
+
 
 \end{document}
