@@ -35,6 +35,10 @@
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
 \DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Cl}{Cl}
@@ -727,5 +731,97 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
     \end{equation}
     Consider the map $(\ZZ / p \ZZ)^\times \to I_\QQ(p\infty)/P_\QQ(p\infty)$ given by $[a] \mapsto [a \ZZ]$. This is an isomorphism. Composing this with \eqref{eqn:4_12_star}, we get a surjective homomorphism $(\ZZ/p\ZZ)^\times \to \{\pm 1\}$. But the Legendre symbol $\leg{\cdot}{p}$ also gives a surjective homomorphism $(\ZZ/p\ZZ)^\times \to \{\pm 1\}$. Since $(\ZZ/p\ZZ)^\times$ is cyclic, there is only one such homomorphism. Thus $\leg{p^*}{q} = \leg{q}{p}$.
 \end{proof}
+
+\section{Zeta Functions and \texorpdfstring{$L$}{L}-series}
+
+In number theory, many arithmetic properties of objects (i.e. number fields, elliptic curves, \textellipsis) are captured in analytic objects like zeta functions and $L$-functions.
+
+\subsection{Dirichlet Series}
+
+\begin{definition}\label{def:5_1}
+    A \emph{Dirichlet series} is a series $f(s) = \sum_{n=1}^\infty \frac{a_n}{n^s}$, with $a_n \in \CC$, $s \in \CC$.
+\end{definition}
+
+We write $s = \sigma + i t$, where $\sigma, t$ are real. Suppose $\{a_n\}$ is a sequence of complex numbers, let $A(N) = \sum_{n=1}^N a_n$, and let $A(M, N) = \sum_{n=M}^N a_n$.
+
+\begin{theorem}\label{thm:5_2}
+    If the Dirichlet series $\sum_{n=1}^\infty \frac{a_n}{n^s}$ converges for some $s = s_0$, then it converges for any $s$ with $\Re s > \sigma_0 = \Re s_0$, uniformly on any compact subset.
+\end{theorem}
+\begin{proof}
+    We will prove that the series converges uniformly in every region $\abs{\arg(s-s_0)} \le \frac{\pi}{2} - \delta < \frac{\pi}{2}$. Every compact set $K$ contained in $\{s \in \CC \mid \sigma > \sigma_0 \}$ lies in such a region. Since $f(s) = \sum_{n=1}^\infty \frac{1}{n^{s_0}} \frac{a_n}{n^{s-s_0}} = \sum_{n=1}^{\infty} \frac{\widetilde{a}_n}{n^{s-s_0}}$, where $\widetilde{a}_n = \frac{a_n}{n^{s_0}}$. Thus we may assume $s_0 = 0$. Then $\sum_{n=1}^\infty a_n$ converges, and for each $\varepsilon > 0$, we have $N_0$ such that $\abs{A(M, N)} < \varepsilon$ for all $N > M \ge N_0$. For each $N > M \ge N_0$, we find
+    \begin{align*}
+        \sum_{n=M}^{N} \frac{a_n}{n^s}
+        &= \sum_{n=M}^{N} (A(M,n) - A(M,n-1)) n^{-s}\\
+        &= \sum_{n=M}^{N-1} A(M,n) (n^{-s} - (n+1)^{-s}) + A(M, N) N^{-s}
+    \end{align*}
+    This is called Abel summation or summation by parts. We have
+    \begin{equation*}
+        \abs{n^{-s} - (n+1)^{-s}} = \abs{s \int_{n}^{n+1} \frac{dx}{x^{s+1}}} \le \abs{s} \int_{n}^{n+1} \frac{dx}{x^{\sigma+1}} = \frac{\abs{s}}{\sigma} (n^{-\sigma} - (n+1)^{-\sigma})
+    \end{equation*}
+    and $\frac{\abs{s}}{\sigma}$ is bounded in the region $\arg s \in (-\frac{\pi}{2} + \delta, \frac{\pi}{2} - \delta)$ by some constant $C$. Thus
+    \begin{align*}
+        \abs{\sum_{n=M}^{N} \frac{a_n}{n^s}}
+        &\le \sum_{n=M}^{N-1} \abs{A(M,n)} \abs{n^{-s} - (n+1)^{-s}} + \abs{A(M, N)} \abs{N^{-s}}\\
+        &\le C \varepsilon \sum_{n=M}^{N-1} (n^{-\sigma} - (n+1)^{-\sigma}) + \varepsilon N^{-\sigma}\\
+        &\le C \varepsilon M^{-\sigma} + \varepsilon N^{-\sigma}\\
+        &< (C + 1) N_0^{-\sigma} \varepsilon
+    \end{align*}
+\end{proof}
+
+\begin{definition}\label{def:5_3}
+    The smallest real number $\sigma_0$ such that the Dirichlet series converges for $\Re s > \sigma_0$ is called the \emph{abscissa of convergence}.
+\end{definition}
+
+We see the series converges in the half plane to the right of the line $\sigma = \sigma_0$, but does not converge for $s$ with $\sigma < \sigma_0$. If the Dirichlet series converges for some $s_1 = \sigma_1 + i t_1$, then we must have $a_n = O(n^{\sigma_1})$, and the Dirichlet series converges absolutely and uniformly on compact subsets if $\Re s \ge \sigma_1 + 1 + \delta$ if $\delta > 0$. (This follows by comparison with $\sum_{n=1}^{\infty} \frac{1}{n^{1+\delta}}$.)
+
+\begin{theorem}\label{thm:5_4}
+    Assume there exists a number $C$ and some $\sigma_1 \ge 0$ such that $\abs{A(N)} = \abs{a_1 + \ldots + a_N} \le C N^{\sigma_1}$ for all $N$. Then the abscissa of convergence of $\sum \frac{a_n}{n^s}$ is at most $\sigma_1$.
+\end{theorem}
+\begin{proof}
+    Exercise
+\end{proof}
+
+\subsection{Riemann Zeta Function}
+
+\begin{definition}\label{def:5_5}
+    For $s \in \CC$ with $\Re s \ge 1$, we define the \emph{Riemann zeta function} as $\zeta(s) = \sum_{n=1}^\infty \frac{1}{n^s}$.
+\end{definition}
+
+\noindent By \autoref{thm:5_4}, we have $\sigma_1 = 1$, so $\zeta(s)$ converges for $\Re s > 1$.
+
+\begin{example}\label{eg:5_6}
+    We well show that $\zeta(s)$ has a meromorphic continuation to $\Re s > 0$, with a pole of first order and $\res_{s=1} \zeta(s) = 1$. Let $s > 1$, then we claim $\lim_{s \to 1^+} (s-1) \zeta(s) = 1$. By bounding $\int_1^\infty \frac{dx}{x^s} = \frac{1}{s-1}$ by rectangles, we see that
+    \begin{gather*}
+        \zeta(s) - 1 \le \int_1^\infty \frac{dx}{x^s} \le \zeta(s)\\
+        \frac{1}{s-1} \le \zeta(s) \le 1 + \frac{1}{s-1}\\
+        1 \le (s-1) \zeta(s) \le s
+    \end{gather*}
+    Taking $s \to 1^+$ gives the result.
+
+    To extend the Riemann zeta function to $\Re s > 0$, we use a trick: Set
+    \begin{align*}
+        \zeta_2(s)
+        &= \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n^s}\\
+        &= 1 - \frac{1}{2^s} + \frac{1}{3^s} - \ldots\\
+        &= \zeta(s) - 2\left(\frac{1}{2^s} + \frac{1}{4^s} + \ldots\right)\\
+        &= (1-2^{1-s}) \zeta(s)
+    \end{align*}
+    The partial sums of $\zeta_2(s)$ are either $1$ or $0$, hence bounded. By \autoref{thm:5_4}, this converges for $\sigma > 0$. We write $\zeta(s) = \frac{\zeta_2(s)}{1-2^{1-s}}$. We see that this has a pole only if
+    \begin{align*}
+        1 - 2^{1-s} = 0
+        &\iff \exp((1-s) \log 2) = 1\\
+        &\iff (1-s) \log 2 \in 2 \pi i \ZZ\\
+        &\iff s = 1 + \frac{2 \pi i k}{\log 2} \text{ for some } k \in \ZZ
+    \end{align*}
+\end{example}
+Now consider
+\begin{equation*}
+    \zeta_3(s) = \sum_{n \ge 0} \frac{1}{(3n+1)^s} + \frac{1}{(3n+2)^s} - \frac{2}{(3n+3)^s}
+\end{equation*}
+Then $\zeta(s) = \frac{\zeta_3(s)}{1-3^{1-s}}$, so similarly poles occur only when $1-3^{1-s} = 0$, so $s = 1 + \frac{2 \pi i k'}{\log 3}$ for some $k' \in \ZZ$. Thus $k = k' = 0$, so the only poles occur at $s = 1$.
+
+\begin{proposition}\label{prop:5_7}
+    For $\Re s > 1$, $\zeta(s) = \prod_p \frac{1}{1-p^{-s}}$.
+\end{proposition}
 
 \end{document}
