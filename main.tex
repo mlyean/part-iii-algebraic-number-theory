@@ -1308,7 +1308,7 @@ so
 Now we compute $L(\chi, 1)$.
 
 \begin{definition}[Gauss Sum]\label{def:7_21}
-    Let $\zeta$ be a primitive $m$\textsuperscript{th} root of unity. Then for $k \ge 0$, we define the Gauss sum $\tau_K(\chi) = \sum_{a \in (\ZZ / m\ZZ)^\times} \chi(a) \zeta^{ak}$.
+    Let $\zeta = e^{\frac{2 \pi i}{m}}$ be a primitive $m$\textsuperscript{th} root of unity. Then for $k \ge 0$, we define the Gauss sum $\tau_k(\chi) = \sum_{a \in (\ZZ / m\ZZ)^\times} \chi(a) \zeta^{ak}$.
 \end{definition}
 
 \begin{theorem}\label{thm:7_22}
@@ -1350,10 +1350,11 @@ Now we compute $L(\chi, 1)$.
 \end{lemma}
 
 \begin{remark}\label{rem:7_25}
-    We use that for $0 < k < m$,
+    We will use that for $0 < k < m$,
     \begin{equation*}
         \log(1-\zeta^k) = \log 2 + \log \sin \frac{k \pi}{m} + \left(\frac{k}{m} - \frac{1}{2}\right) \pi i
     \end{equation*}
+    This may be proven by writing $1 - \zeta^k = -\zeta^{\frac{k}{2}} (\zeta^{\frac{k}{2}} - \zeta^{-\frac{k}{2}}) = -2i \zeta^{\frac{k}{2}} \sin \frac{k \pi i}{m}$.
 \end{remark}
 \noindent Now
 \begin{alignat*}{3}
@@ -1363,20 +1364,28 @@ Now we compute $L(\chi, 1)$.
     &= -\frac{\chi(-1) \tau_1(\chi)}{m} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) \log(1 - \zeta^k) &&\qquad \text{Substitute } k \mapsto -k\\
     &= -\frac{\chi(-1) \tau_1(\chi)}{m} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) \left(\log \sin \frac{k \pi}{m} + \frac{k \pi i}{m}\right) &&\qquad \text{by \ref{rem:7_25} and \ref{prop:7_14}}\\
     &= \begin{cases}
-        \displaystyle-\frac{2 \tau_1(\chi)}{m} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) \log \sin \frac{k \pi}{m} & \text{if } \chi \text{ is even}\\ %TODO: Where does the 2 come from?
+        \displaystyle-\frac{\tau_1(\chi)}{m} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) \log \sin \frac{k \pi}{m} & \text{if } \chi \text{ is even}\\
         \displaystyle\frac{\pi i \tau_1(\chi)}{m^2} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) k & \text{if } \chi \text{ is odd}
     \end{cases}
 \end{alignat*}
 The last equality holds since $\chi(-1) = 1$ implies $\sum_k \overline{\chi}(k) k = 0$, and $\chi(-1) = -1$ implies $\sum_k \overline{\chi}(k) \log \sin \frac{k \pi}{m} = 0$.
 
-Note also for odd $\chi$,
+\noindent Note also for odd $\chi$,
 \begin{equation*}
     \sum_{k \in (\ZZ / m \ZZ)^\times} \chi(k) k = \frac{m}{\overline{\chi}(2) - 2} \sum_{\substack{k \in (\ZZ/m\ZZ)^\times \\ k < \frac{m}{2}}} \chi(k)
 \end{equation*}
+(Indeed, let $S = \sum_{k \in (\ZZ / m\ZZ)^\times} \chi(k) k$. Then
+\begin{align*}
+    S
+    &= \sum_{k=1}^{\frac{m-1}{2}} \chi(2k) 2k + \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k) (2k-m)\\
+    &= \sum_{k=1}^{m-1} \chi(2k) 2k - m \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k)\\
+    &= 2 \chi(2) S + \chi(2) m \sum_{k=1}^{\frac{m-1}{2}} \chi(k)
+\end{align*}
+Rearranging gives the result.)
 
 Putting this together,
 \begin{theorem}\label{thm:7_26}
-    Let $\chi$ be a primitive character ad $m \ge 3$. Then
+    Let $\chi$ be a primitive character mod $m \ge 3$. Then
     \begin{equation*}
         \abs{L(\chi, 1)} = \begin{cases}
             \displaystyle\frac{2}{\sqrt{m}} \Bigg\lvert\sum_{\substack{k \in (\ZZ/m\ZZ)^\times \\ k < \frac{m}{2}}} \chi(k) \log \sin \frac{k \pi}{m} \Bigg\rvert & \text{if } \chi \text{ is even} \\
