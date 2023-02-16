@@ -1066,14 +1066,14 @@ where
         0 & \text{if } p \text{ ramifies}
     \end{cases}
 \end{equation*}
-This is an example of a Dirichlet character, and $\prod_p \left(1 - \frac{\chi(p)}{p}\right)^{-1}$ is the Euler product corresponding to the Dirichlet $L$-series $L(s, \chi)$.
+This is an example of a Dirichlet character, and $\prod_p \left(1 - \frac{\chi(p)}{p}\right)^{-1}$ is the Euler product corresponding to the Dirichlet $L$-series $L(\chi, s)$.
 
 \section{Dirichlet \texorpdfstring{$L$}{L}-series}
 
 \subsection{Dirichlet Characters}
 
 \begin{definition}\label{def:7_1}
-    Let $m$ be a natural number. A \emph{Dirichlet character} mod $m$W is a homomorphism $\chi : (\ZZ/m\ZZ)^\times \to \CC^\times$.
+    Let $m$ be a natural number. A \emph{Dirichlet character} mod $m$ is a homomorphism $\chi : (\ZZ/m\ZZ)^\times \to \CC^\times$.
 \end{definition}
 
 \begin{example}\label{eg:7_2}
@@ -1092,7 +1092,7 @@ This is an example of a Dirichlet character, and $\prod_p \left(1 - \frac{\chi(p
 \end{definition}
 
 \begin{definition}\label{def:7_4}
-    If $\chi$ is a Dirichlet character mod $m$ and $\chi$ is primitive, then $m$ is called the conductor of $\chi$.
+    If $\chi$ is a Dirichlet character mod $m$ and $\chi$ is primitive, then $m$ is called the \emph{conductor} of $\chi$.
 \end{definition}
 
 The conductor of a Dirichlet character $\chi$ mod $m_0$ is the gcd of all $m' \mid m_0$ such that $\chi$ is induced from a character mod $m'$.
@@ -1113,7 +1113,7 @@ We can extend Dirichlet characters $\chi$ to multiplicative functions $\chi : \Z
 \end{example}
 
 \begin{definition}\label{def:7_7}
-    Write $\chi_0$ for the trivial character mod $m$. Explicitly,
+    Write $\chi_0$ for the \emph{trivial character} mod $m$. Explicitly,
     \begin{equation*}
         \chi_0(n) =
         \begin{cases}
@@ -1121,7 +1121,7 @@ We can extend Dirichlet characters $\chi$ to multiplicative functions $\chi : \Z
             0 & \text{if } (n, m) \neq 1
         \end{cases}
     \end{equation*}
-    This is also called the principal character.
+    This is also called the \emph{principal character}.
     For $m = 1$, we write $\chi_0 = \mathbb{1}$.
 \end{definition}
 
