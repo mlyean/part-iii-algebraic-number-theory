@@ -1345,9 +1345,9 @@ Now we compute $L(\chi, 1)$.
     Omitted.
 \end{proof}
 
-\begin{lemma}\label{lem:7_24}
+\begin{definition}\label{def:7_24}
     We say a Dirichlet character $\chi$ is \emph{even} if $\chi(-1) = 1$ and \emph{odd} if $\chi(-1) = -1$.
-\end{lemma}
+\end{definition}
 
 \begin{remark}\label{rem:7_25}
     We will use that for $0 < k < m$,
@@ -1422,5 +1422,92 @@ We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is 
 \begin{example}\label{eg:7_28}
     Let $d = -2$. Then $h_K = \frac{1}{2} \abs{\chi(1) + \chi(3)} = 1$.
 \end{example}
+
+\section{Density}
+
+\subsection{Dirichlet Density}
+
+Let $K$ be a number field.
+
+\begin{definition}\label{def:8_1}
+    Let $S$ be a set of prime ideals of $K$. Then the limit
+    \begin{equation*}
+        d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\sum_{\fp} N(\fp)^{-s}}
+    \end{equation*}
+    provided it exists, is called the \emph{Dirichlet density} of $S$.
+\end{definition}
+
+This provides a way to measure the ratio of the set of primes in a set $S$ to the set of all (finite) primes.
+
+For $\Re(s) \ge 1$,
+\begin{equation*}
+    \zeta_K(s) = \prod_{\fp} \frac{1}{1 - N(\fp)^{-s}}
+\end{equation*}
+so
+\begin{equation*}
+    \log \zeta_K(s) = \sum_{\fp} \sum_{n=1}^\infty \frac{1}{n N(\fp)^{ns}} = \sum_{\fp} \frac{1}{N(\fp)^s} + \sum_{\fp} \sum_{n=2}^\infty \frac{1}{n N(\fp)^s}
+\end{equation*}
+where the latter sum is analytic at $s=1$.
+
+\begin{notation}\label{not:8_2}
+    Let $f(s), g(s)$ be functions defined for (at least) $\Re(s) \ge 1$. Then we write $f(s) \sim g(s)$ if $f(s) - g(s)$ has a finite limit as $s$ approaches $1$ (in the common domain).
+\end{notation}
+
+We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$, now since $\zeta_K(s)$ has a simple pole at $s=1$, $\zeta_K(s) \sim \frac{\kappa}{s-1}$, so $\sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so we can also write $d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\log \frac{1}{s-1}}$.
+
+\begin{lemma}\label{lem:8_3}
+    Dirichlet density has the following properties:
+    \begin{enumerate}[label=\roman*)]
+        \item $d(P) = 1$ if $P$ is the set of all prime ideals of $K$;
+        \item if $S \subseteq T$, and $d(S)$ and $d(T)$ exist, then $d(S) \le d(T)$;
+        \item if $d(S)$ exists, then $0 \le d(S) \le 1$;
+        \item if $S$ and $T$ are disjoint, and $d(S)$ and $d(T)$ both exist, then $d(S \cup T) = d(S) + d(T)$;
+        \item if $S$ is finite, then $d(S) = 0$;
+        \item if $d(S)$ exists and if $T$ is different from $S$ by finitely many elements, then $d(S) = d(T)$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    Exercise.
+\end{proof}
+
+Recall a degree $1$ prime is a prime with residue field degree $1$ over $\QQ$, or equivalently a prime whose absolute norm $N(\fp)$ is prime.
+
+\begin{lemma}\label{lem:8_4}
+    The set $S$ of degree $1$ primes is infinite, and $d(S) = 1$.
+\end{lemma}
+\begin{proof}
+    We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s} = \sum_{\fp \in S} \frac{1}{N(\fp)^s} + \sum_{\fp \notin S} \frac{1}{N(\fp)^s}$. If $\fp \notin S$, then $N(\fp) = p^f \ge p^2$. There are at most $[K : \QQ]$ prime ideals in $\cO_K$ having a power of a prime $p$ as norm. We have
+    \begin{equation*}
+        \abs{\sum_{\fp \notin S} \frac{1}{N(\fp)^s}} \le [K : \QQ] \sum_{\fp} \frac{1}{p^{2 \sigma}}
+    \end{equation*}
+    where $\sigma = \Re(s)$. The sum on the right is bounded at $s = 1$, so $\log \zeta_K(s) \sim \sum_{\fp \in S} \frac{1}{N(\fp)^s}$. We already saw $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so $\sum_{\fp \in S} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$. Since $\log \frac{1}{1-s}$ is not bounded at $s=1$, the sum on the left must have infinitely many terms, and $d(S) = 1$.
+\end{proof}
+
+\subsection{Frobenius Density Theorem}
+
+We will prove and use the Frobenius density theorem to prove the surjectivity of the Artin map, later we will see the Cebotarev density theorem.
+
+Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
+
+\begin{definition}\label{def:8_5}
+    Let $\sigma \in G$ be an element of order $n$. Then the \emph{division} of $\sigma$ is the set of all elements of $G$ which is conjugate to some $\sigma^m$ for $m \in \ZZ$, $m$ relatively prime to $n$.
+\end{definition}
+
+\begin{lemma}\label{lem:8_6}
+    Let $\sigma \in G$, $H = \langle \sigma \rangle$, and $t$ the number of elements in the division of $\sigma$. Then $t = \phi(n) [G : N_G(H)]$, where $\phi$ is the Euler totient function, and $N_G(H)$ is the normaliser of $H$ in $G$.
+\end{lemma}
+
+\begin{theorem}[Frobenius Density Theorem]\label{thm:8_7}
+    Let $\sigma \in \Gal(L/K)$. Let $S$ be the set of primes $\fp$ of $K$ such that there is a prime $\cp$ in $L$ lying above it such that $\leg{L/K}{\cp}$ is in the division of $\sigma$, i.e. $\leg{L/K}{\cp}$ is conjugate to $\sigma^m$ for some $m$ relatively prime to the order of $\sigma$. Then $d(S) = \frac{t}{\abs{G}}$.
+\end{theorem}
+
+\noindent We will prove \autoref{lem:8_6} and \autoref{thm:8_7} later.
+
+\begin{theorem}\label{thm:8_8}
+    Let $L/K$ be abelian, and let $\fm$ be a modulus divisible by all ramified primes. Then $\Phi_\fm : I_K(\fm) \to \Gal(L/K)$ is surjective.
+\end{theorem}
+\begin{proof}
+    Let $\sigma \in \Gal(L/K)$. Since $\Gal(L/K)$ is abelian, the division of $\sigma$ consists of the elements that generate the cyclic group $\langle \sigma \rangle$. By the Frobenius density theorem, there exists infinitely many primes $\cp$ of $L$ such that $\leg{L/K}{\cp}$ generates $\langle \sigma \rangle$. Let $\cp$ be any such prime such that $\fp = \cp \cap \cO_K$ is not contained in $\fm$ (which is possible by the definition of a modulus). Then $\Phi_\fm(\fp)$ is a generator of $\langle \sigma \rangle$. Thus $\sigma$ is in the image of $\Phi_\fm$.
+\end{proof}
 
 \end{document}
