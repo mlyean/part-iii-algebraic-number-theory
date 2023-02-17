@@ -1273,7 +1273,7 @@ Since $\zeta(s)$ and $\zeta_K(s)$ both have simple poles at $s = 1$, so
 Let $K$ be any number field. Then for $\Re(s) > 1$, we can write $\zeta_K(s) = \sum_{n=1}^\infty \frac{j_s}{n^s}$ with $j_n$ the number of integral ideals $\fa$ of $K$ with $N(\fa) = n$. Then
 \begin{equation*}
     \zeta_K(s) = \sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s} + h_K \kappa \zeta(s)
-\end{equation*}
+\end{equation*}%TODO: I think there is a mistake here, should just be kappa, not h_K kappa
 for $\Re(s) > 1$, where $\kappa$ is the term we defined in the analytic class number formula \autoref{cor:6_6}, and $h_K$ is the class number. The series $\sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s}$ converges for $\Re(s) = 1$ (in fact it converges for $\Re(s) > 1 - \frac{1}{[K : \QQ]}$). Now $h_K = \frac{\rho}{\kappa}$, where $\rho = \lim_{s \to 1} \frac{\zeta_K(s)}{\zeta(s)}$.
 
 Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. Consider its image in $(\ZZ / m\ZZ)^\times$, then consider characters of $G$ as Dirichlet characters mod $m$, so we consider $\widehat{G}$ as a subgroup of $(\ZZ / m\ZZ)^\times$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
@@ -1395,7 +1395,7 @@ Putting this together,
 \end{theorem}
 
 \subsubsection*{The Quadratic Case}
-Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq \QQ(\zeta_m)$. By \autoref{thm:7_26}, we have $\rho = L(\chi, 1)$, where $\chi$ is the unique non-trivial character mod $m$ which corresponds to a character of $\Gal(K/\QQ)$. For $p \nmid m$,
+Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq \QQ(\zeta_m)$. By \autoref{thm:7_20}, we have\footnote{note that if $p \mid m$, then $p$ is ramified, so $f_p = r_p = 1$} $\rho = L(\chi, 1)$, where $\chi$ is the unique non-trivial character mod $m$ which corresponds to a character of $\Gal(K/\QQ)$. For $p \nmid m$,
 \begin{equation*}
     \chi(p) = \begin{cases}
         1 & \text{if } p \text{ splits}\\
@@ -1404,7 +1404,7 @@ Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq 
 \end{equation*}
 We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is primitive mod $m$. It is even if $d > 0$ and odd if $d < 0$.
 
-\begin{theorem}
+\begin{theorem}\label{thm:7_27}
     Let $K = \QQ(\sqrt{d})$, $d$ squarefree, $m = \abs{d_K}$. Then
     \begin{equation*}
         h_K = \frac{1}{\log \varepsilon} \Bigg\lvert \sum_{\substack{k \in (\ZZ / m\ZZ)^\times \\ k < \frac{m}{2}}} \chi(k) \log \sin \frac{k \pi}{m} \Bigg\rvert
@@ -1419,7 +1419,7 @@ We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is 
     Exercise.
 \end{proof}
 
-\begin{example}
+\begin{example}\label{eg:7_28}
     Let $d = -2$. Then $h_K = \frac{1}{2} \abs{\chi(1) + \chi(3)} = 1$.
 \end{example}
 
