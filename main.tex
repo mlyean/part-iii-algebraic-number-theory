@@ -1510,4 +1510,55 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
     Let $\sigma \in \Gal(L/K)$. Since $\Gal(L/K)$ is abelian, the division of $\sigma$ consists of the elements that generate the cyclic group $\langle \sigma \rangle$. By the Frobenius density theorem, there exists infinitely many primes $\cp$ of $L$ such that $\leg{L/K}{\cp}$ generates $\langle \sigma \rangle$. Let $\cp$ be any such prime such that $\fp = \cp \cap \cO_K$ is not contained in $\fm$ (which is possible by the definition of a modulus). Then $\Phi_\fm(\fp)$ is a generator of $\langle \sigma \rangle$. Thus $\sigma$ is in the image of $\Phi_\fm$.
 \end{proof}
 
+\begin{lemma}\label{lem:8_9}
+    Let $S$ be a set of prime ideals of $K$ whose Dirichlet density exists, then $d(S) = d(S \cap \{\text{degree } 1 \text{ prime ideals}\})$.
+\end{lemma}
+\begin{proof}
+    From the proof of \autoref{lem:8_4}, we have
+    \begin{equation*}
+        \sum_{\substack{\fp \in S \\ \text{degree} \neq 1}} N(\fp)^{-s} \sim 0
+    \end{equation*}
+    Then
+    \begin{equation*}
+        \sum_{\fp \in S} N(\fp)^{-s} \sim \sum_{\fp \in S \cap \{\text{degree } 1 \text{ primes}\}} N(\fp)^{-s}
+    \end{equation*}
+\end{proof}
+
+Let $K$ be a number field, $L/K$ a Galois extension. Let $G = \Gal(L/K)$. Recall that if $G$ is a finite group, for any $g \in G$, the number of elements in its conjugacy class equals $[G : C_G(g)]$, where $C_G(g) = \{a \in G \mid ag=ga\}$ is the centraliser of $g$.
+
+\begin{proof}[Proof of \autoref{lem:8_6}]
+    For $(m, n)=1$, $C_G(\sigma) = C_G(\sigma^m)$, so $\sigma^m$ has $[G : C_G(\sigma)]$ conjugates, so as $m$ ranges over all integers between $1$ and $n$ relatively prime to $n$, then we count $\phi(n)[G : C_G(\sigma)]$ conjugates. They are not all distinct, we count an element $q$ times if it is conjugate to $q$ different powers $\sigma^m$. The number of distinct powers of $\sigma^m$ that are conjugate to $\sigma$ is the number of distinct automorphisms of $H$ induced by conjugation, i.e. $q = [N_G(H) : C_G(\sigma)]$, so $t = \frac{\phi(n) [G : C_G(\sigma)]}{[N_G(H) : C_G(\sigma)]} = \phi(n)[G : N_G(H)]$.
+\end{proof}
+
+\begin{proof}[Proof of \autoref{thm:8_7}]
+    Let $S_1$ be the set $S$ in the statement.
+    We proceed by induction on $n$, the order of $\sigma$.
+
+    Suppose $n = 1$. Then $S_1$ is the set of primes of $K$ that split completely in $L$ (by \autoref{cor:1_7}). Let $S_L$ be the set of primes of $L$ that lie above some prime in $S_1$. Then each prime $p$ in $S_1$ has exactly $[L:K] = \abs{G}$ primes in $S_L$ lying above it, and any such prime has norm $\fp$, so we find
+    \begin{equation*}
+        \sum_{\cp \in S_L} N_{L/\QQ}(\cp)^{-s}
+        = \sum_{\cp \in S_L} N_{K/\QQ}(N_{L/K}(\cp))^{-s}
+        = \abs{G} \sum_{\fp \in S_1} N_{K/\QQ}(\fp)^{-s}
+    \end{equation*}
+    Let $S_L^1$ be the set of primes of $L$ having degree $1$ over $\QQ$, then $S_L^1 \subseteq S_L$. By \autoref{lem:8_4} and \autoref{lem:8_9}, $d(S_L) = d(S_L \cap S_L^1) = d(S_L^1) = 1$. Hence
+    \begin{equation*}
+        \abs{G} \sum_{\fp \in S_1} N_{K/\QQ}(\fp)^{-s} \sim \sum_{\cp \in S_L} N_{L/\QQ}(\cp)^{-s} \sim -\log(s-1)
+    \end{equation*}
+    and so $d(S_1) = \frac{1}{\abs{G}}$.
+
+    Now assume $\sigma$ has order $n > 1$. For each divisor $d$ of $n$, let $t_d$ be the number of elements in the division of $\sigma^d$. Let $S_d$ be the set of primes of $K$ lying under some prime $\cp$ of $L$ whose Artin symbol belongs to the division of $\sigma^d$ ($S_1$ is the set we are interested in). By induction, for $1 \neq d \mid n$ we know that $d(S_d) = \frac{t_d}{\abs{G}}$.
+
+    Let $E = L^H$, the subfield of $L$ fixed element-wise by $H = \langle \sigma \rangle$. The primes $\fp$ of $K$ which have at least one degree $1$ prime in $E$ lying above it are exactly those that lie under a prime $\fp \subseteq \cO_L$ such that $\leg{L/K}{\cp}$ is conjugate to some power of $\sigma$, so $\fp \in S_d$ for some $d \mid n$.
+
+    Next let $S_E$ denote the primes of $E$ having inertial degree $1$ over $K$. For each $\fp \subseteq S_d$, let $n(\fp)$ be the number of primes in $S_E$ lying above $\fp$, so $\fp \in S_d$ is the norm of exactly $n(\fp)$ distinct primes in $S_E$. Since $S_E$ contains all the degree $1$ primes of $L$ over $\QQ$, $d(S_L) = 1$, so 
+    \begin{equation}\label{eqn:8_7_star}
+        -\log(s-1) \sim \sum_{\cp_E \in S_E} N_{K/\QQ}(N_{E/K}(\cp_E))^{-s} = \sum_{d \mid n} \sum_{\fp \in S_d} \frac{n(\fp)}{N(\fp)^s}
+    \end{equation}
+    Note by Galois theory, for any $\fp \in S_d$, this $n(\fp)$ is exactly the number of distinct cosets $H \tau_i$ such that $H \tau_i \sigma^d = H \tau_i$ (exercise). This happens iff $\tau_i \sigma^d \tau_i^{-1} \in H$, but since $H$ is cyclic, this can only happen if $\tau_i \in N_G(\langle \sigma^d \rangle)$, so $[N_G(\langle \sigma^d \rangle) : H]$. Using the induction hypothesis for the sum over $S_d$ for $d \neq 1$ and rewriting \eqref{eqn:8_7_star} gives
+    \begin{equation*}
+        [N_G(H) : H] \sum_{\fp \in S_1} N(\fp)^{-s} \sim \left(-1 + \sum_{1 \neq d \mid n} \frac{[N_G(\langle \sigma^d \rangle) : H] t_d}{\abs{G}}\right) \log(s-1)
+    \end{equation*}
+    \renewcommand{\qedsymbol}{}
+\end{proof}
+
 \end{document}
