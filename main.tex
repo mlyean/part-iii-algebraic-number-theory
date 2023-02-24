@@ -23,6 +23,7 @@
 \newtheorem{example}[definition]{Example}
 \newtheorem*{example*}{Example}
 \newtheorem{notation}[definition]{Notation}
+\newtheorem*{fact}{Fact}
 
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}
@@ -528,13 +529,13 @@ We will next describe the kernel.
     where $I_L(\fm) \subseteq I_L$ consists of fractional ideals that are coprime to $\fm \cO_L$.
 \end{definition}
 
-\begin{theorem}[Artin Reciprocity Continued]
+\begin{theorem}[Artin Reciprocity Continued]\label{thm:3_9}
     We have $\ker \Phi_\fm = T_{L/K}(\fm)$.
 \end{theorem}
 
 We will prove surjectivity of $\Phi_\fm$ using density theorems later in the course.
 
-\begin{proposition}
+\begin{proposition}\label{prop:3_10}
     Let $L/K$ be abelian, $\fm$ divisible by $\ff(L/K)$. Then $\ker \Phi_\fm \subseteq T_{L/K}(\fm)$.
 \end{proposition}
 \begin{proof}
@@ -543,7 +544,7 @@ We will prove surjectivity of $\Phi_\fm$ using density theorems later in the cou
 
 \noindent Artin reciprocity gives us information about the decomposition of primes:
 
-\begin{theorem}[Decomposition Theorem]\label{thm:3_10}
+\begin{theorem}[Decomposition Theorem]\label{thm:3_11}
     Let $L/K$ be an abelian extension of degree $n$. Let $\fp \subseteq \cO_K$ be unramified in $L$. Let $\fm$ be divisible by $\ff(L/K)$, but not divisible by $\fp$. Write $H = \ker \Phi_\fm$ for the congruence subgroup for $\fm$. Suppose $f$ is the smallest positive integer such that $\fp^f \in H$, i.e. the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. Then $\fp$ decomposes in $L$ into a product $\fp = \cp_1 \ldots \cp_g$, of $g = \frac{n}{f}$ distinct prime ideals of degree $f$ over $\fp$.
 \end{theorem}
 \begin{proof}
@@ -1605,8 +1606,10 @@ Let $K$ be a number field, $L/K$ a Galois extension. Let $G = \Gal(L/K)$. Recall
 This is a refinement of the Frobenius density theorem.
 
 \begin{theorem}[Chebotarev Density Theorem]\label{thm:8_13}
-    Let $L/K$ be Galois, $G = \Gal(L/K)$. Fix $\sigma \in G$, and suppose that $\sigma$ has $c$ conjugates in $G$. Then the set of primes $\fp$ of $K$ which has a prime $\cp$ in $L$ lying above it such that $\leg{L/K}{\fp} = \sigma$ has density $\frac{c}{\abs{G}}$.
+    Let $L/K$ be Galois, $G = \Gal(L/K)$. Fix $\sigma \in G$, and suppose that $\sigma$ has $c$ conjugates in $G$. Then the set of primes $\fp$ of $K$ which has a prime $\cp$ in $L$ lying above it such that $\leg{L/K}{\cp} = \sigma$ has density $\frac{c}{\abs{G}}$.
 \end{theorem}
+
+Note that the Chebotarev density theorem can be stated in two ways, either with the set $S = \{\fp \subseteq \cO_K \mid \leg{L/K}{\fp} = \{\text{conjugacy class of } \sigma\}\}$ or $S = \{\fp \subseteq \cO_K \mid \leg{L/K}{\cp} = \sigma \text{ for some prime } \cp \text{ in } \cO_L \text{ such that } \cp \mid \fp\}$. We implicitly assume that any $\fp \in S$ is unramified for the Artin symbol to make sense. The theorem then says that $d(S) = \frac{c}{\abs{G}}$.
 
 \begin{corollary}\label{cor:8_14}
     Let $L/K$ be abelian, $\fm$ a modulus of $K$ divisible by all primes of $K$ that ramify in $L$, and let $\sigma \in G$. Then the set $S$ of primes $\fp \nmid \fm$ such that $\leg{L/K}{\fp} = \sigma$ has density $d(S) = \frac{1}{[L : K]}$, and $S$ is infinite.
@@ -1634,5 +1637,34 @@ We will see next that the primes that split completely in $L$ characterise the e
         \item $L = M \iff S_{M/K} \eqdot S_{L/K}$.
     \end{enumerate}
 \end{theorem}
+
+\begin{proposition}\label{prop:8_18}
+    Let $L$ and $M$ be finite extensions of $K$.
+    \begin{enumerate}[label=\roman*)]
+        \item If $M$ is Galois over $K$, then $L \subseteq M \iff S_{M/K} \subsetdot S_{L/K}$.
+        \item If $L$ is Galois over $K$, then $L \subseteq M \iff \widetilde{S}_{M/K} \subsetdot S_{L/K}$, where $\widetilde{S}_{M/K} = \{\fp \subseteq \cO_K \mid \fp \text{ unramified in } M \text{ and } f_{\cp / \fp} = 1 \text{ for some } \cp \text{ in } M\}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We first prove ii). When $L \subseteq M$ it is not too hard to show $\widetilde{S}_{M/K} \subsetdot S_{L/K}$ (exercise). Next assume $\widetilde{S}_{M/K} \subsetdot S_{L/K}$. Let $N$ be a Galois extension of $K$ containing both $L$ and $M$. To prove $L \subseteq M$, by Galois theory, it suffices to prove that $\Gal(N/M) \subseteq \Gal(N/L)$. Thus for any $\sigma \in \Gal(N/M)$, we need to show $\sigma \vert_L$ is the identity. By Chebotarev density theorem, there is a prime $\fp$ in $\cO_K$ (unramified in $N$) such that $\leg{N/K}{\cp}$ is the conjugacy class of $\sigma$. Hence there is a prime $\cp$ in $\cO_N$ containing $\fp$ such that $\leg{N/K}{\cp} = \sigma$. We claim $\fp \in S_{M/K}$. Let $\cp_M = \cp \cap \cO_M$. Then for $\alpha \in \cO_M$, we have $\alpha \equiv \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp_M}$. The first congruence holds since $\sigma \vert_M = 1$, and the second follows from the definition of the Artin symbol. This implies $\cO_M / \cp_M \cong \cO_K / \fp$, so that $f_{\cp_M / \fp} = 1$, so $\fp \in \widetilde{S}_{M/K}$. Now by Chebotarev density theorem, there are infinitely many such primes. Since we assumed $\widetilde{S}_{M/K} \subsetdot S_{L/K}$, this implies we can assume $\fp \in S_{L/K}$, i.e. $\leg{L/K}{\fp} = 1$. Since $\leg{L/K}{\fp} = \leg{N/K}{\cp} \vert_L$, and since $\sigma = \leg{N/K}{\cp}$, this implies $\sigma \vert_L = 1$.
+
+    Now to prove i), first note $L \subseteq M$ implies $S_{M/K} \subsetdot S_{L/K}$ (exercise). Suppose $S_{M/K} \subsetdot S_{L/K}$, and let $L'$ be the Galois closure of $L$ over $K$.
+    \begin{fact}
+        A prime splits completely in $L$ iff it splits completely in $L'$.
+    \end{fact}
+    This means $S_{L/K} = S_{L'/K}$. Since $M$ is Galois over $K$, we have $\widetilde{S}_{M/K} = S_{M/K}$ (exercise). So we may rewrite our assumption $S_{M/K} \subsetdot S_{L/K}$ as $\widetilde{S}_{M/K} \subsetdot S_{L'/K}$. Hence by part ii), we obtain $L' \subseteq M$, and in particular $L \subseteq M$.
+\end{proof}
+
+It is now easy to prove \autoref{thm:8_17}.
+\begin{proof}[Proof of \autoref{thm:8_17}]
+    ii) follows from i).
+
+    i) follows from \autoref{prop:8_18} (either part, since if $M$ is Galois over $K$, then $\widetilde{S}_{M/K} = S_{M/K}$).
+\end{proof}
+
+Now we complete the proof of \autoref{prop:3_10}:
+\begin{proof}
+    Since $\ff_{L/K} \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For any $\fa \in I_K(\fm)$, the corresponding $\leg{L/K}{\fa}$ only depends on the class of $\fa$ modulo $P_K(\fm)$. Now by the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there is a prime $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. In fact, there are finitely many, so we can choose a prime $\fp$ such that $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_m / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
+\end{proof}
 
 \end{document}
