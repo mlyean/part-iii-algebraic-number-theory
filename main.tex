@@ -47,6 +47,8 @@
 \DeclareMathOperator{\res}{res}
 \DeclareMathOperator{\Res}{Res}
 
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\II}{\mathbb{I}}
 \newcommand{\FF}{\mathbb{F}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -65,6 +67,7 @@
 \newcommand{\fq}{\mathfrak{q}}
 \newcommand{\fm}{\mathfrak{m}}
 \newcommand{\fn}{\mathfrak{n}}
+\newcommand{\rprod}{\Box} %TODO: Find a better symbol
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\subsetdot}{\stackrel{\centerdot}{\subset}}
 \newcommand{\eqdot}{\stackrel{\centerdot}{=}}
@@ -85,11 +88,11 @@
 
 \noindent These lecture notes were based on the Part III course Algebraic Number Theory taught during Lent 2023 by Dr. Hanneke Wiersema.
 
-% \tableofcontents
+\tableofcontents
 
-% \newcommand{\sectionbreak}{\clearpage}
+\newcommand{\sectionbreak}{\clearpage}
 
-\stepcounter{section}
+\section{Introduction} % No section title was given
 
 \subsection{Recap of Algebraic Number Theory}
 
@@ -219,7 +222,7 @@ by \autoref{cor:1_7}.
     where $\leg{D}{p}$ is the Kronecker symbol.
 \end{example}
 
-\stepcounter{section}
+\section{The Artin Map} % No section title was given
 
 \subsection{Some Background and Recap}
 
@@ -1665,6 +1668,88 @@ It is now easy to prove \autoref{thm:8_17}.
 Now we complete the proof of \autoref{prop:3_10}:
 \begin{proof}
     Since $\ff_{L/K} \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For any $\fa \in I_K(\fm)$, the corresponding $\leg{L/K}{\fa}$ only depends on the class of $\fa$ modulo $P_K(\fm)$. Now by the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there is a prime $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. In fact, there are finitely many, so we can choose a prime $\fp$ such that $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_m / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
+\end{proof}
+
+\section{Ideles and Adeles}
+
+\subsection{Introduction}
+
+Idele is a modification of the notion of ideal. The original term was `ideal element', abbreviated to idel. Adele was derived from the term `additive idele'.
+
+Let $K$ be a number field. Recall from the Local Fields course that any absolute value is equivalent to either $\abs{\cdot}_\fp$, $\fp$ a nonzero prime ideal, or $\abs{\cdot}_\sigma$, $\sigma : K \hookrightarrow \RR, \CC$. Now let $\fp$ be a prime, infinite or finite. Let $K_\fp$ be the completion at $\fp$. This is either a $p$-adic field, or the reals or the complex field. For a non-archimedian valued field $F$, define the valuation ring of $F$ to be $\cO_K = \{x \in F \mid \abs{x} \le 1\}$. This is an open subring of $F$, and $\cO_F^\times = \{x \in F \mid \abs{x} = 1\}$.
+
+To use local fields or valuation theory to study a number field $K$, it is useful to embed $K$ into all the completions $K_\fp$ simultaneously. However, $\prod_\fp K_\fp$ is not nice topologically (i.e. not locally compact). We make an adjustment to this.
+
+\subsection{Restricted Product Topology}
+
+\begin{definition}\label{def:9_1}
+    Let $(X_i)$ be a family of topological spaces indexed by $i \in I$. Let $(U_i)$ be a family of open sets, $U_i \subseteq X_i$. Then the \emph{restricted product} $\rprod (X_i, U_i)$ is the topological space
+    \begin{equation*}
+        \rprod(X_i, U_i) = \{(x_i) \mid x_i \in U_i \text{ for almost all } i \in I\} \subseteq \prod X_i
+    \end{equation*}
+    with the basis of open sets
+    \begin{equation*}
+        \mathbb{B} = \left\{\prod V_i \mid V_i \subseteq X_i \text{ open for all } i \in I, \text{ and } V_i = U_i \text{ for almost all } i \in I\right\}
+    \end{equation*}
+\end{definition}
+Note that this is in general not the same as the subspace topology it inherits from $\prod X_i$, it has more open sets. The restricted product is a generalisation of the direct product, they are the same iff $U_i = X_i$ for all $i \in I$.
+
+\begin{proposition}\label{prop:9_2}
+    Let $(X_i)_{i \in I}$ be a family of locally compact topological spaces and let $(U_i)_{i \in I}$ be a corresponding family of open subsets $U_i \subseteq X_i$, almost all of which are compact. Then the restricted product $X = \rprod(X_i, U_i)$ is locally compact.
+\end{proposition}
+
+\subsection{The Ring of Adeles}
+
+\begin{definition}[Adele] An \emph{adele} of $K$ is a family $\alpha = (\alpha_\fp)$ of elements $\alpha_\fp \in K_\fp$ where $\fp$ runs through all primes of $K$, and $\alpha_\fp$ is integral in $K_\fp$ for almost all $\fp$.
+\end{definition}
+We write $\bA_K$ for the ring of adeles.
+\begin{align*}
+    \bA_k
+    &= \left\{(\alpha_\fp) \in \prod_{\fp} K_\fp \mid \alpha_\fp \in \cO_{K_\fp} \text{ for almost all } \fp\right\}\\
+    &= \rprod_{\fp} (K_\fp, \cO_{K_\fp})
+\end{align*}
+
+Note for finite $\fp$, $\cO_K$ is the valuation ring, while for infinite $\fp$, we set $\cO_{K_\fp} = K_\fp$.
+
+This is a subset of $\prod_{\fp} K_\fp$. For each $\alpha \in \bA_K$ as above, we write $\alpha_\fp$ for its projection in $K_\fp$. We make $\bA_K$ a ring by defining addition and multiplication componentwise.
+
+\begin{example}\label{eg:9_4}
+    Let $K = \QQ$. Then $\bA_\QQ = \RR \times \{(\alpha_\fp) \in \prod_{p \nmid \infty} \QQ_p \mid \text{for almost all } p, \alpha_p \in \ZZ_p\} = \rprod_{\fp} (\QQ_p, \ZZ_p)$. Thus $\bA_\QQ$ is the union of the rings $\RR \times \prod_{p \in S} \QQ_p \times \prod_{p \notin S} \ZZ_p$ as $S$ varies over all finite set of primes. Alternately, $\bA_\QQ = \RR \times \{(\alpha_p) \in \prod_p \QQ_p \mid \abs{\alpha_p} \le 1 \text{ for almost all } p\}$.
+\end{example}
+
+\begin{proposition}\label{prop:9_5}
+    The ring of adeles $\bA_K$ is locally compact and Hausdorff.
+\end{proposition}
+\begin{proof}
+    Local compactness follows from \autoref{prop:9_2}, since all local fields $K_\fp$ are locally compact and all but finitely many $\cO_{K_f}$ are valuation rings of a non-archimedian local field, hence compact.
+
+    Now $\prod_{\fp} K_\fp$ is Hausdorff, since each $K_\fp$ is Hausdorff. Since the topology on $\bA_K \subseteq \prod_{\fp} K_\fp$ is finer than the subspace topology, $\bA_K$ is also Hausdorff.
+\end{proof}
+
+Now for each finite set of primes $S$, we have the subring of $S$-adeles $\bA_{K,S} = \prod_{\fp \in S} K_\fp \times \prod_{\fp \notin S} \cO_{K_\fp}$. The canonical embeddings $K \hookrightarrow K_\fp$ induce a canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$. For each $x \in K$, we have $x \in \cO_{K_\fp}$ for all but finitely many $\fp$. The image of $K$ in $\bA_K$ is the subring of \emph{principal adeles}.
+
+\subsection{The Idele Group}
+
+This is the unit group of the ring of adeles $\bA_K$.
+
+\begin{equation*}
+    \bA_K^\times = \{(\alpha_\fp) \in \bA_K \mid \alpha_\fp \in K_\fp^\times \text{ for all } \fp, \alpha_\fp \in \cO_{K_\fp}^\times \text{ for almost all } \fp\}
+\end{equation*}
+As a subspace of $\bA_K$, $\bA_K^\times$ is not a topological group. We give it the restricted product topology.
+
+\begin{definition}\label{def:9_6}
+    The \emph{idele group} of $K$ is the topological group
+    \begin{equation*}
+        \II_K = \rprod_{\fp} (K_\fp^\times, \cO_{K_\fp}^\times)
+    \end{equation*}
+    with multiplication defined componentwise.
+\end{definition}
+
+\begin{proposition}\label{prop:9_7}
+    The idele group $\II_K$ is locally compact and Hausdorff.
+\end{proposition}
+\begin{proof}
+    Now $\II_K$ is Hausdorff since the topology is finer than the topology of $\bA_K^\times \subseteq \bA_K$, which is Hausdorff by \autoref{prop:9_5}. For each finite prime, the set $\cO_{K_\fp}^\times = \{x \in K_\fp \mid \abs{x}_\fp = 1\}$ is a closed subset of the compact set $\cO_{K_\fp}$, hence compact. This applies to almost all primes, and the $K_\fp^\times$ are all locally compact by \autoref{prop:9_2}. Thus $\rprod_\fp (K_\fp^\times, \cO_K^\times) = \II_K$ is locally compact.
 \end{proof}
 
 \end{document}
