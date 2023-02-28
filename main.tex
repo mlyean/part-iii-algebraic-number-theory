@@ -689,11 +689,11 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
     Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity. Let $L = K(\sqrt[n]{\alpha})$ for some non-zero $\alpha \in \cO_K$. Assume $\fm$ is divisible by all primes containing $n\alpha$ and assume $\ker(\Phi_{L/K, \fm})$ is a congruence subgroup for $\fm$. Then there is a commutative diagram
     \begin{equation*}
     \begin{tikzcd}
-        I_K(\fm) \arrow[r, "\Phi_{L/K, \fm}"] \arrow[rd, "\leg{\alpha}{\cdot}_n"'] & \Gal(L/\QQ) \arrow[d, hookrightarrow]\\
+        I_K(\fm) \arrow[r, "\Phi_{L/K, \fm}"] \arrow[rd, "\leg{\alpha}{\cdot}_n"'] & \Gal(L/K) \arrow[d, hookrightarrow]\\
                            & \mu_n
     \end{tikzcd}
     \end{equation*}
-    If $G$ is the image of $\Gal(L/\QQ)$ in $\mu_n$, then $\leg{\alpha}{\cdot}_n$ induces a surjective homomorphism $\leg{\alpha}{\cdot} : I_K(\fm)/P_K(\fm) \to G \subseteq \mu_n$.
+    If $G$ is the image of $\Gal(L/K)$ in $\mu_n$, then $\leg{\alpha}{\cdot}_n$ induces a surjective homomorphism $\leg{\alpha}{\cdot} : I_K(\fm)/P_K(\fm) \to G \subseteq \mu_n$.
 \end{theorem}
 \begin{proof}
     Using the definition of the Artin symbol, we see that
