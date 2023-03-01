@@ -163,7 +163,7 @@ The extension of residue fields $k_\cp / k_\fp$ is Galois. Each $\sigma \in D_{\
     Let $L/K$ be Galois, and $\fp \subseteq \cO_K$ unramified in $L$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$. Then there exists a unique $\sigma \in \Gal(L/K)$ such that for all $\alpha \in \cO_L, \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp}$, where $N(\fp) = \abs{\cO_K / \fp}$.
 \end{lemma}
 \begin{proof}
-    By \autoref{prop:1_4}, since $\fp$ is unramified, $\abs{I_{\cp / \fp}} = 0$, and so $D_{\cp / \fp} \cong \Gal(k_\cp / k_\fp)$. Let $\sigma \in D_{\cp / \fp}$ be the unique element mapping to the Frobenius automorphism $x \mapsto x^q$. Note that $q = N(\fp)$, so we find that
+    By \autoref{prop:1_4}, since $\fp$ is unramified, $\abs{I_{\cp / \fp}} = 1$, and so $D_{\cp / \fp} \cong \Gal(k_\cp / k_\fp)$. Let $\sigma \in D_{\cp / \fp}$ be the unique element mapping to the Frobenius automorphism $x \mapsto x^q$. Note that $q = N(\fp)$, so we find that
     \begin{equation}\label{eqn:1_5_star}
         \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp} \qquad \forall \alpha \in \cO_L
     \end{equation}
@@ -186,7 +186,7 @@ The extension of residue fields $k_\cp / k_\fp$ is Galois. Each $\sigma \in D_{\
 \end{corollary}
 \begin{proof}\phantom{}
     \begin{enumerate}
-        \item Follows from uniqueness of the Artin symbol, details will be an exercise.
+        \item Follows from uniqueness of the Artin symbol, for details see Example Sheet 1 Exercise 1.
 
         \item Since $\abs{I_{\cp / \fp}} = 1$, we have $D_{\cp / \fp} \cong \Gal(k_\cp / k_\fp)$. The Artin symbol maps to a generator of $\Gal(k_\cp / k_\fp)$, which has order $f_{\cp / \fp}$.
 
@@ -275,7 +275,7 @@ If $L/K$ is unramified, we can define the Artin symbol for unramified primes, bu
 \end{definition}
 
 \begin{example}\label{eg:2_6}
-    If $K$ is a purely imaginary field\footnote{a number field that cannot be embedded into $\RR$}, then a modulus is just an ideal of $\cO_K$.
+    If $K$ is a purely imaginary field, i.e. a number field that cannot be embedded into $\RR$, then a modulus is just an ideal of $\cO_K$.
 \end{example}
 
 \begin{definition}\label{def:2_7}
@@ -412,15 +412,15 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
 \end{proposition}
 
 \begin{remark}\label{rem:2_22}
-    In fact, writing $h_K(\fm) = \abs{I_K(\fm)/P_K(\fm)}$, we can use this to show $h_K \mid h_K(\fm)$, where $h_K$ is the class number of $K$.
+    In fact, writing $h_K(\fm) = \abs{I_K(\fm)/P_K(\fm)}$, we see that $h_K \mid h_K(\fm)$, where $h_K$ is the class number of $K$.
 \end{remark}
 
 \begin{remark}\label{rem:2_23}
-    If we have any $\cO_K$-ideal $I$, then every ideal class in $\Cl(K)$ can be represented by an ideal coprime to $I$.
+    If we have any $\cO_K$-ideal $I$, then every ideal class in $\Cl(K)$ can be represented by an ideal coprime to $I$. %TODO: Proof?
 \end{remark}
 
 \begin{proof}[Proof of \autoref{prop:2_21} (Sketch)]
-    Let $\fa \in I_K(\fm)$. Define $h : I_K(\fm) \to \Cl(K)$ by $h(\fa) = [\fa] \in \Cl(K)$. This is a surjective\footnote{use \autoref{rem:2_23}} group homomorphism with kernel $P_\fm$. Thus we have an exact sequence
+    Let $\fa \in I_K(\fm)$. Define $h : I_K(\fm) \to \Cl(K)$ by $h(\fa) = [\fa] \in \Cl(K)$. This is a group homomorphism with kernel $P_\fm$, and is surjective by \autoref{rem:2_23}. Thus we have an exact sequence
     \begin{equation*}
         1 \longrightarrow P_\fm \longrightarrow I_K(\fm) \longrightarrow \Cl(K) \longrightarrow 1
     \end{equation*}
@@ -452,7 +452,7 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
     \end{equation*}
 \end{proposition}
 \begin{proof}
-    Exercise.
+    See Example Sheet 1 Exercise 6.
 \end{proof}
 
 \section{Statements of Global Class Field Theory}
@@ -460,7 +460,7 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
 \subsection{The Conductor}
 
 \begin{lemma}\label{lem:3_1}
-    Let $L/K$ be abelian, and let $\fm$ be a modulus containing all ramified primes\footnote{finite and infinite} of $K$. Let $\fn$ be another modulus with $\fm \mid \fn$. If $P_K(\fm) \subseteq \ker \Phi_\fm$, then $P_K(\fn) \subseteq \ker \Phi_\fn$.
+    Let $L/K$ be abelian, and let $\fm$ be a modulus containing all ramified primes (finite and infinite) of $K$. Let $\fn$ be another modulus with $\fm \mid \fn$. If $P_K(\fm) \subseteq \ker \Phi_\fm$, then $P_K(\fn) \subseteq \ker \Phi_\fn$.
 \end{lemma}
 \begin{proof}
     Since $\fm \mid \fn$, $P_K(\fn) \subseteq P_K(\fm)$, and $\Phi_\fn = \Phi_\fm \vert_{I_K(\fn)}$. Then
@@ -800,7 +800,7 @@ We see the series converges in the half plane to the right of the line $\sigma =
     Assume there exists a number $C$ and some $\sigma_1 \ge 0$ such that $\abs{A(N)} = \abs{a_1 + \ldots + a_N} \le C N^{\sigma_1}$ for all $N$. Then the abscissa of convergence of $\sum \frac{a_n}{n^s}$ is at most $\sigma_1$.
 \end{theorem}
 \begin{proof}
-    Exercise
+    See Example Sheet 2 Exercise 2.
 \end{proof}
 
 \subsection{Riemann Zeta Function}
@@ -1185,7 +1185,7 @@ Recall that $(\ZZ/m\ZZ)^\times$ has order $\phi(m)$, where $\phi$ is the Euler t
     If $A$ is a finite abelian group, then $A \cong \hat{\hat{A}}$ by the map sending $a \in A$ to the character $\chi \mapsto \chi(a)$.
 \end{corollary}
 \begin{proof}
-    Exercise.
+    See Example Sheet 2 Exercise 10.
 \end{proof}
 
 \begin{proposition}[Orthogonality Relations]\label{prop:7_14}
@@ -1230,7 +1230,7 @@ Recall that $(\ZZ/m\ZZ)^\times$ has order $\phi(m)$, where $\phi$ is the Euler t
     \end{equation*}
 \end{proposition}
 \begin{proof}
-    Exercise.
+    See Example Sheet 2 Exercise 7.
 \end{proof}
 
 Note that we can write $L(\chi,s) = \prod_{p \nmid m} \left(1 - \frac{\chi(p)}{p^s}\right)^{-1}$. Now taking $\chi$ to be the trivial character $\chi_0$, $L(\chi_0,s) = \zeta(s) \prod_{p \mid m} \left(1 - \frac{1}{p^s}\right)^{-1}$. We can relate the Dirichlet $L$-series to the Dedekind zeta function $\zeta_K(s)$.
@@ -1437,7 +1437,7 @@ We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is 
     if $d < 0$ and $d \neq -1, -3$.
 \end{theorem}
 \begin{proof}
-    Exercise.
+    See Example Sheet 2 Exercise 12.
 \end{proof}
 
 \begin{example}\label{eg:7_28}
@@ -1489,7 +1489,7 @@ We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$, now since $\zeta_K
     \end{enumerate}
 \end{lemma}
 \begin{proof}
-    Exercise.
+    See Example Sheet 3 Exercise 1.
 \end{proof}
 
 Recall a degree $1$ prime is a prime with residue field degree $1$ over $\QQ$, or equivalently a prime whose absolute norm $N(\fp)$ is prime.
@@ -1668,13 +1668,13 @@ We will see next that the primes that split completely in $L$ characterise the e
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    We first prove ii). When $L \subseteq M$ it is not too hard to show $\widetilde{S}_{M/K} \subsetdot S_{L/K}$ (exercise). Next assume $\widetilde{S}_{M/K} \subsetdot S_{L/K}$. Let $N$ be a Galois extension of $K$ containing both $L$ and $M$. To prove $L \subseteq M$, by Galois theory, it suffices to prove that $\Gal(N/M) \subseteq \Gal(N/L)$. Thus for any $\sigma \in \Gal(N/M)$, we need to show $\sigma \vert_L$ is the identity. By Chebotarev density theorem, there is a prime $\fp$ in $\cO_K$ (unramified in $N$) such that $\leg{N/K}{\cp}$ is the conjugacy class of $\sigma$. Hence there is a prime $\cp$ in $\cO_N$ containing $\fp$ such that $\leg{N/K}{\cp} = \sigma$. We claim $\fp \in S_{M/K}$. Let $\cp_M = \cp \cap \cO_M$. Then for $\alpha \in \cO_M$, we have $\alpha \equiv \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp_M}$. The first congruence holds since $\sigma \vert_M = 1$, and the second follows from the definition of the Artin symbol. This implies $\cO_M / \cp_M \cong \cO_K / \fp$, so that $f_{\cp_M / \fp} = 1$, so $\fp \in \widetilde{S}_{M/K}$. Now by Chebotarev density theorem, there are infinitely many such primes. Since we assumed $\widetilde{S}_{M/K} \subsetdot S_{L/K}$, this implies we can assume $\fp \in S_{L/K}$, i.e. $\leg{L/K}{\fp} = 1$. Since $\leg{L/K}{\fp} = \leg{N/K}{\cp} \vert_L$, and since $\sigma = \leg{N/K}{\cp}$, this implies $\sigma \vert_L = 1$.
+    We first prove ii). When $L \subseteq M$ it is not too hard to show $\widetilde{S}_{M/K} \subsetdot S_{L/K}$ (see Example Sheet 3 Exercise 5). Next assume $\widetilde{S}_{M/K} \subsetdot S_{L/K}$. Let $N$ be a Galois extension of $K$ containing both $L$ and $M$. To prove $L \subseteq M$, by Galois theory, it suffices to prove that $\Gal(N/M) \subseteq \Gal(N/L)$. Thus for any $\sigma \in \Gal(N/M)$, we need to show $\sigma \vert_L$ is the identity. By Chebotarev density theorem, there is a prime $\fp$ in $\cO_K$ (unramified in $N$) such that $\leg{N/K}{\cp}$ is the conjugacy class of $\sigma$. Hence there is a prime $\cp$ in $\cO_N$ containing $\fp$ such that $\leg{N/K}{\cp} = \sigma$. We claim $\fp \in S_{M/K}$. Let $\cp_M = \cp \cap \cO_M$. Then for $\alpha \in \cO_M$, we have $\alpha \equiv \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp_M}$. The first congruence holds since $\sigma \vert_M = 1$, and the second follows from the definition of the Artin symbol. This implies $\cO_M / \cp_M \cong \cO_K / \fp$, so that $f_{\cp_M / \fp} = 1$, so $\fp \in \widetilde{S}_{M/K}$. Now by Chebotarev density theorem, there are infinitely many such primes. Since we assumed $\widetilde{S}_{M/K} \subsetdot S_{L/K}$, this implies we can assume $\fp \in S_{L/K}$, i.e. $\leg{L/K}{\fp} = 1$. Since $\leg{L/K}{\fp} = \leg{N/K}{\cp} \vert_L$, and since $\sigma = \leg{N/K}{\cp}$, this implies $\sigma \vert_L = 1$.
 
-    Now to prove i), first note $L \subseteq M$ implies $S_{M/K} \subsetdot S_{L/K}$ (exercise). Suppose $S_{M/K} \subsetdot S_{L/K}$, and let $L'$ be the Galois closure of $L$ over $K$.
+    Now to prove i), first note $L \subseteq M$ implies $S_{M/K} \subsetdot S_{L/K}$ (see Example Sheet 3 Exercise 5). Suppose $S_{M/K} \subsetdot S_{L/K}$, and let $L'$ be the Galois closure of $L$ over $K$.
     \begin{fact}
         A prime splits completely in $L$ iff it splits completely in $L'$.
     \end{fact}
-    This means $S_{L/K} = S_{L'/K}$. Since $M$ is Galois over $K$, we have $\widetilde{S}_{M/K} = S_{M/K}$ (exercise). So we may rewrite our assumption $S_{M/K} \subsetdot S_{L/K}$ as $\widetilde{S}_{M/K} \subsetdot S_{L'/K}$. Hence by part ii), we obtain $L' \subseteq M$, and in particular $L \subseteq M$.
+    This means $S_{L/K} = S_{L'/K}$. Since $M$ is Galois over $K$, we have $\widetilde{S}_{M/K} = S_{M/K}$ (see Example Sheet 3 Exercise 6). So we may rewrite our assumption $S_{M/K} \subsetdot S_{L/K}$ as $\widetilde{S}_{M/K} \subsetdot S_{L'/K}$. Hence by part ii), we obtain $L' \subseteq M$, and in particular $L \subseteq M$.
 \end{proof}
 
 It is now easy to prove \autoref{thm:8_17}.
@@ -1684,8 +1684,8 @@ It is now easy to prove \autoref{thm:8_17}.
     i) follows from \autoref{prop:8_18} (either part, since if $M$ is Galois over $K$, then $\widetilde{S}_{M/K} = S_{M/K}$).
 \end{proof}
 
-Now we complete the proof of \autoref{prop:3_10}:
-\begin{proof}
+\noindent Now we complete the proof of \autoref{prop:3_10}:
+\begin{proof}[Proof of \autoref{prop:3_10}]
     Since $\ff_{L/K} \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For any $\fa \in I_K(\fm)$, the corresponding $\leg{L/K}{\fa}$ only depends on the class of $\fa$ modulo $P_K(\fm)$. Now by the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there is a prime $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. In fact, there are finitely many, so we can choose a prime $\fp$ such that $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_m / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
 \end{proof}
 
