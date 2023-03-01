@@ -221,7 +221,7 @@ by \autoref{cor:1_7}.
     \begin{equation*}
         \leg{\QQ(\sqrt{d}) / \QQ}{(p)} = \leg{D}{p}
     \end{equation*}
-    where $\leg{D}{p}$ is the Kronecker symbol.
+    where $\leg{D}{p}$ is the Kronecker symbol. {\color{blue} This can be seen for example by \autoref{cor:1_7}}
 \end{example}
 
 \section{The Artin Map} % No section title was given
@@ -304,16 +304,18 @@ Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all ram
 \begin{example}\label{eg:2_11}
     Let $\fm$ be a positive integer, $\zeta_m$ a primitive $m$\textsuperscript{th} root of unity. Let $K = \QQ$, $L = \QQ(\zeta_m)$. Recall that
     \begin{enumerate}
-        \item $\Gal(\QQ(\zeta_m) / \QQ) \cong (\ZZ / m \ZZ)^\times$, where the isomorphism sends $\sigma : \zeta_m \mapsto \zeta_m^h$ to $[h]$;
+        \item $\Gal(\QQ(\zeta_m) / \QQ) \cong (\ZZ / m \ZZ)^\times$, where the isomorphism sends $\sigma : \zeta_m \mapsto \zeta_m^h$ to $[h]$, where $[h] = h \pmod{m}$;
         \item If a prime $p$ ramifies in $\QQ(\zeta_m)$, then $p \mid m$.
     \end{enumerate}
     Write $\infty$ for the real infinite prime of $\QQ$. Let $\fm = (m) \infty$. Then $\fm$ contains all ramified primes, so we have a well-defined map $\Phi_\fm : I_\QQ(\fm) \to \Gal(\QQ(\zeta_m) / \QQ)$.
 
-    For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Then by definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Write $\sigma(\zeta_m) = \zeta_m^h$ for some $h \in \ZZ$. Then $\zeta_m^{h-p} \equiv 1 \pmod{\cp}$. If $\zeta_m^{h-p} \neq 1$, then
-    \begin{equation*}
-        0 = (\zeta_m^{h-p})^{m-1} + \ldots + \zeta_m^{h-p} + 1 \equiv m \pmod{\cp}
-    \end{equation*}
-    contradicting $p \nmid m$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
+    {\color{blue}
+        For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Then by definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Write $\sigma(\zeta_m) = \zeta_m^h$ for some $h \in \ZZ$. Then $\zeta_m^{h-p} \equiv 1 \pmod{\cp}$. If $\zeta_m^{h-p} \neq 1$, then
+        \begin{equation*}
+            0 = (\zeta_m^{h-p})^{m-1} + \ldots + \zeta_m^{h-p} + 1 \equiv m \pmod{\cp}
+        \end{equation*}
+        contradicting $p \nmid m$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
+    }
 
     Let $\frac{a}{b}\ZZ \in I_\QQ(\fm)$, then $\Phi_\fm(\frac{a}{b} \ZZ) = [a][b]^{-1} \in (\ZZ / m \ZZ)^\times$.
     The map is clearly surjective.
@@ -416,13 +418,17 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
 \end{remark}
 
 \begin{remark}\label{rem:2_23}
-    If we have any $\cO_K$-ideal $I$, then every ideal class in $\Cl(K)$ can be represented by an ideal coprime to $I$. %TODO: Proof?
+    If we have any $\cO_K$-ideal $I$, then every ideal class in $\Cl(K)$ can be represented by an ideal coprime to $I$.
+
+    {\color{blue}
+        Indeed, let $\fa$ be a fractional ideal. By scaling, we may assume $\fa$ is an ideal. By the Chinese remainder theorem, there is an $x \in \cO_K$ such that for each $\fp \mid I$, $v_\fp(x) = v_\fp(\fa)$. Then $x^{-1} \fa$ is a fractional ideal coprime to $I$. Thus we may assume $v_\fp(\fa) = 0$ for all $\fp \mid I$. By the Chinese remainder theorem, we may pick $y \in \cO_K$ such that $v_\fp(y) = -v_\fp(\fa)$ if $v_\fp(\fa) < 0$ and $v_\fp(x) = 0$ if $\fp \mid I$. Then $y \fa$ is an ideal coprime to $I$, representing $\fa$.
+    }
 \end{remark}
 
 \begin{proof}[Proof of \autoref{prop:2_21} (Sketch)]
     Let $\fa \in I_K(\fm)$. Define $h : I_K(\fm) \to \Cl(K)$ by $h(\fa) = [\fa] \in \Cl(K)$. This is a group homomorphism with kernel $P_\fm$, and is surjective by \autoref{rem:2_23}. Thus we have an exact sequence
     \begin{equation*}
-        1 \longrightarrow P_\fm \longrightarrow I_K(\fm) \longrightarrow \Cl(K) \longrightarrow 1
+        1 \longrightarrow P_\fm \longrightarrow I_K(\fm) \overset{h}{\longrightarrow} \Cl(K) \longrightarrow 1
     \end{equation*}
     Since $h$ is trivial on $P_K(\fm)$, we can rewrite this as
     \begin{equation*}
@@ -483,7 +489,6 @@ The is one special modulus:
 \end{theorem}
 
 \begin{example}\label{eg:3_3}
-\marginpar{\fbox{Lecture 4}}
     Let $K = \QQ$, and $L = K(\sqrt{d})$, with $d \in \ZZ$ squarefree. Then
     \begin{equation*}
         \ff(L/K) =
@@ -492,10 +497,11 @@ The is one special modulus:
             \abs{D}\infty & \text{if } d<0
         \end{cases}
     \end{equation*}
-    where $D$ is the discriminant of $L$, and $\infty$ is the real infinite prime of $\QQ$.
+    where $D$ is the discriminant of $L$, and $\infty$ is the real infinite prime of $\QQ$. %TODO: Explain
 \end{example}
 
 \begin{example}\label{eg:3_4}
+\marginpar{\fbox{Lecture 4}}
     The conductor of the cyclotomic extensions $\QQ(\zeta_m)/\QQ$ is
     \begin{equation*}
         \ff(L/K) =
@@ -505,6 +511,7 @@ The is one special modulus:
             (m) \infty &\text{otherwise}
         \end{cases}
     \end{equation*}
+    See Example Sheet 1 Question 7.
 \end{example}
 
 \begin{remark}\label{rem:3_5}
@@ -574,7 +581,7 @@ Every generalised ideal class group is the Galois group of some abelian extensio
 \end{definition}
 
 \begin{example}\label{eg:3_14}
-    Let $m$ be a positive integer, $m \not\equiv 2 \pmod{4}$. Let $K = \QQ$. If $\fm = (m) \infty$, then $K_\fm = \QQ(\zeta_m)$. If $\fm = (m)$, then $K_\fm = \QQ(\zeta_m + \zeta_m^{-1})$, the maximal real subfield of $\QQ(\zeta_m)$.
+    Let $m$ be a positive integer, $m \not\equiv 2 \pmod{4}$. Let $K = \QQ$. If $\fm = (m) \infty$, then $K_\fm = \QQ(\zeta_m)$. If $\fm = (m)$, then $K_\fm = \QQ(\zeta_m + \zeta_m^{-1})$, the maximal real subfield of $\QQ(\zeta_m)$. See Example Sheet 1 Exercise 8.
 \end{example}
 
 \begin{corollary}\label{cor:3_15}
@@ -1467,7 +1474,7 @@ For $\Re(s) \ge 1$,
 \end{equation*}
 so
 \begin{equation*}
-    \log \zeta_K(s) = \sum_{\fp} \sum_{n=1}^\infty \frac{1}{n N(\fp)^{ns}} = \sum_{\fp} \frac{1}{N(\fp)^s} + \sum_{\fp} \sum_{n=2}^\infty \frac{1}{n N(\fp)^s}
+    \log \zeta_K(s) = \sum_{\fp} \sum_{n=1}^\infty \frac{1}{n N(\fp)^{ns}} = \sum_{\fp} \frac{1}{N(\fp)^s} + \sum_{\fp} \sum_{n=2}^\infty \frac{1}{n N(\fp)^{ns}}
 \end{equation*}
 where the latter sum is analytic at $s=1$.
 
