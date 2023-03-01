@@ -5,7 +5,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{array}
-\usepackage{bbold}
+\usepackage{bbm}
 \usepackage{chngcntr}
 \usepackage{commath}
 \usepackage{comment}
@@ -16,7 +16,6 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{titlesec}
-\usepackage[cal=boondox]{mathalfa}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -58,7 +57,7 @@
 \newcommand{\cC}{\mathcal{C}}
 \newcommand{\cD}{\mathcal{D}}
 \newcommand{\cO}{\mathcal{O}}
-\newcommand{\cp}{\mathcal{p}}
+\newcommand{\cp}{\mathfrak{P}}
 \newcommand{\cH}{\mathcal{H}}
 \newcommand{\fa}{\mathfrak{a}}
 \newcommand{\fd}{\mathfrak{d}}
@@ -88,6 +87,8 @@
 
 \noindent These lecture notes were based on the Part III course Algebraic Number Theory taught during Lent 2023 by Dr. Hanneke Wiersema.
 
+This is not a faithful copy of what was on the board in lectures, although I have tried to maintain the same numbering. {\color{blue} Text in blue are my own additions.}
+
 \tableofcontents
 
 \newcommand{\sectionbreak}{\clearpage}
@@ -110,7 +111,7 @@ For $\cp \subseteq \cO_L$, write $k_\cp = \cO_L / \cp$ for the corresponding res
 If $\cp \mid \fp$, we have an extension of residue fields $k_\cp / k_\fp$. The degree of this extension is called the \emph{inertial degree} of $\cp$ over $\fp$, denoted $f = f_{\cp / \fp}$.
 
 \begin{theorem}\label{thm:1_1}
-    Let $\fp \subseteq \cO_K$ and $\fp \cO_K = \cp_1^{e_1} \ldots \cp_g^{e_g}$ as above. Then
+    Let $\fp \subseteq \cO_K$ and $\fp \cO_L = \cp_1^{e_1} \ldots \cp_g^{e_g}$ as above. Then
     \begin{equation*}
         [L : K] = \sum_{i=1}^g e_i f_i
     \end{equation*}
@@ -203,7 +204,7 @@ If $L/K$ is abelian, then $\leg{L/K}{\cp}$ depends only on $\fp$: Let $\cp' \sub
 by \autoref{cor:1_7}.
 
 \begin{notation}\label{not:1_9}
-    If $L/K$ is abelian, write $\leg{L/K}{\fp}$ for the Artin symbol for any $\cp / \fp$.
+    If $L/K$ is abelian, write $\leg{L/K}{\fp}$ for the Artin symbol for any $\cp \mid \fp$.
 \end{notation}
 
 \begin{example}\label{eg:1_10}
@@ -237,7 +238,7 @@ by \autoref{cor:1_7}.
 \begin{remark}\label{rem:2_3}
     Recall that for any $\fa \in I_K$, we have a unique prime factorisation
     \begin{equation}\label{eqn:2_3_fact}
-        \fa = \prod_{i=1}^\infty \fp_i^{r_i}
+        \fa = \prod_{i=1}^r \fp_i^{r_i}
     \end{equation}
     where $r_i \in \ZZ$, and the $\fp_i$'s are distinct prime ideals of $\cO_K$.
 \end{remark}
@@ -628,7 +629,7 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
 \begin{corollary}[Class Field Theory for Unramified Extensions]\label{cor:4_6}
     Let $K$ be a number field. Then there is a 1-to-1 inclusion reversing correspondence
     \begin{equation*}
-        \{\text{unramified abelian extensions of } K\} \longrightarrow \{\text{subgroups of } \Cl(K)\}
+        \{\text{unramified abelian extensions of } K\} \longleftrightarrow \{\text{subgroups of } \Cl(K)\}
     \end{equation*}
     If $M/K$ corresponds to $H \subseteq \Cl(K)$, then the Artin map induces an isomorphism $\Cl(K)/H \xrightarrow{\sim} \Gal(M/K)$.
 \end{corollary}
@@ -1128,7 +1129,7 @@ We can extend Dirichlet characters $\chi$ to multiplicative functions $\chi : \Z
         \end{cases}
     \end{equation*}
     This is also called the \emph{principal character}.
-    For $m = 1$, we write $\chi_0 = \mathbb{1}$.
+    For $m = 1$, we write $\chi_0 = \mathbbm{1}$.
 \end{definition}
 
 \begin{example}\label{eg:7_9}
@@ -1462,14 +1463,14 @@ where the latter sum is analytic at $s=1$.
 We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$, now since $\zeta_K(s)$ has a simple pole at $s=1$, $\zeta_K(s) \sim \frac{\kappa}{s-1}$, so $\sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so we can also write $d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\log \frac{1}{s-1}}$.
 
 \begin{lemma}\label{lem:8_3}
-    Dirichlet density has the following properties:
+    The Dirichlet density has the following properties:
     \begin{enumerate}[label=\roman*)]
         \item $d(P) = 1$ if $P$ is the set of all prime ideals of $K$;
         \item if $S \subseteq T$, and $d(S)$ and $d(T)$ exist, then $d(S) \le d(T)$;
         \item if $d(S)$ exists, then $0 \le d(S) \le 1$;
         \item if $S$ and $T$ are disjoint, and $d(S)$ and $d(T)$ both exist, then $d(S \cup T) = d(S) + d(T)$;
         \item if $S$ is finite, then $d(S) = 0$;
-        \item if $d(S)$ exists and if $T$ is different from $S$ by finitely many elements, then $d(S) = d(T)$.
+        \item if $d(S)$ exists and if $T$ differs from $S$ by finitely many elements, then $d(S) = d(T)$.
     \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -1751,5 +1752,81 @@ As a subspace of $\bA_K$, $\bA_K^\times$ is not a topological group. We give it 
 \begin{proof}
     Now $\II_K$ is Hausdorff since the topology is finer than the topology of $\bA_K^\times \subseteq \bA_K$, which is Hausdorff by \autoref{prop:9_5}. For each finite prime, the set $\cO_{K_\fp}^\times = \{x \in K_\fp \mid \abs{x}_\fp = 1\}$ is a closed subset of the compact set $\cO_{K_\fp}$, hence compact. This applies to almost all primes, and the $K_\fp^\times$ are all locally compact by \autoref{prop:9_2}. Thus $\rprod_\fp (K_\fp^\times, \cO_K^\times) = \II_K$ is locally compact.
 \end{proof}
+
+The canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$ restricts to an embedding $K^\times \hookrightarrow \II_K$. We view $K^\times$ as a subgroup of $\II_K$, and we will call the elements of $K^\times$ in $\II_K$ the \emph{principal ideles}.
+
+\subsection{The Idele Class Group}
+
+\begin{definition}\label{def:9_8}
+    We define the \emph{idele class group} of $K$ to be the quotient group $C_K = \II_K / K^\times$.
+\end{definition}
+
+Let for any finite set of primes $S$, the $S$-ideles be given by
+\begin{align*}
+    \II_{K,S}
+    &= \prod_{\fp \in S} K_{\fp}^\times \prod_{\fp \notin S} \cO_{K_\fp}^\times\\
+    &= \prod_{\fp \mid \infty} K_{\fp}^\times \prod_{\substack{\fp \nmid \infty \\ \fp \in S}} K_{\fp}^\times \prod_{\substack{\fp \nmid \infty \\ \fp \notin S}} \cO_{K_\fp}^\times
+\end{align*}
+so $\II_K = \bigcup_{S} \II_{K,S}$ for varying finite sets of primes $S$.
+
+Next we study the relation with the ideal class group. As before, we let $I_K$ denote the group of principal ideals of $K$. We have a surjective homomorphism
+\begin{gather*}
+    (\cdot) : \II_K \to I_K\\
+    (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}
+\end{gather*}
+This has kernel $\II_{K, S_\infty} = \prod_{\fp \mid \infty} K_\fp^\times \times \prod_{\fp \nmid \infty} \cO_{K_\fp}^\times$ and is continuous for the discrete topology on $I_K$. Note that the composite $K^\times \hookrightarrow \II_K \to I_K$ has image $P_K$, the subgroup of $I_K$ of principal fractional ideals. {\color{blue} In fact, $(\cdot) : \II_K \to I_K$ extends the map $K^\times \to I_K$ sending an element to the principal fractional ideal it generates.} Thus we have a surjective homomorphism
+\begin{equation*}
+    C_K = \II_K / K^\times \twoheadrightarrow I_K / P_K = \Cl(K)
+\end{equation*}
+which has kernel $\II_{K, S_\infty} K^\times$. {\color{blue} Indeed if $\alpha \in \II_K$ is such that $(\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)} \in P_K$, say equal to $(a)$ for some $a \in K^\times$, then $v_\fp(\alpha_\fp a^{-1}) = 0$ for all $\fp \nmid \infty$, i.e. $\alpha a^{-1} \in \II_{K, S_\infty}$, so $\alpha \in \II_{K, S_\infty} K^\times$. The reverse inclusion is clear.}
+
+We deduce that
+
+\begin{proposition}\label{prop:9_9}
+    We have $\Cl(K) \cong \II_K / \II_{K, S_\infty} K^\times$.
+\end{proposition}
+
+In contrast to the ideal class group, the idele class group is \underline{not finite}. Note since $I_K / P_K$ is finite, we can enlarge $S_\infty$ to a set $S$ which contains enough primes to obtain $\II_K = \II_{K,S} K^\times$:
+
+\begin{proposition}\label{prop:9_10}
+    $\II_K = \II_{K,S} K^\times$, i.e. $C_K = \II_{K,S} K^\times / K^\times$ if $S$ is a sufficiently large set of primes of $K$.
+\end{proposition}
+\begin{proof}
+    Let $\fa_1, \ldots, \fa_n$ be ideals representing the $h$ classes of $I_K / P_K$. They are composed of a finite number of prime ideals $\fp_1, \ldots, \fp_n$. Now if $S$ is any finite set of primes containing these primes and the primes at infinity, one has $\II_K = \II_{K,S} K^\times$. To see this, consider the isomorphism
+    \begin{equation*}
+        \II_K / \II_{K, S_\infty} \cong I_K
+    \end{equation*}
+    If $\alpha \in \II_K$, then the corresponding ideal $(\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha)}$ belongs to some class $\fa_i P_K$, i.e. $(\alpha) = \fa_i (a)$ for some principal fractional ideal $(a)$. Then the idele $\alpha' = \alpha a^{-1}$ is mapped to the ideal $\fa_i = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha'_\fp)}$. Since the prime ideals occurring in $\fa_i$ lie in $S$, for all $\fp \notin S$ we have $v_\fp(\alpha'_\fp) = 0$, i.e. $\alpha'_{\fp} \in \cO_{K_\fp}^\times$. Hence $\alpha' \in \II_{K,S}$, so $\alpha = \alpha' a \in \II_{K, S} K^\times$.
+\end{proof}
+
+\begin{proposition}\label{prop:9_11}
+    $K^\times$ is a discrete subgroup of $\II_K$.
+\end{proposition}
+
+Reacll from Local Fields the product formula $\prod_{\fp} \abs{x}_\fp = 1$ for $x \in K^\times$.
+
+\begin{proof}
+    To show $K^\times$ is discrete, it suffices to show $1 \in \II_K$ has a neighborhood not containing any other element of $K^\times$. Consider the neighborhood
+    \begin{equation*}
+        U = \left\{\alpha \in \II_K \mid \abs{\alpha_\fp}_\fp = 1 \text{ for } \fp \nmid \infty \text{ and } \abs{\alpha_\fp - 1}_\fp < 1 \text{ for } \fp \mid \infty\right\}
+    \end{equation*}
+    Suppose we have a principal idele $1 \neq x \in U$. Then
+    \begin{align*}
+        1
+        &= \prod_\fp \abs{x - 1}_\fp
+        = \prod_{\fp \nmid \infty} \abs{x - 1}_\fp \prod_{\fp \mid \infty} \abs{x - 1}_\fp\\
+        &< \prod_{\fp \nmid \infty} \abs{x-1}_\fp
+        \le \prod_{\fp \nmid \infty} \max\left\{\abs{x}_\fp, 1\right\} = 1
+    \end{align*}
+    contradiction.
+\end{proof}
+
+In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient topology is therefore Hausdorff and locally compact.
+
+For any idele $\alpha = (\alpha_\fp) \in \II_K$, write $[\alpha]$ for the corresponding class in $C_K$. Define the \emph{absolute norm / idele norm} of $\alpha \in \II_K$ to be the real number $N(\alpha) = \prod_{\fp} \abs{\alpha_\fp}_\fp$. Let $\II_K^0 = \{\alpha \in \II_K \mid N(\alpha) = 1\}$ be the kernel. If $x \in K^\times$ is a principal idele, then we have by the product formula $N(x) = \prod_\fp \abs{x}_\fp = 1$, so we have a well-defined norm map $N : C_K \to \RR^\times_+$. Let $C_K^0$ be the kernel of this map, i.e. $C_K^0 = \{[\alpha] \in C_K \mid N(\alpha) = 1\}$.
+
+\begin{proposition}\label{prop:9_12}
+    The group $C_K^0$ is compact.
+\end{proposition}
 
 \end{document}
