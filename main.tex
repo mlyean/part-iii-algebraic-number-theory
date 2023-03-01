@@ -94,6 +94,7 @@ This is not a faithful copy of what was on the board in lectures, although I hav
 \newcommand{\sectionbreak}{\clearpage}
 
 \section{Introduction} % No section title was given
+\marginpar{\fbox{Lecture 1}}
 
 \subsection{Recap of Algebraic Number Theory}
 
@@ -224,6 +225,7 @@ by \autoref{cor:1_7}.
 \end{example}
 
 \section{The Artin Map} % No section title was given
+\marginpar{\fbox{Lecture 2}}
 
 \subsection{Some Background and Recap}
 
@@ -357,6 +359,7 @@ The group $P_K(\fm)$ for any $K$ or $\fm$ is sometimes called a \emph{ray}, or t
 \end{proof}
 
 \subsubsection*{Interlude -- Finite an Infinite Primes}
+\marginpar{\fbox{Lecture 3}}
 A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is determined by embeddings of $K \hookrightarrow \CC$.
 \begin{itemize}
     \item A \emph{real infinite prime} is an embedding $K \hookrightarrow \RR$;
@@ -480,6 +483,7 @@ The is one special modulus:
 \end{theorem}
 
 \begin{example}\label{eg:3_3}
+\marginpar{\fbox{Lecture 4}}
     Let $K = \QQ$, and $L = K(\sqrt{d})$, with $d \in \ZZ$ squarefree. Then
     \begin{equation*}
         \ff(L/K) =
@@ -574,6 +578,7 @@ Every generalised ideal class group is the Galois group of some abelian extensio
 \end{example}
 
 \begin{corollary}\label{cor:3_15}
+\marginpar{\fbox{Lecture 5}}
     Let $L/K$, $M/K$ be abelian extensions. Then $L \subseteq M$ iff there is a modulus $\fm$ divisible by all primes of $K$ ramified in either $L$ or $M$, such that $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$.
 \end{corollary}
 
@@ -581,7 +586,8 @@ Every generalised ideal class group is the Galois group of some abelian extensio
     This implies every abelian extension is contained in a ray class field: If $L/K$ is abelian and $\ff(L/K) \mid \fm$, then $H = \ker \Phi_{L/K, \fm}$ is a congruence subgroup by \autoref{thm:3_6}, $P_K(\fm) \subseteq H$, so by \autoref{cor:3_15}, $L \subseteq K_\fm$.
 \end{remark}
 
-\begin{proof}[Proof of \autoref{cor:3_15} (Sketch)]
+\begin{proof}[Proof of \autoref{cor:3_15} (Sketch)]\phantom{}
+
     ($\Rightarrow$) Suppose that $L \subseteq M$, so by Artin Reciprocity \autoref{thm:3_6}, there exist moduli $\fm_1$ and $\fm_2$ such that $P_K(\fm_1) \subseteq \ker \Phi_{L/K, \fm_1}$ and $P_K(\fm_2) \subseteq \ker \Phi_{M/K, \fm_2}$. Let $\fm$ be a modulus divisible by both $\fm_1$ and $\fm_2$. By \autoref{lem:3_1}, $P_K(\fm) \subseteq \ker \Phi_{L/K,\fm}$, and $P_K(\fm) \subseteq \ker \Phi_{M/K,\fm}$. By \autoref{prop:2_26}, $\Phi_{L/K, \fm} = \res \circ \Phi_{M/K, \fm}$, where $\res : \Gal(M/K) \to \Gal(L/K)$. The result follows.
 
     ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. Then under $\Phi_{M/K, \fm} : I_K(\fm) \to \Gal(M/K)$, the subgroup $\ker \Phi_{L/K, \fm}$ maps to a subgroup $H \subseteq \Gal(M/K)$. By Galois theory, $H$ corresponds to an intermediate field $K \subseteq \widetilde{L} \subseteq M$. Now the first part of the proof applied to $\widetilde{L} \subseteq M$ shows that we have $\ker \Phi_{\widetilde{L}/K, \fm} = \ker \Phi_{L/K, \fm}$. Then by the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
@@ -651,6 +657,9 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
     \end{equation*}
     If $p \neq 2, 5$, then $p$ is unramified in both $\QQ(\sqrt{5})$ and $\QQ(i)$. Therefore in $\QQ(\sqrt{-5}, i)$. Thus primes of $\QQ(\sqrt{-5})$ not above $2$ or $5$ are unramified. Note that $2, 5$ are already ramified in $\QQ(\sqrt{-5})$, so primes above them are unramified in $\QQ(\sqrt{-5}, i)/\QQ(\sqrt{-5})$. Thus $F = \QQ(\sqrt{-5}, i)$.
 \end{example}
+
+\marginpar{\fbox{Lecture 6}}
+\noindent We characterise which primes split in the Hilbert class field:
 
 \begin{corollary}\label{cor:4_8}
     Let $F$ be the Hilbert class field of $K$. Let $\fp \subseteq \cO_K$ be a prime ideal. Then $\fp$ splits completely in $F$ iff $\fp$ is a principal ideal.
@@ -746,7 +755,7 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
 \end{proof}
 
 \section{Zeta Functions and \texorpdfstring{$L$}{L}-series}
-
+\marginpar{\fbox{Lecture 7}}
 In number theory, many arithmetic properties of objects (i.e. number fields, elliptic curves, \textellipsis) are captured in analytic objects like zeta functions and $L$-functions.
 
 \subsection{Dirichlet Series}
@@ -834,6 +843,7 @@ Now consider
 Then $\zeta(s) = \frac{\zeta_3(s)}{1-3^{1-s}}$, so similarly poles occur only when $1-3^{1-s} = 0$, so $s = 1 + \frac{2 \pi i k'}{\log 3}$ for some $k' \in \ZZ$. Thus $k = k' = 0$, so the only poles occur at $s = 1$.
 
 \begin{proposition}\label{prop:5_7}
+\marginpar{\fbox{Lecture 8}}
     For $\Re s > 1$, $\zeta(s) = \prod_p \frac{1}{1-p^{-s}}$.
 \end{proposition}
 \begin{proof}
@@ -949,11 +959,12 @@ summing over all $n$, we get
 
     By \autoref{thm:5_14}, $M(f,s)$ has a holomorphic continuation to $\CC \setminus \{0, \frac{1}{2}\}$, with simple poles at $s = 0, \frac{1}{2}$, with residues $-\frac{1}{2}$ and $\frac{1}{2}$ respectively, and $M(f, s) = M(f, s - \frac{1}{2})$. Thus $Z(s) = M(f, \frac{s}{2})$ has holomorphic continuation to $\CC \setminus \{0,1\}$, with simple poles at $s=0,1$ with residues $-1$ and $1$, and satisfies
     \begin{equation*}
-        Z(s) = M\left(f, \frac{s}{2}\right) = M\left(f, \frac{1}{2} - \frac{s}{2}\right) = Z(1-s)
+        Z(s) = M\left(f, \frac{s}{2}\right) = M\left(f, \frac{1}{2} - \frac{s}{2}\right) = Z(1-s) \qedhere
     \end{equation*}
 \end{proof}
 
 \begin{corollary}\label{cor:5_16}
+\marginpar{\fbox{Lecture 9}}
     The function $\zeta(s)$ admits an analytic continuation to $\CC \setminus \{1\}$. It has a simple pole at $s=1$ with residue $1$ and satisfies the functional equation
     \begin{equation*}
         \zeta(1-s) = 2 (2 \pi)^{-s} \Gamma(s) \cos\left(\frac{\pi s}{2}\right) \zeta(s)
@@ -1076,6 +1087,7 @@ where
 This is an example of a Dirichlet character, and $\prod_p \left(1 - \frac{\chi(p)}{p}\right)^{-1}$ is the Euler product corresponding to the Dirichlet $L$-series $L(\chi, s)$.
 
 \section{Dirichlet \texorpdfstring{$L$}{L}-series}
+\marginpar{\fbox{Lecture 10}}
 
 \subsection{Dirichlet Characters}
 
@@ -1108,7 +1120,7 @@ We can extend Dirichlet characters $\chi$ to multiplicative functions $\chi : \Z
 \begin{equation*}
     \chi(n) =
     \begin{cases}
-        \chi(n \mod{m}) & \text{for } (n, m) = 1\\
+        \chi(n \textrm{ mod }{m}) & \text{for } (n, m) = 1\\
         0 & \text{otherwise}
     \end{cases}
 \end{equation*}
@@ -1202,6 +1214,7 @@ Recall that $(\ZZ/m\ZZ)^\times$ has order $\phi(m)$, where $\phi$ is the Euler t
 \end{proof}
 
 \subsection{Dirichlet \texorpdfstring{$L$}{L}-series}
+\marginpar{\fbox{Lecture 11}}
 
 \begin{definition}\label{def:7_15}
     Let $\chi$ be a Dirichlet character mod $m$, then define
@@ -1280,9 +1293,10 @@ Since $\zeta(s)$ and $\zeta_K(s)$ both have simple poles at $s = 1$, so
 Let $K$ be any number field. Then for $\Re(s) > 1$, we can write $\zeta_K(s) = \sum_{n=1}^\infty \frac{j_s}{n^s}$ with $j_n$ the number of integral ideals $\fa$ of $K$ with $N(\fa) = n$. Then
 \begin{equation*}
     \zeta_K(s) = \sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s} + h_K \kappa \zeta(s)
-\end{equation*}%TODO: I think there is a mistake here, should just be kappa, not h_K kappa
+\end{equation*}
 for $\Re(s) > 1$, where $\kappa$ is the term we defined in the analytic class number formula \autoref{cor:6_6}, and $h_K$ is the class number. The series $\sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s}$ converges for $\Re(s) = 1$ (in fact it converges for $\Re(s) > 1 - \frac{1}{[K : \QQ]}$). Now $h_K = \frac{\rho}{\kappa}$, where $\rho = \lim_{s \to 1} \frac{\zeta_K(s)}{\zeta(s)}$.
 
+\marginpar{\fbox{Lecture 12}}
 Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. Consider its image in $(\ZZ / m\ZZ)^\times$, then consider characters of $G$ as Dirichlet characters mod $m$, so we consider $\widehat{G}$ as a subgroup of $(\ZZ / m\ZZ)^\times$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
 \begin{equation*}
     \prod_{\chi \in \widehat{G}} \left(1 - \frac{\chi(p)}{p^s}\right) = \left(1 - \frac{1}{p^{fs}}\right)^r = \prod_{\fp \mid p} \left(1 - \frac{1}{N(\fp)^s}\right)
@@ -1431,6 +1445,7 @@ We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is 
 \end{example}
 
 \section{Density}
+\marginpar{\fbox{Lecture 13}}
 
 \subsection{Dirichlet Density}
 
@@ -1518,6 +1533,7 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 \end{proof}
 
 \begin{lemma}\label{lem:8_9}
+\marginpar{\fbox{Lecture 14}}
     Let $S$ be a set of prime ideals of $K$ whose Dirichlet density exists, then $d(S) = d(S \cap \{\text{degree } 1 \text{ prime ideals}\})$.
 \end{lemma}
 \begin{proof}
@@ -1565,6 +1581,7 @@ Let $K$ be a number field, $L/K$ a Galois extension. Let $G = \Gal(L/K)$. Recall
     \begin{equation*}
         [N_G(H) : H] \sum_{\fp \in S_1} N(\fp)^{-s} \sim \left(-1 + \sum_{1 \neq d \mid n} \frac{[N_G(\langle \sigma^d \rangle) : H] t_d}{\abs{G}}\right) \log(s-1)
     \end{equation*}
+\marginpar{\fbox{Lecture 15}}
     By \autoref{lem:8_6}, we can rewrite the coefficient on the right as
     \begin{align*}
         -1 + \sum_{1 \neq d \mid n} \frac{\phi(\frac{n}{d}) [G : N_G(\langle \sigma^d \rangle)] [N_G(\langle \sigma^d \rangle) : H]}{\abs{G}}
@@ -1643,6 +1660,7 @@ We will see next that the primes that split completely in $L$ characterise the e
 \end{theorem}
 
 \begin{proposition}\label{prop:8_18}
+\marginpar{\fbox{Lecture 16}}
     Let $L$ and $M$ be finite extensions of $K$.
     \begin{enumerate}[label=\roman*)]
         \item If $M$ is Galois over $K$, then $L \subseteq M \iff S_{M/K} \subsetdot S_{L/K}$.
@@ -1672,6 +1690,7 @@ Now we complete the proof of \autoref{prop:3_10}:
 \end{proof}
 
 \section{Ideles and Adeles}
+\marginpar{\fbox{Lecture 17}}
 
 \subsection{Introduction}
 
@@ -1753,6 +1772,7 @@ As a subspace of $\bA_K$, $\bA_K^\times$ is not a topological group. We give it 
     Now $\II_K$ is Hausdorff since the topology is finer than the topology of $\bA_K^\times \subseteq \bA_K$, which is Hausdorff by \autoref{prop:9_5}. For each finite prime, the set $\cO_{K_\fp}^\times = \{x \in K_\fp \mid \abs{x}_\fp = 1\}$ is a closed subset of the compact set $\cO_{K_\fp}$, hence compact. This applies to almost all primes, and the $K_\fp^\times$ are all locally compact by \autoref{prop:9_2}. Thus $\rprod_\fp (K_\fp^\times, \cO_K^\times) = \II_K$ is locally compact.
 \end{proof}
 
+\marginpar{\fbox{Lecture 18}}
 The canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$ restricts to an embedding $K^\times \hookrightarrow \II_K$. We view $K^\times$ as a subgroup of $\II_K$, and we will call the elements of $K^\times$ in $\II_K$ the \emph{principal ideles}.
 
 \subsection{The Idele Class Group}
