@@ -310,11 +310,7 @@ Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all ram
     Write $\infty$ for the real infinite prime of $\QQ$. Let $\fm = (m) \infty$. Then $\fm$ contains all ramified primes, so we have a well-defined map $\Phi_\fm : I_\QQ(\fm) \to \Gal(\QQ(\zeta_m) / \QQ)$.
 
     {\color{blue}
-        For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Then by definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Write $\sigma(\zeta_m) = \zeta_m^h$ for some $h \in \ZZ$. Then $\zeta_m^{h-p} \equiv 1 \pmod{\cp}$. If $\zeta_m^{h-p} \neq 1$, then
-        \begin{equation*}
-            0 = (\zeta_m^{h-p})^{m-1} + \ldots + \zeta_m^{h-p} + 1 \equiv m \pmod{\cp}
-        \end{equation*}
-        contradicting $p \nmid m$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
+        For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Since the polynomial $x^m-1$ is separable modulo $\cp$, the $m$\textsuperscript{th} roots of unity $\zeta_m^k$ for $0 \le k \le m-1$ are all distinct modulo $\cp$. By definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
     }
 
     Let $\frac{a}{b}\ZZ \in I_\QQ(\fm)$, then $\Phi_\fm(\frac{a}{b} \ZZ) = [a][b]^{-1} \in (\ZZ / m \ZZ)^\times$.
@@ -625,7 +621,7 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
 \stepcounter{definition} % Numbering issue
 
 \begin{definition}\label{def:4_3}
-    This is called the \emph{Hilbert class field}.
+    This $K_\fm$ is called the \emph{Hilbert class field} of $K$.
 \end{definition}
 
 \begin{example}\label{eg:4_4}
@@ -646,6 +642,17 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
     \end{equation*}
     If $M/K$ corresponds to $H \subseteq \Cl(K)$, then the Artin map induces an isomorphism $\Cl(K)/H \xrightarrow{\sim} \Gal(M/K)$.
 \end{corollary}
+{\color{blue}
+\begin{proof}
+    Let $F$ be the Hilbert class field of $K$. Subgroups of $\Cl(K)$ are identified with subgroups of $\Gal(F/K)$ via the isomorphism $\Cl(K) \xrightarrow{\sim} \Gal(F/K)$ induced by the Artin map. Unramified abelian extensions of $K$ are identified with subextensions of $F/K$. Then the correspondence in the statement is just the Galois correspondence.
+
+    If $M/K$ corresponds to $H \subseteq \Cl(K)$, then
+    \begin{equation*}
+        \Cl(K) / H \cong \Gal(F/K) / \Phi_{F/K,1}(H) = \Gal(F/K) / \Gal(F/M) \cong \Gal(M/K)
+    \end{equation*}
+    as required.
+\end{proof}
+}
 
 \begin{example}\label{eg:4_7}
     Let $K = \QQ(\sqrt{-5})$. We show that the Hilbert class field $F$ is equal to $L = \QQ(\sqrt{-5}, i)$.
@@ -685,7 +692,7 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
 
 \subsection{Reciprocity Theorems}
 
-Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity $\zeta$. Let $\fp$ be a prime ideal of $\cO_K$. Then for $\alpha \in \cO_K$ prime to $\fp$, we have $\alpha^{N(\fp) - 1} \equiv 1 \pmod{\fp}$ by Fermat's Little Theorem. Suppose in addition $\fp$ is prime to $n$. Then $\zeta$ has order $n$ in $\cO_K / \fp$ (see \autoref{eg:2_11}). Thus $x = \alpha^{\frac{N(\fp)-1}{n}}$ is a solution to the congruence $x^n \equiv 1 \pmod{\fp}$, so
+Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity $\zeta$. Let $\fp$ be a prime ideal of $\cO_K$. Then for $\alpha \in \cO_K$ prime to $\fp$, we have $\alpha^{N(\fp) - 1} \equiv 1 \pmod{\fp}$ by Fermat's Little Theorem. Suppose in addition $\fp$ is prime to $n$. Then $\zeta$ has order $n$ in $\cO_K / \fp$ (as in \autoref{eg:2_11}). Thus $x = \alpha^{\frac{N(\fp)-1}{n}}$ is a solution to the congruence $x^n \equiv 1 \pmod{\fp}$, so
 \begin{equation*}
     \alpha^{\frac{N(\fp)-1}{n}} \equiv 1, \zeta, \ldots, \zeta^{n-1} \pmod{\fp}
 \end{equation*}
@@ -1382,7 +1389,7 @@ Now we compute $L(\chi, 1)$.
     \begin{equation*}
         \log(1-\zeta^k) = \log 2 + \log \sin \frac{k \pi}{m} + \left(\frac{k}{m} - \frac{1}{2}\right) \pi i
     \end{equation*}
-    This may be proven by writing $1 - \zeta^k = -\zeta^{\frac{k}{2}} (\zeta^{\frac{k}{2}} - \zeta^{-\frac{k}{2}}) = -2i \zeta^{\frac{k}{2}} \sin \frac{k \pi i}{m}$.
+    {\color{blue} This may be proven by writing $1 - \zeta^k = -\zeta^{\frac{k}{2}} (\zeta^{\frac{k}{2}} - \zeta^{-\frac{k}{2}}) = -2i \zeta^{\frac{k}{2}} \sin \frac{k \pi i}{m}$.}
 \end{remark}
 \noindent Now
 \begin{alignat*}{3}
@@ -1402,14 +1409,16 @@ The last equality holds since $\chi(-1) = 1$ implies $\sum_k \overline{\chi}(k) 
 \begin{equation*}
     \sum_{k \in (\ZZ / m \ZZ)^\times} \chi(k) k = \frac{m}{\overline{\chi}(2) - 2} \sum_{\substack{k \in (\ZZ/m\ZZ)^\times \\ k < \frac{m}{2}}} \chi(k)
 \end{equation*}
-(Indeed, let $S = \sum_{k \in (\ZZ / m\ZZ)^\times} \chi(k) k$. Then
-\begin{align*}
-    S
-    &= \sum_{k=1}^{\frac{m-1}{2}} \chi(2k) 2k + \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k) (2k-m)\\
-    &= \sum_{k=1}^{m-1} \chi(2k) 2k - m \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k)\\
-    &= 2 \chi(2) S + \chi(2) m \sum_{k=1}^{\frac{m-1}{2}} \chi(k)
-\end{align*}
-Rearranging gives the result.)
+{\color{blue}
+    Indeed, let $S = \sum_{k \in (\ZZ / m\ZZ)^\times} \chi(k) k$. Then
+    \begin{align*}
+        S
+        &= \sum_{k=1}^{\frac{m-1}{2}} \chi(2k) 2k + \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k) (2k-m)\\
+        &= \sum_{k=1}^{m-1} \chi(2k) 2k - m \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k)\\
+        &= 2 \chi(2) S + \chi(2) m \sum_{k=1}^{\frac{m-1}{2}} \chi(k)
+    \end{align*}
+    Rearranging gives the result.
+}
 
 Putting this together,
 \begin{theorem}\label{thm:7_26}
