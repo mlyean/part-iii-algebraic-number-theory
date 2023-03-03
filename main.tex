@@ -133,7 +133,7 @@ Let $L/K$ be Galois.
 
 \noindent Let $\cp \subseteq \cO_L$ be such that $\cp \mid \fp$.
 
-\begin{definition}
+\begin{definition}\label{def:1_3}
     The \emph{decomposition group} of $\cp$ is
     \begin{equation*}
         D_{\cp / \fp} = \{\sigma \in \Gal(L/K) \mid \sigma(\cp) = \cp\}
@@ -1736,16 +1736,16 @@ Note that this is in general not the same as the subspace topology it inherits f
 
 \subsection{The Ring of Adeles}
 
-\begin{definition}[Adele] An \emph{adele} of $K$ is a family $\alpha = (\alpha_\fp)$ of elements $\alpha_\fp \in K_\fp$ where $\fp$ runs through all primes of $K$, and $\alpha_\fp$ is integral in $K_\fp$ for almost all $\fp$.
+\begin{definition}[Adele]\label{def:9_3} An \emph{adele} of $K$ is a family $\alpha = (\alpha_\fp)$ of elements $\alpha_\fp \in K_\fp$ where $\fp$ runs through all primes of $K$, and $\alpha_\fp$ is integral in $K_\fp$ for almost all $\fp$.
 \end{definition}
 We write $\bA_K$ for the ring of adeles.
 \begin{align*}
-    \bA_k
+    \bA_K
     &= \left\{(\alpha_\fp) \in \prod_{\fp} K_\fp \mid \alpha_\fp \in \cO_{K_\fp} \text{ for almost all } \fp\right\}\\
     &= \rprod_{\fp} (K_\fp, \cO_{K_\fp})
 \end{align*}
 
-Note for finite $\fp$, $\cO_K$ is the valuation ring, while for infinite $\fp$, we set $\cO_{K_\fp} = K_\fp$.
+Note for finite $\fp$, $\cO_{K_\fp}$ is the valuation ring, while for infinite $\fp$, we set $\cO_{K_\fp} = K_\fp$.
 
 This is a subset of $\prod_{\fp} K_\fp$. For each $\alpha \in \bA_K$ as above, we write $\alpha_\fp$ for its projection in $K_\fp$. We make $\bA_K$ a ring by defining addition and multiplication componentwise.
 
