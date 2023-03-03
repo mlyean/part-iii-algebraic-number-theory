@@ -1762,7 +1762,7 @@ This is a subset of $\prod_{\fp} K_\fp$. For each $\alpha \in \bA_K$ as above, w
     Now $\prod_{\fp} K_\fp$ is Hausdorff, since each $K_\fp$ is Hausdorff. Since the topology on $\bA_K \subseteq \prod_{\fp} K_\fp$ is finer than the subspace topology, $\bA_K$ is also Hausdorff.
 \end{proof}
 
-Now for each finite set of primes $S$, we have the subring of $S$-adeles $\bA_{K,S} = \prod_{\fp \in S} K_\fp \times \prod_{\fp \notin S} \cO_{K_\fp}$. The canonical embeddings $K \hookrightarrow K_\fp$ induce a canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$. For each $x \in K$, we have $x \in \cO_{K_\fp}$ for all but finitely many $\fp$. The image of $K$ in $\bA_K$ is the subring of \emph{principal adeles}.
+Now for each finite set of primes $S$, we have the subring of \emph{$S$-adeles} $\bA_{K,S} = \prod_{\fp \in S} K_\fp \times \prod_{\fp \notin S} \cO_{K_\fp}$. The canonical embeddings $K \hookrightarrow K_\fp$ induce a canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$. For each $x \in K$, we have $x \in \cO_{K_\fp}$ for all but finitely many $\fp$. The image of $K$ in $\bA_K$ is the subring of \emph{principal adeles}.
 
 \subsection{The Idele Group}
 
@@ -1861,8 +1861,102 @@ In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient
 
 For any idele $\alpha = (\alpha_\fp) \in \II_K$, write $[\alpha]$ for the corresponding class in $C_K$. Define the \emph{absolute norm / idele norm} of $\alpha \in \II_K$ to be the real number $N(\alpha) = \prod_{\fp} \abs{\alpha_\fp}_\fp$. Let $\II_K^0 = \{\alpha \in \II_K \mid N(\alpha) = 1\}$ be the kernel. If $x \in K^\times$ is a principal idele, then we have by the product formula $N(x) = \prod_\fp \abs{x}_\fp = 1$, so we have a well-defined norm map $N : C_K \to \RR^\times_+$. Let $C_K^0$ be the kernel of this map, i.e. $C_K^0 = \{[\alpha] \in C_K \mid N(\alpha) = 1\}$.
 
+{\color{blue}
+    We have the commutative diagram
+    \begin{equation*}
+        \begin{tikzcd}
+            1 \arrow[r] & \II_K^0 \arrow[r] \arrow[d, twoheadrightarrow] & \II_K \arrow[r, "N"] \arrow[d, twoheadrightarrow] & \RR_+^\times \arrow[r] \arrow[d, equal] & 1\\
+            1 \arrow[r] & C_K^0 \arrow[r] & C_K \arrow[r, "N"] & \RR_+^\times \arrow[r] & 1
+        \end{tikzcd}
+    \end{equation*}
+    with exact rows.
+}
+
 \begin{proposition}\label{prop:9_12}
     The group $C_K^0$ is compact.
+\end{proposition}
+
+\marginpar{\fbox{Lecture 19}}
+This has applications: it can be used to prove a more general version of Dirichlet's unit theorem.
+
+Let $S$ be a finite set of primes containing all the infinite primes. Let $\cO_{K,S} = \{x \in K \mid \text{for all primes } \fp \notin S, \abs{x}_\fp \le 1\}$ be the set of \emph{$S$-integers}.
+
+\begin{corollary}\label{cor:9_13}
+    The group of $S$-units $\cO_{K,S}^\times$ is a finitely generated abelian group of rank $\#S - 1$.
+\end{corollary}
+\begin{proof}[Idea of the proof]
+    Consider the map $\lambda_S : \II_K \to \prod_{\fp \in S} \RR$, $\alpha \mapsto (\log \abs{\alpha_\fp}_\fp)_{\fp \in S}$. Then use the product formula to show $\lambda_S(\cO_{K,S}^\times) \subseteq \{(x_\fp) \in \prod_{\fp \in S} \mid \sum_{\fp \in S} x_\fp = 0\}$, and use the compactness of $C_K^0$ to show
+    \begin{enumerate}[label=\roman*)]
+        \item $\ker \lambda_S \cap \cO_{K,S}^\times$ is finite;
+        \item $\lambda_S(\cO_K^\times)$ is a lattice in $\{(x_\fp) \in \prod_{\fp \in S} \RR \mid \sum_{\fp \in S} x_\fp = 0\}$. \qedhere
+    \end{enumerate}
+\end{proof}
+
+For each $\fp$ consider the homomorphism $n_\fp : K_\fp^\times \to \II_K$ which sends $x$ to the element of $\II_K$ with $x$ in the component of $\fp$ and $1$ elsewhere, i.e.
+\begin{equation*}
+    (n_\fp(x))_\fq =
+    \begin{cases}
+        1 & \text{if } \fq \neq \fp\\
+        x & \text{if } \fq = \fp
+    \end{cases}
+\end{equation*}
+Let $\overline{n}_\fp : K^\times \to C_K$ be the map $x \mapsto [n_\fp(x)] \in C_K$.
+
+\begin{proposition}\label{prop:9_14}
+    $C_K \cong C_K^0 \times \RR_+^\times$.
+\end{proposition}
+\begin{proof}
+    It suffices to show that the extension
+    \begin{equation*}
+        1 \longrightarrow C_K^0 \longrightarrow C_K \longrightarrow \RR_+^\times \longrightarrow 1
+    \end{equation*}
+    has a splitting, i.e. we can find a map $\RR_+^\times \to C_K$ which when composed with $N : C_K \to \RR_+^\times$ gives the identity on $\RR_+^\times$.
+
+    Choose any infinite prime $\fp$ and consider the embedding $\overline{n}_\fp : K_\fp^\times \to C_K$ defined above. $K_\fp^\times$ contains $\RR_+^\times$ as a subgroup. If $\fp$ is real, then $\overline{n}_\fp : \RR_+^\times \to C_K$ is the embedding we want, since $N(\overline{n}_\fp(x)) = \abs{x}_\fp = x \in \RR_+^\times$. If $\fp$ is complex, then for $x \in \RR_+^\times$, $N(n_\fp(x)) = \abs{x}_\fp = x^2$, so choose the map $x \mapsto \overline{n}_\fp(\sqrt{x})$.
+\end{proof}
+
+\begin{corollary}[of \autoref{prop:9_12}]\label{cor:9_15}
+    The ideal class group $\Cl(K)$ is finite.
+\end{corollary}
+\begin{proof}
+    We had a surjective map $\II_K \to I_K$. This restricts to a surjective\footnote{as we can scale the component of an infinite prime} map $\II_K^0 \to I_K$ and is continuous for the discrete topology on $I_K$. The image of $K^\times$ is $P_K$, as we have seen. Thus the class group $\Cl(K) = I_K / P_K$ is the continuous image of the compact group $C_K^0 = \II_K^0 / K^\times$, so\footnote{compact + discrete $\implies$ finite} is finite.
+\end{proof}
+
+For a finite prime $\fp$, the units of $\fp$ are understood to be the group $\cO_{K_\fp}^\times$. For infinite primes $\fp$, we set $\cO_{K_\fp} = K_\fp$, so that the units are just $K_\fp^\times$. Recall $\II_{K, \infty} = \prod_{\fp \mid \infty} K_\fp^\times \times \prod_{\fp \nmid \infty} \cO_{K_\fp}^\times = \prod_\fp \cO_{K_\fp}^\times$ by our conventions.
+
+Let $\fm$ be a modulus of $K$, and define
+\begin{equation*}
+    U_\fp^{n_\fp} =
+    \begin{cases}
+        \cO_{K_\fp}^\times & \text{if } n_\fp = 0, \fp \nmid \infty\\
+        1 + \fp^{n_\fp} & \text{if } n_\fp > 0, \fp \nmid \infty\\
+        \RR^\times = K_\fp^\times & \text{if } n_\fp = 0, \fp \text{ real}\\
+        \RR_+^\times \subseteq K_\fp^\times & \text{if } n_\fp = 1, \fp \text{ real}\\
+        \CC^\times = K_\fp^\times & \text{if } \fp \text{ complex}
+    \end{cases}
+\end{equation*}
+
+Now if $\alpha_\fp \in K_\fp^\times$, then say $\alpha_\fp \equiv 1 \pmod{\fp^{n_\fp}}$ iff $\alpha_\fp \in U_\fp^{n_\fp}$. For a finite prime $\fp$, this means ordinary congruence if $n_\fp > 0$, and $\alpha_\fp \in \cO_{K_\fp}^\times$ if $n_\fp = 0$. If $\fp$ is real and $n_\fp = 1$, then this is a positivity condition $\alpha_\fp > 0$. The remaining cases have no restrictions.
+
+For any modulus $\fm = \prod_\fp \fp^{n_\fp}$ and idele $\alpha \in \II_K$, we say $\alpha \equiv 1 \pmod{\fm}$ if $\alpha_\fp \equiv 1 \pmod{\fp^{n_\fp}}$ for all primes $\fp$.
+
+Consider the group $\II_K(\fm) = \{\alpha \in \II_K \mid \alpha \equiv 1 \pmod{\fm}\}$. Then $\II_K(\fm) = \prod_{\fp} U_\fp^{n_\fp} \subseteq \II_K$. Then $\II_K(\fm) = \prod_\fp U_\fp^{n_\fp} \subseteq \II_K$. If $\fm = 1$, then $\II_K(1) = \II_{K,S_\infty} = \prod_{\fp \mid \infty} K_\fp^\times \times \prod_{\fp \nmid \infty} U_\fp$ (with the convention $U_\fp = U_\fp^0$).
+
+\begin{definition}\label{def:9_16}
+    We call the idele class group
+    \begin{equation*}
+        C_K(\fm) = I_K(\fm) K^\times / K^\times \subseteq C_K
+    \end{equation*}
+    the \emph{congruence subgroup mod $\fm$} of $C_K$. The factor group $C_K / C_K(\fm)$ is called the \emph{ray class group mod $\fm$}.
+\end{definition}
+
+Later we will prove that $C_K / C_K(\fm) \cong I_K(\fm) / P_K(\fm)$. Now if $\fm = 1$, then
+\begin{equation*}
+    C_K / C_K(1) = (\II_K / K^\times) / (\II_{K, S_\infty} K^\times / K^\times) \cong \II_K / \II_{K, S_\infty} K^\times \cong I_K / P_K = \Cl(K)
+\end{equation*}
+
+\begin{proposition}\label{prop:9_17}
+    The closed subgroups of finite index of $C_K$ are precisely those subgroups that contain a congruence subgroup $C_K(\fm)$ for some modulus $\fm$.
 \end{proposition}
 
 \end{document}
