@@ -16,6 +16,7 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{titlesec}
+\usepackage{mathtools}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -66,7 +67,7 @@
 \newcommand{\fq}{\mathfrak{q}}
 \newcommand{\fm}{\mathfrak{m}}
 \newcommand{\fn}{\mathfrak{n}}
-\newcommand{\rprod}{\Box} %TODO: Find a better symbol
+\newcommand{\rprod}{\mathrlap{\prod}{\coprod}}
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\subsetdot}{\stackrel{\centerdot}{\subset}}
 \newcommand{\eqdot}{\stackrel{\centerdot}{=}}
@@ -310,7 +311,7 @@ Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all ram
     Write $\infty$ for the real infinite prime of $\QQ$. Let $\fm = (m) \infty$. Then $\fm$ contains all ramified primes, so we have a well-defined map $\Phi_\fm : I_\QQ(\fm) \to \Gal(\QQ(\zeta_m) / \QQ)$.
 
     {\color{blue}
-        For a prime $p \nmid m$, let $\cp$ be a prime lying over $(p)$. Let $\sigma = \leg{L/K}{\cp}$. Since the polynomial $x^m-1$ is separable modulo $\cp$, the $m$\textsuperscript{th} roots of unity $\zeta_m^k$ for $0 \le k \le m-1$ are all distinct modulo $\cp$. By definition, $\sigma(\zeta_m) \equiv \zeta_m^p \pmod{\cp}$. Thus $\sigma(\zeta_m) = \zeta_m^p$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
+        Fix a prime $p \nmid m$. Let $\sigma \in \Gal(\QQ(\zeta_m) / \QQ)$ be such that $\sigma(\zeta_m) = \zeta_m^p$. By the uniqueness in \autoref{lem:1_5}, we have $\leg{\QQ(\zeta_m) / \QQ}{p} = \sigma$, so $\Phi((p)) = [p] \in (\ZZ / m \ZZ)^\times$.
     }
 
     Let $\frac{a}{b}\ZZ \in I_\QQ(\fm)$, then $\Phi_\fm(\frac{a}{b} \ZZ) = [a][b]^{-1} \in (\ZZ / m \ZZ)^\times$.
@@ -320,12 +321,15 @@ Let $L/K$ be abelian. Let $\fm$ be a modulus of $K$ that is divisible by all ram
 \subsection{Generalised Ideal Class Group}
 
 \begin{definition}\label{def:2_12}
-    Let $P_K(\fm)$ be the subgroup of $I_K(\fm)$ consisting of all principal fractional ideals $(\alpha)$, where $\alpha \in K$ is such that
+    Let $P_K(\fm)$ be the subgroup of $I_K(\fm)$ consisting of all principal fractional ideals $(\alpha)$, where $\alpha \in K^\times$ is such that
     \begin{itemize}
         \item $v_\fp(\alpha - 1) \ge v_\fp(\fm_0) = n_\fp$ for any $\fp \mid \fm_0$;
         \item $\sigma(\alpha) > 0$ for every real infinite prime $\sigma \mid \fm_\infty$.
     \end{itemize}
 \end{definition}
+{\color{blue}
+    $P_K(\fm)$ is indeed a subgroup of $I_K(\fm)$: If $\alpha, \beta \in K^\times$ are such that $v_\fp(\alpha - 1), v_\fp(\beta - 1) \ge n_\fp \ge 1$, then $v_\fp(\alpha \beta - 1) = v_\fp((\alpha - 1)\beta + (\beta - 1)) \ge \min\{v_\fp(\alpha - 1), v_\fp(\beta - 1)\} \ge n_\fp$, since $v_\fp(\beta - 1) \ge 1$ implies $v_\fp(\beta) = 0$.
+}
 
 \begin{example}\label{eg:2_13}
     Let $\fm = 1$, then $P_K(\fm) = P_K$.
@@ -589,11 +593,15 @@ Every generalised ideal class group is the Galois group of some abelian extensio
     This implies every abelian extension is contained in a ray class field: If $L/K$ is abelian and $\ff(L/K) \mid \fm$, then $H = \ker \Phi_{L/K, \fm}$ is a congruence subgroup by \autoref{thm:3_6}, $P_K(\fm) \subseteq H$, so by \autoref{cor:3_15}, $L \subseteq K_\fm$.
 \end{remark}
 
-\begin{proof}[Proof of \autoref{cor:3_15} (Sketch)]\phantom{}
+\begin{proof}[Proof of \autoref{cor:3_15}]\phantom{}
 
     ($\Rightarrow$) Suppose that $L \subseteq M$, so by Artin Reciprocity \autoref{thm:3_6}, there exist moduli $\fm_1$ and $\fm_2$ such that $P_K(\fm_1) \subseteq \ker \Phi_{L/K, \fm_1}$ and $P_K(\fm_2) \subseteq \ker \Phi_{M/K, \fm_2}$. Let $\fm$ be a modulus divisible by both $\fm_1$ and $\fm_2$. By \autoref{lem:3_1}, $P_K(\fm) \subseteq \ker \Phi_{L/K,\fm}$, and $P_K(\fm) \subseteq \ker \Phi_{M/K,\fm}$. By \autoref{prop:2_26}, $\Phi_{L/K, \fm} = \res \circ \Phi_{M/K, \fm}$, where $\res : \Gal(M/K) \to \Gal(L/K)$. The result follows.
 
-    ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. Then under $\Phi_{M/K, \fm} : I_K(\fm) \to \Gal(M/K)$, the subgroup $\ker \Phi_{L/K, \fm}$ maps to a subgroup $H \subseteq \Gal(M/K)$. By Galois theory, $H$ corresponds to an intermediate field $K \subseteq \widetilde{L} \subseteq M$. Now the first part of the proof applied to $\widetilde{L} \subseteq M$ shows that we have $\ker \Phi_{\widetilde{L}/K, \fm} = \ker \Phi_{L/K, \fm}$. Then by the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
+    ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. Then under $\Phi_{M/K, \fm} : I_K(\fm) \to \Gal(M/K)$, the subgroup $\ker \Phi_{L/K, \fm}$ maps to a subgroup $H \subseteq \Gal(M/K)$. By Galois theory, $H$ corresponds to an intermediate field $K \subseteq \widetilde{L} \subseteq M$. Now the first part of the proof applied to $\widetilde{L} \subseteq M$ gives
+        \begin{equation*}
+            \ker \Phi_{\widetilde{L}/K,\fm} = \Phi_{M/K,\fm}^{-1}\left(\Gal(M/\widetilde{L})\right) = \Phi_{M/K,\fm}^{-1}(H) = \ker \Phi_{L/K, \fm}
+    \end{equation*}
+    Then by the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
 \end{proof}
 
 \begin{theorem}\label{thm:3_17}
@@ -692,7 +700,7 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
 
 \subsection{Reciprocity Theorems}
 
-Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity $\zeta$. Let $\fp$ be a prime ideal of $\cO_K$. Then for $\alpha \in \cO_K$ prime to $\fp$, we have $\alpha^{N(\fp) - 1} \equiv 1 \pmod{\fp}$ by Fermat's Little Theorem. Suppose in addition $\fp$ is prime to $n$. Then $\zeta$ has order $n$ in $\cO_K / \fp$ (as in \autoref{eg:2_11}). Thus $x = \alpha^{\frac{N(\fp)-1}{n}}$ is a solution to the congruence $x^n \equiv 1 \pmod{\fp}$, so
+Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity $\zeta$. Let $\fp$ be a prime ideal of $\cO_K$. Then for $\alpha \in \cO_K$ prime to $\fp$, we have $\alpha^{N(\fp) - 1} \equiv 1 \pmod{\fp}$ by Fermat's Little Theorem. Suppose in addition $\fp$ is prime to $n$. Then $\zeta$ has order $n$ in $\cO_K / \fp$ {\color{blue} as the polynomial $x^n - 1$ is separable modulo $\fp$}. Thus $x = \alpha^{\frac{N(\fp)-1}{n}}$ is a solution to the congruence $x^n \equiv 1 \pmod{\fp}$, so
 \begin{equation*}
     \alpha^{\frac{N(\fp)-1}{n}} \equiv 1, \zeta, \ldots, \zeta^{n-1} \pmod{\fp}
 \end{equation*}
@@ -760,7 +768,7 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
     \end{equation*}
 \end{theorem}
 \begin{proof}
-    This is equivalent to $\leg{p^*}{q} = \leg{q}{p}$, where $p^* = (-1)^{\frac{p-1}{2}} p$. Recall $\Gal(\QQ(\zeta_p)/\QQ)$ is a generalised class group for $\fm = p \infty$ (see \autoref{eg:2_24}), so the same holds for any subfield of $\QQ(\zeta_p)$ (see example sheet). Since $\Gal(\QQ(\zeta_p)/\QQ)$ is cyclic of order $p-1$, there is a unique subfield $\QQ \subseteq K \subseteq \QQ(\zeta_p)$ which is quadratic over $\QQ$, so $\Gal(K/\QQ)$ is a generalised ideal class group for $p \infty$. $p$ is the only finite prime of $\QQ$ ramified in $K$. Thus $K = \QQ(\sqrt{p^*})$ (see example sheet). Thus $\ker \Phi_{\QQ(p^*)/\QQ, p \infty}$ is a congruence subgroup for $p$. By Weak Reciprocity \autoref{thm:4_11}, % TODO: Don't we need 2 dividing the modulus?
+    This is equivalent to $\leg{p^*}{q} = \leg{q}{p}$, where $p^* = (-1)^{\frac{p-1}{2}} p$. Recall $\Gal(\QQ(\zeta_p)/\QQ)$ is a generalised class group for $\fm = p \infty$ (see \autoref{eg:2_24}), so the same holds for any subfield of $\QQ(\zeta_p)$ (Example Sheet 1 Exercise 5). Since $\Gal(\QQ(\zeta_p)/\QQ)$ is cyclic of order $p-1$, there is a unique subfield $\QQ \subseteq K \subseteq \QQ(\zeta_p)$ which is quadratic over $\QQ$, so $\Gal(K/\QQ)$ is a generalised ideal class group for $p \infty$. $p$ is the only finite prime of $\QQ$ ramified in $K$. Thus $K = \QQ(\sqrt{p^*})$ (Example Sheet 1 Exercise 11). Thus $\ker \Phi_{\QQ(p^*)/\QQ, p \infty}$ is a congruence subgroup for $p \infty$. By Weak Reciprocity \autoref{thm:4_11}, % TODO: Don't we need 2 dividing the modulus?
     we have a surjective homomorphism
     \begin{equation}\label{eqn:4_12_star}
         \leg{p^*}{\cdot} : I_\QQ(p \infty) / P_\QQ(p \infty) \to \{\pm 1\}
