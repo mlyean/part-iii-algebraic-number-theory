@@ -46,6 +46,7 @@
 \DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\res}{res}
 \DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\mult}{mult}
 
 \newcommand{\bA}{\mathbb{A}}
 \newcommand{\II}{\mathbb{I}}
@@ -60,6 +61,7 @@
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cp}{\mathfrak{P}}
 \newcommand{\cH}{\mathcal{H}}
+\newcommand{\cN}{\mathcal{N}}
 \newcommand{\fa}{\mathfrak{a}}
 \newcommand{\fd}{\mathfrak{d}}
 \newcommand{\ff}{\mathfrak{f}}
@@ -71,6 +73,7 @@
 \newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\subsetdot}{\stackrel{\centerdot}{\subset}}
 \newcommand{\eqdot}{\stackrel{\centerdot}{=}}
+\newcommand{\ab}{\mathrm{ab}}
 
 \setlist[enumerate,1]{label=\arabic*), nosep}
 \setlist[enumerate,2]{label=\roman*), nosep}
@@ -2029,5 +2032,83 @@ Let $\II_L^G = \{\alpha \in \II_L \mid \sigma \alpha = \alpha \text{ for all } \
     \end{equation}
     To show that $\alpha_\cp \in K_\fp$, recall from Local Fields that the restriction $\Gal(L_\cp / K_\fp) \to G$ has image the decomposition group $D_{\cp / \fp}$. Thus for any $\sigma \in \Gal(L_\cp / K_\fp)$, we have $\sigma^{-1}\cp = \cp$, so $\sigma \alpha_\cp = \alpha_\cp$ by \eqref{eqn:9_18_star}. Hence $\alpha_\cp \in K_\fp$. Again by \eqref{eqn:9_18_star}, we see that for any $\sigma \in G$, $\alpha_{\sigma^{-1}\cp} = \alpha_\cp$. We conclude by \autoref{thm:1_2}.
 \end{proof}
+
+\begin{proposition}\label{prop:9_19}
+\marginpar{\fbox{Lecture 21}}
+    Let $L/K$ be a finite extension. Then $L^\times \cap \II_K = K^\times$.
+\end{proposition}
+This means if $\alpha \in \II_K$ is an idele of $K$ that becomes principal in $L$ (i.e. $\alpha \in L^\times$), then $\alpha$ is already principal in $K$.
+\begin{proof}
+    Let $\Omega$ be the Galois closure of $L/K$. Then $\II_K$ and $\II_L$ are both subgroups of $\II_\Omega$. Then by \autoref{prop:9_18},
+    \begin{equation*}
+        K^\times \subseteq L^\times \cap \II_K \subseteq \Omega^\times \cap \II_K = \Omega^\times \cap \II_\Omega^{\Gal(\Omega / K)} = (\Omega^\times)^{\Gal(\Omega/K)} = K^\times \qedhere
+    \end{equation*}
+\end{proof}
+
+\autoref{prop:9_19} immediately implies that the map $\iota : C_K \to C_L$ induced by the inclusion $\II_K \subseteq \II_L$ is injective.
+
+Suppose $L/K$ is Galois with $G = \Gal(L/K)$, then since $\II_L$ is a $G$-module and $L^\times$ is a $G$-submodule, $C_L$ is also a $G$-module. Explicitly, for $\sigma \in \Gal(L/K)$, $\sigma [\alpha]_{C_L} = [\sigma \alpha]_{C_L}$.
+
+\begin{proposition}
+    Let $G = \Gal(L/K)$, then $C_L^G = C_K$.
+\end{proposition}
+\begin{proof}
+    Omitted, requries cohomology.
+\end{proof}
+
+Next we define a norm homomorphism $N_{L/K} : \II_L \to \II_K$ by using local norm maps.
+
+\subsubsection*{Local Norm}
+For any $\cp \mid \fp$, $L_\cp$ is a $K_\fp$-vector space. For $\alpha \in L_\cp$, the norm map defined by $N_{L_\cp/K_\fp}(x) = \det(\mult(x))$, where $\mult(x) : L_\cp \to L_\cp$ is the $K_\fp$-linear map induced by multiplication by $x$.
+
+Let $\alpha = (\alpha_\cp) \in \II_L$ then we define $N_{L/K}(\alpha) \in \II_K$ to be the idele with components $N_{L/K}(\alpha)_\fp = \prod_{\cp \mid \fp} N_{L_\cp / K_\fp}(\alpha_\cp)$.
+
+\begin{proposition}\label{prop:9_21}\phantom{}
+    \begin{enumerate}
+        \item For a tower of fields $K \subseteq L \subseteq M$, $N_{M/K} = N_{L/K} N_{M/L}$;
+        \item For $\alpha \in \II_K, N_{L/K}(\alpha) = \alpha^{[L:K]}$;
+        \item The norm of a principal idele $\alpha \in L^\times$ is the principal idele defined by the usual norm $N_{L/K}(x)$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    For 1) and 2), this is similar to norm of field extensions. 3) is an exercise.
+\end{proof}
+
+\subsection{Main Statements of Global Class Field Theory, Idele Theoretic Version}
+
+\begin{theorem}[Artin Reciprocity Law]\label{thm:9_22}
+    For every Galois extension $L/K$, we have a canonical isomorphism $r_{L/K} : \Gal(L/K)^\ab \xrightarrow{\sim} C_K / N_{L/K}C_L$ where $\Gal(L/K)^\ab$ is the abelianisation of $\Gal(L/K)$.
+\end{theorem}
+    The inverse map of $r_{L/K}$ yields a surjective homomorphism
+    \begin{equation*}
+        (\cdot, L/K) : C_K \to \Gal(L/K)^\ab
+    \end{equation*}
+    with kernel $N_{L/K}C_L$, which is called the \emph{global norm residue symbol} (we can also view this as a homomorphism $\II_K \to \Gal(L/K)^\ab$).
+
+\begin{remark*}
+    This is compatible with local class field theory (in a sense which will be made clear later).
+\end{remark*}
+
+\begin{theorem}[Existence Theorem]\label{thm:9_23}
+    Let $K$ be a number field. The map $L \mapsto \cN_L = N_{L/K} C_L$ is a 1-1 correspondence between finite abelian extensions $L/K$ and the closed subgroups of finite index in $C_K$. Moreover, one has $L_1 \subseteq L_2$ iff $\cN_{L_1} \supseteq \cN_{L_2}$, and $\cN_{L_1 L_2} = \cN_{L_1} \cap \cN_{L_2}$, $\cN_{L_1 \cap L_2} = \cN_{L_1} \cN_{L_2}$.
+
+    The field $L/K$ corresponding to the subgroup $N$ of $C_K$ satisfies $\Gal(L/K) \cong C_K / N$. The field $L$ is called the \emph{class field} of $N$.
+\end{theorem}
+
+The key to this is that the norm groups are precisely the closed subgroups of finite index in $C_K$. We know by \autoref{prop:9_17} these are precisely the subgroups that contain a congruence subgroup $C_K(\fm)$ for some modulus $\fm$.
+
+Let $\fm$ be a modulus of $K$.
+
+\begin{definition}\label{def:9_24}
+    The class field $K(\fm)$ for the congruence subgroup $C_K(\fm)$ is called the \emph{ray class field mod $\fm$}.
+\end{definition}
+
+By \autoref{thm:9_23}, we have $\Gal(K(\fm)/K) \cong C_K / C_K(\fm)$. Note that $\fm \mid \fm'$ implies $C(\fm) \supseteq C(\fm')$, so $K(\fm) \subseteq K(\fm')$.
+
+Since the closed subgroups of finite index in $C_K$ are precisely those containing a congruence subgroup $C_K(\fm)$, we obtain
+
+\begin{corollary}\label{cor:9_25}
+    Every finite abelian extension $L/K$ is contained in some ray class field $K(\fm)$.
+\end{corollary}
 
 \end{document}
