@@ -1868,7 +1868,7 @@ Reacll from Local Fields the product formula $\prod_{\fp} \abs{x}_\fp = 1$ for $
     contradiction.
 \end{proof}
 
-In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient topology is therefore Hausdorff and locally compact.
+In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient $C_K$ is therefore Hausdorff and locally compact. %TODO: Why?
 
 For any idele $\alpha = (\alpha_\fp) \in \II_K$, write $[\alpha]$ for the corresponding class in $C_K$. Define the \emph{absolute norm / idele norm} of $\alpha \in \II_K$ to be the real number $N(\alpha) = \prod_{\fp} \abs{\alpha_\fp}_\fp$. Let $\II_K^0 = \{\alpha \in \II_K \mid N(\alpha) = 1\}$ be the kernel. If $x \in K^\times$ is a principal idele, then we have by the product formula $N(x) = \prod_\fp \abs{x}_\fp = 1$, so we have a well-defined norm map $N : C_K \to \RR^\times_+$. Let $C_K^0$ be the kernel of this map, i.e. $C_K^0 = \{[\alpha] \in C_K \mid N(\alpha) = 1\}$.
 
@@ -1956,7 +1956,7 @@ Consider the group $\II_K(\fm) = \{\alpha \in \II_K \mid \alpha \equiv 1 \pmod{\
 \begin{definition}\label{def:9_16}
     We call the idele class group
     \begin{equation*}
-        C_K(\fm) = I_K(\fm) K^\times / K^\times \subseteq C_K
+        C_K(\fm) = \II_K(\fm) K^\times / K^\times \subseteq C_K
     \end{equation*}
     the \emph{congruence subgroup mod $\fm$} of $C_K$. The factor group $C_K / C_K(\fm)$ is called the \emph{ray class group mod $\fm$}.
 \end{definition}
@@ -2110,5 +2110,71 @@ Since the closed subgroups of finite index in $C_K$ are precisely those containi
 \begin{corollary}\label{cor:9_25}
     Every finite abelian extension $L/K$ is contained in some ray class field $K(\fm)$.
 \end{corollary}
+
+\begin{definition}\label{def:9_26}
+\marginpar{\fbox{Lecture 22}}
+    We say a subgroup $N$ of $C_K$ is a \emph{norm group} if there is a Galois extension $L/K$ such that $N = N_{L/K} C_L$.
+\end{definition}
+
+Each norm group is the norm group of an abelian extension of $K$:
+\begin{theorem}\label{thm:9_27}
+    Let $L/K$ be Galois, and let $L^\ab$ be the maximal abelian extension of $K$ contained in $L$. Then $N_{L/K} C_L = N_{L^\ab / K} C_{L^\ab} \subseteq C_K$.
+\end{theorem}
+{\color{blue}
+    Note that $\Gal(L/K)^\ab \cong \Gal(L^\ab/K)$. Indeed, let $G = \Gal(L/K)^\ab$. Then it suffices to show that $\Gal(L/L^\ab) = [G,G]$. This is equivalent to $L^\ab = L^{[G,G]}$, which is easy to check.
+}
+\begin{proof}
+    Since $K \subseteq L^\ab \subseteq L$, the inclusion $N_{L/K} C_L \subseteq N_{L^\ab / K} C_{L^\ab}$ follows from the multiplicativity of the norm (\autoref{prop:9_21}). Now by the Artin reciprocity law, $C_K / N_{L/K} C_L \cong \Gal(L/K)^\ab \cong \Gal(L^\ab / K) \cong C_K / N_{L^\ab / K} C_{L^\ab}$. Now $[C_K : N_{L/K} C_L] = [C_K : N_{L^\ab/K} C_{L^\ab}] < \infty$ implies $N_{L/K} C_L = N_{L^\ab / K} C_{L^\ab}$.
+\end{proof}
+
+\begin{corollary}\label{cor:9_28}
+    The index $[C_K : N_{L/K} C_L]$ divides the degree $[L:K]$ with equality iff it is abelian.
+\end{corollary}
+\begin{proof}
+    Immediate by the Artin reciprocity law.
+\end{proof}
+
+\begin{proposition}\label{prop:9_29}
+    The norm groups are precisely the closed subgroups of $C_K$ of finite index.
+\end{proposition}
+\begin{proof}[Proof (Sketch)]\phantom{}
+    ($\Rightarrow$) By Artin reciprocity, $N_{L/K} C_L$ is of finite index in $C_K$. Recall from \autoref{prop:9_14} that $C_K \cong C_K^0 \times \RR_+^\times$ and $C_L \cong C_L^0 \times \RR_+^\times$. In fact, $C_K = C_K^0 \times \Gamma_K$ and $C_L = C_L^0 \times \Gamma_L$ for some $\Gamma_K, \Gamma_L \cong \RR_+^\times$. By the proof of \autoref{prop:9_14}, we can assume that $\Gamma_K = \Gamma_L \subseteq C_L$. Then $N_{L/K} C_L = N_{L/K} C_L^0 \times N_{L/K} \Gamma_K = N_{L/K} C_L^0 \times \Gamma_K^n = N_{L/K} C_L^0 \times \Gamma_K$. The norm map $N_{L/K} : C_L \to C_K$ is continuous and the image of the compact group $C_L^0$ in $C_K$ is compact, hence closed. Since $\Gamma_K \subseteq C_L$ is also closed, $N_{L/K} C_L$ is closed.
+
+    ($\Leftarrow$) Omitted.
+\end{proof}
+
+The above proposition is also sometimes called the Existence theorem, because it says for each closed subgroup $N$ of finite index, there is an abelian extension $L$ such that $N_{L/K} = N$ (by \autoref{thm:9_27}).
+
+We can use the tdele class group to decompose prime ideals in abelian extensions.
+
+\begin{theorem}[Decomposition Law]\label{thm:9_30}
+    Let $L/K$ be an abelian extension of degree $n$, and let $\fp$ be an unramified prime ideal of $K$. If $\pi \in K_\fp$ is such that $\fp = \pi \cO_{K_\fp}$ (i.e. $\pi$ is a prime element / uniformiser), and if $f$ is the smallest number such that $\overline{n}_\fp(\pi) \in N_{L/K} C_L$, then the prime ideal factors in $L$ into $r = \frac{n}{f}$ distinct prime ideals $\cp_1, \ldots, \cp_r$ of inertial degree $f$.
+\end{theorem}
+
+This is limited to unramified primes, but we can also use the norm group to decide whether a prime is ramified.
+
+\begin{theorem}\label{thm:9_31}
+    Let $L/K$ be abelian, $\cN_L = N_{L/K} C_L \subseteq C_K$ be the norm group, and $\fp$ a prime of $K$, then
+    \begin{itemize}
+        \item $\fp$ is unramified in $L$ iff $U_\fp \subseteq \cN_L$;
+        \item $\fp$ splits completely in $L$ iff $K_\fp^\times \subseteq \cN_L$.
+    \end{itemize}
+\end{theorem}
+
+\section{Comparison of Ideal and Idele Theoretic Versions of Global Class Field Theory}
+
+First we show the two ray class groups $I_K(\fm) / P_K(\fm)$ (\autoref{def:2_19}) and $C_K / C_K(\fm)$ (\autoref{def:9_16}) are isomorphic. We need a variant of the Chinese remainder theorem called the approximation theorem.
+
+\begin{theorem}[Approximation Theorem]\label{thm:10_1}
+    Let $\abs{\cdot}_1, \ldots, \abs{\cdot}_n$ be pairwise inequivalent valuations on a number field. Let $\beta_1, \ldots, \beta_n$ be non-zero elements of $K$. For any $\varepsilon > 0$, there is an element $\alpha \in K$ such that $\abs{\alpha - \beta_j}_j < \varepsilon$ for each $j=1,\ldots,n$.
+\end{theorem}
+
+For a real infinite prime $\fp$, $\abs{\alpha - \beta}_\fp < \varepsilon$ for small $\varepsilon$ means $\sigma(\alpha / \beta) > 0$ (if $\sigma : K \to \RR$ corresponds to $\fp$). For a finite prime $\fp$, the condition $\abs{\alpha - \beta}_\fp < \varepsilon$ is equivalent to $\abs{\alpha / \beta}_\fp < \frac{\varepsilon}{\abs{\beta}_\fp} = \varepsilon'$. Recall that for any $\alpha \in K$, $\abs{\alpha}_\fp = c^{v_\fp(\alpha)}$, where $0 < c < 1$. If $\varepsilon'$ is small, say $\varepsilon' < c^n$ for some $n$, then $v_\fp(\alpha/\beta - 1) > n$ and this means $\alpha \equiv \beta \pmod{p^n}$. Thus $\abs{\alpha - \beta}_\fp < \varepsilon$ is equivalent to $\alpha \equiv \beta \pmod{p^n}$ for sufficiently large $n$.
+
+\begin{proposition}\label{prop:10_2}
+    We have an isomorphism $C_K/C_K(\fm) \xrightarrow{\sim} I_K(\fm) / P_K(\fm)$.
+\end{proposition}
+
+Before we prove this, recall we had a map $(\cdot) : \II_K \to I_K$, $\alpha \mapsto (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}$ and also we have an isomorphism $C_K/C_K(\fm) \cong \II_K / \II_K(\fm)K^\times$.
 
 \end{document}
