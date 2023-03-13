@@ -2172,9 +2172,68 @@ First we show the two ray class groups $I_K(\fm) / P_K(\fm)$ (\autoref{def:2_19}
 For a real infinite prime $\fp$, $\abs{\alpha - \beta}_\fp < \varepsilon$ for small $\varepsilon$ means $\sigma(\alpha / \beta) > 0$ (if $\sigma : K \to \RR$ corresponds to $\fp$). For a finite prime $\fp$, the condition $\abs{\alpha - \beta}_\fp < \varepsilon$ is equivalent to $\abs{\alpha / \beta}_\fp < \frac{\varepsilon}{\abs{\beta}_\fp} = \varepsilon'$. Recall that for any $\alpha \in K$, $\abs{\alpha}_\fp = c^{v_\fp(\alpha)}$, where $0 < c < 1$. If $\varepsilon'$ is small, say $\varepsilon' < c^n$ for some $n$, then $v_\fp(\alpha/\beta - 1) > n$ and this means $\alpha \equiv \beta \pmod{p^n}$. Thus $\abs{\alpha - \beta}_\fp < \varepsilon$ is equivalent to $\alpha \equiv \beta \pmod{p^n}$ for sufficiently large $n$.
 
 \begin{proposition}\label{prop:10_2}
-    We have an isomorphism $C_K/C_K(\fm) \xrightarrow{\sim} I_K(\fm) / P_K(\fm)$.
+    We have an isomorphism $(\cdot)_\fm : C_K/C_K(\fm) \xrightarrow{\sim} I_K(\fm) / P_K(\fm)$.
 \end{proposition}
+\begin{proof}
+\marginpar{\fbox{Lecture 23}}
+    Recall we had a map $(\cdot) : \II_K \to I_K$, $\alpha \mapsto (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}$ and an isomorphism $C_K/C_K(\fm) \cong \II_K / \II_K(\fm)K^\times$.
 
-Before we prove this, recall we had a map $(\cdot) : \II_K \to I_K$, $\alpha \mapsto (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}$ and also we have an isomorphism $C_K/C_K(\fm) \cong \II_K / \II_K(\fm)K^\times$.
+    Let $\II_K^{\langle \fm \rangle} = \{\alpha \in \II_K \mid \alpha_\fp \equiv 1 \text{ for } \fp \mid \fm\}$, which is a subgroup of $\II_K$. We claim that $\II_K = \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times$. Let $\alpha \in \II_K$. Write $\fm = \prod_{\fp} \fp^{n_\fp}$. By the approximation theorem, there is an $x \in K^\times$ such that $\alpha_\fp x \equiv 1 \pmod{\fp^{n_\fp}}$ for $\fp \mid \fm$. Write $\alpha x = \alpha' \beta$, where
+    \begin{equation*}
+        \alpha'_\fp = \begin{cases}
+            1 & \text{ if } \fp \mid \fm\\
+            \alpha_\fp & \text{ if } \fp \nmid \fm
+        \end{cases}
+        \qquad
+        \beta_\fp = \begin{cases}
+            \alpha_\fp x & \text{ if } \fp \mid \fm\\
+            x & \text{ if } \fp \nmid \fm
+        \end{cases}
+    \end{equation*}
+    Then $\alpha' \in \II_K^{\langle \fm \rangle}$, $\beta \in \II_K(\fm)$, so that $\alpha \in \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times$.
+
+    We have
+    \begin{align*}
+        C_K / C_K(\fm)
+        &\cong \II_K / \II_K(\fm) K^\times\\
+        &= \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times / \II_K(\fm) K^\times\\
+        &\cong \II_K^{\langle \fm \rangle} / \II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle}
+    \end{align*}
+    The homomorphism $\II_K^{\langle \fm \rangle} \to I_K(\fm)/P_K(\fm)$ given by $\alpha \mapsto (\alpha) \pmod{P_K(\fm)}$  is surjective with kernel $\II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle}$. This induces an isomorphism $\cong \II_K^{\langle \fm \rangle} / \II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle} \cong I_K(\fm)/P_K(\fm)$ as required. %TODO: Check
+\end{proof}
+
+\begin{proposition}\label{prop:10.3}
+    Let $L/K$ be an abelian extension with $\ff(L/K) \mid \fm$. Then the isomorphism $\overline{(\cdot)}_\fm : C_K / C_K(\fm) \to I_K(\fm) / P_K(\fm)$ of \autoref{prop:10_2} restricts to an isomorphism $N_{L/K} (C_L) / C_K(\fm) \to N_{L/K}(I_L(\fm)) P_K(\fm) / P_K(\fm)$
+\end{proposition}
+Recall that $T_{L/K}(\fm) = N_{L/K}(I_L(\fm)) P_K(\fm)$ is also called the norm group in the ideal theoretic version of class field theory.
+\begin{proof}
+    Define $\II_L^{\langle \fm \rangle} = \{\alpha \in \II_L \mid \alpha_\cp = 1 \text{ for } \cp \mid \fm\}$. Then by the proof of \autoref{prop:10_2}, we have $\II_L = \II_L^{\langle \fm \rangle} \II_L(\fm) L^\times$ and therefore
+    \begin{align*}
+        N_{L/K}(C_L) / C_K(\fm)
+        &= N_{L/K}(\II_L) K^\times / \II_K(\fm) K^\times\\
+        &= N_{L/K} (\II_L^{\langle \fm \rangle}) \II_K(\fm) K^\times / \II_K(\fm) K^\times
+    \end{align*}
+    The isomorphism from \autoref{prop:10_2} associates to the class of $\alpha \in \II_K^{\langle \fm \rangle}$ the class of the ideal $(\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)} \in I_K(\fm)$. The elements of $N_{L/K} C_L / C_K(\fm)$ are the classes represented by the norm ideals $N_{L/K}(\II_L^{\langle \fm \rangle})$ in $\II_K^{\langle \fm \rangle}$. In particular, they are mapped precisely onto the classes of the norm ideals $N_{L/K}(I_L(\fm))$ in $I_K(\fm)$, so that means $\overline{(\cdot)}_\fm (N_{L/K}(C_L) / C_K(\fm)) = N_{L/K}(I_L(\fm)) P_K(\fm) / P_K(\fm)$.
+\end{proof}
+
+The isomorphism $\overline{(\cdot)}_\fm : C_K / C_K(\fm) \to I_K(\fm) / P_K(\fm)$ gives a surjective homomorphism $(\cdot)_\fm : C_K \to I_K(\fm) / P_K(\fm)$ with kernel $C_K(\fm)$. Let $\fp$ be a prime ideal, $\pi \in K_\fp$ a uniformiser. Let $n_\fp(\pi) = (1, \ldots, 1, \pi, 1, \ldots)$. Then $(\cdot)_\fm$ maps $[n_\fp(\pi)]_{C_K}$ to the class $\fp \pmod{P_K(\fm)}$, since $(n_\fp(\pi)) = \fp$.
+
+\begin{theorem}\label{thm:10_4}
+    Let $L/K$ be an abelain extension, $\fm$ a modulus of $K$ such that $\ff(L/K) \mid \fm$. Let $T_{L/K}(\fm) = N_{L/K}(I_L(\fm)) P_K(\fm)$. We have a commutative diagram
+    \begin{equation*}
+    \begin{tikzcd}
+        1 \arrow[r] & N_{L/K}(C_L) \arrow[r] \arrow[d, twoheadrightarrow, "(\cdot)_\fm"] & C_K \arrow[r, "(\cdot{,} L/K)"] \arrow[d, twoheadrightarrow, "(\cdot)_\fm"] & \Gal(L/K) \arrow[r] \arrow[d, equal] & 1\\
+        1 \arrow[r] & T_{L/K}(\fm) / P_K(\fm) \arrow[r] & I_K(\fm)/P_K(\fm) \arrow[r, "\left(\frac{L/K}{\cdot}\right)"] & \Gal(L/K) \arrow[r] & 1
+    \end{tikzcd}
+    \end{equation*}
+    with exact rows.
+\end{theorem}
+\begin{proof}
+    We show commutativity of the right square. Let $\fp$ be a prime ideal of $K$, $\fp \nmid \fm$. Let $\pi \in K_\fp$ be a uniformiser. Then $\overline{([n_\fp(\pi)])}_\fm = \fp$ as above. We need $([n_\fp(\pi)], L/K) = \left(\frac{L/K}{\fp}\right)$. This follows from the product formula for the global norm residue symbol. % TODO: What is this?
+
+    The commutativity of the left square follows from \autoref{prop:10.3} and Artin reciprocity.
+\end{proof}
+
+\section{Compatibility of Local and Global Class Field Theory}
 
 \end{document}
