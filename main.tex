@@ -47,6 +47,7 @@
 \DeclareMathOperator{\res}{res}
 \DeclareMathOperator{\Res}{Res}
 \DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\Frob}{Frob}
 
 \newcommand{\bA}{\mathbb{A}}
 \newcommand{\II}{\mathbb{I}}
@@ -74,6 +75,7 @@
 \newcommand{\subsetdot}{\stackrel{\centerdot}{\subset}}
 \newcommand{\eqdot}{\stackrel{\centerdot}{=}}
 \newcommand{\ab}{\mathrm{ab}}
+\newcommand{\sep}{\mathrm{sep}}
 
 \setlist[enumerate,1]{label=\arabic*), nosep}
 \setlist[enumerate,2]{label=\roman*), nosep}
@@ -2229,11 +2231,83 @@ The isomorphism $\overline{(\cdot)}_\fm : C_K / C_K(\fm) \to I_K(\fm) / P_K(\fm)
     with exact rows.
 \end{theorem}
 \begin{proof}
-    We show commutativity of the right square. Let $\fp$ be a prime ideal of $K$, $\fp \nmid \fm$. Let $\pi \in K_\fp$ be a uniformiser. Then $\overline{([n_\fp(\pi)])}_\fm = \fp$ as above. We need $([n_\fp(\pi)], L/K) = \left(\frac{L/K}{\fp}\right)$. This follows from the product formula for the global norm residue symbol. % TODO: What is this?
+    We show commutativity of the right square. Let $\fp$ be a prime ideal of $K$, $\fp \nmid \fm$. Let $\pi \in K_\fp$ be a uniformiser. Then $\overline{([n_\fp(\pi)])}_\fm = \fp$ as above. We need $([n_\fp(\pi)], L/K) = \left(\frac{L/K}{\fp}\right)$. This follows from the product formula for the global norm residue symbol (see next section).
 
     The commutativity of the left square follows from \autoref{prop:10.3} and Artin reciprocity.
 \end{proof}
 
 \section{Compatibility of Local and Global Class Field Theory}
+\marginpar{\fbox{Lecture 24}}
+
+The goal of local class field theory is to classify finite abelian extensions of a given local field $K$.
+
+\subsection{Local Artin Reciprocity}
+
+Let $K$ be a local field. Let $K^\sep$ be a fixed separable closure. Then write $K^\ab$ for the maximal abelian extension of $K$ inside $K^\sep$, i.e. $K^\ab = \bigcup_{\substack{L/K \text{ finite} \\ L \subseteq K^\sep}} L$.
+
+\begin{theorem}[Local Artin Reciprocity]\label{thm:11_1}
+    Let $K$ be a local field. There is a unique continuous homomorphism 
+    \begin{equation*}
+        \theta_K : K^\times \to \Gal(K^\ab / K)
+    \end{equation*}
+    with the property that for each finite extension $L/K$ in $K^\ab$ the homomorphism $\theta_{L/K} : K \to \Gal(L/K)$ given by composing $\theta_K$ with the restriction $\Gal(K^\ab / K) \to \Gal(L/K)$ satisfies
+    \begin{itemize}
+        \item If $K$ is non-archimedian and $L/K$ unramified, then $\theta_{L/K}(\pi) = \Frob_{L/K}$, where $\pi$ is a uniformiser in $\cO_K$;
+        \item $\theta_{L/K}$ is surjective with kernel $N_{L/K}(L^\times)$ inducing $K^\times / N_{L/K}(L^\times) \cong \Gal(L/K)$.
+    \end{itemize}
+\end{theorem}
+
+Here $\Frob_{L/K}$ is the preimage of the Frobenius $x \mapsto x^{\# \FF_\fp}$ in $\Gal(\FF_\cp / \FF_\fp)$, where $\fp$ and $\cp$ are the maximal ideals of $K$ and $L$ respectively. Note for $L/K$ unramified, we have $\Gal(L/K) \cong \Gal(\FF_\cp / \FF_\fp)$. The map $\theta_{L/K}$ is also called the local Artin map, or local norm residue symbol, written $(\cdot, L/K)$.
+
+\begin{remark*}\phantom{}
+    \begin{itemize}
+        \item The are no moduli involved, it deals with all abelian extensions at once.
+        \item We see quotients of $K^\times$ instead of idele class groups.
+    \end{itemize}
+\end{remark*}
+
+\subsection{Local Existence Theorem}
+
+A \emph{norm group} of a local field $K$ is a subgroup of $N_{L/K}(L^\times)$ for $L/K$ finite abelian.
+
+\begin{corollary}\label{cor:11_2}
+    The map $L \mapsto N_{L/K}(L^\times)$ defines an inclusion reversing bijection between finite abelian extensions in $K^\ab$ and the norm groups in $K^\times$. Every norm group of $K$ has finite index in $K^\times$.
+\end{corollary}
+
+In fact, norm groups are precisely the finite index open subgroups of $K^\times$.
+\begin{theorem}[Existence Theorem]
+    Let $K$ be a local field, $H$ a finite index open subgroup of $K^\times$. There is a unique extension $L/K$ in $K^\ab$ with $N_{L/K}(L^\times) = H$.
+\end{theorem}
+
+\subsection{Compatibility}
+
+Let $L/K$ be a Galois extension of number fields. Let $\fp$ be a prime of $K$, $\cp \mid \fp$. Then we have an embedding $\Gal(L_\cp / K_\fp) \hookrightarrow \Gal(L/K)$. Recall we have an injection $\overline{n}_\fp : K_\fp^\times \to C_K$, $\alpha_\fp \mapsto (1, \ldots, 1, \alpha_\fp, 1, \ldots)$.
+
+\begin{proposition}\label{prop:11_4}
+    If $L/K$ is abelian, and $\fp$ a prime above $\cp$, then the diagram
+    \begin{equation*}
+    \begin{tikzcd}
+        K_\fp^\times \arrow[r, "(\cdot{,} L_\cp / K_\fp)"] \arrow[d, "\overline{n}_\fp"] & \Gal(L_\cp / K_\fp) \arrow[d, hookrightarrow]\\
+        C_K \arrow[r, "(\cdot{,} L/K)"] & \Gal(L/K)
+    \end{tikzcd}
+    \end{equation*}
+    commutes.
+\end{proposition}
+
+\begin{corollary}\label{cor:11_5}
+    Let $L/K$ be an abelian extension, $\alpha = (\alpha_\cp) \in \II_K$, then
+    \begin{equation*}
+        (\alpha, L/K) = \prod_{\fp} (\alpha_\fp, L_\cp / K_\fp) \qquad\text{for } \cp \mid \fp
+    \end{equation*}
+\end{corollary}
+For a principal idele $a \in K^\times$, we have the product formula $\prod_\fp (a, L_\cp / K_\fp) = 1$. Note this implies if $\pi$ is a uniformiser of $K$, then $(\overline{n}_\fp(\pi), L/K) = (\pi, L_\cp / K_\fp) = \Frob_{L_\cp / K_\fp} = \leg{L/K}{\fp}$ (recalling that $D_{\cp/\fp} = \Gal(L_\cp / K_\fp)$). This then finishes the proof of \autoref{thm:10_4}.
+
+\begin{remark*}
+    There is a notion of a \emph{local conductor}.
+\end{remark*}
+
+\begin{proposition}\label{prop:11_6}
+    Let $L/K$ be a finite abelian extension of number field, then $\ff(L/K) = \prod_{\fp} \ff_\fp$, where $\ff_\fp$ is the local conductor.
+\end{proposition}
 
 \end{document}
