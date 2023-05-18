@@ -288,7 +288,7 @@ If $L/K$ is ramified, we can define the Artin symbol for unramified primes, but 
     Let $\fm$ be a modulus, we define $I_K(\fm)$ to be the group of all fractional $\cO_K$-ideals of $\cO_K$ are relatively prime to $\fm$.
 \end{definition}
 
-For any $\fm$, we can write $\fm = \fm_0 \fm_\infty$, where $\fm_0$ is the finite part, and $\fm_\infty$ is the infinite part. Being relatively prime to $\fm$ means being relatively prime to $\fm_0$.
+For any $\fm$, we can write $\fm = \fm_0 \fm_\infty$, where $\fm_0$ is the finite part, and $\fm_\infty$ is the infinite part. A fractional ideal $\fa$ being relatively prime to $\fm$ means primes occurring in $\fm_0$ do not occur in the factorisation of $\fa$.
 
 \begin{example}\label{eg:2_8}
     If $\fm = 1$, then $I_K(\fm) = I_K$.
@@ -448,7 +448,7 @@ A \emph{finite prime} is a prime ideal of $\cO_K$. An \emph{infinite prime} is d
 \end{example}
 
 \begin{remark}\label{rem:2_25}
-    The idea of class field theory is that generalised ideal class groups are Galois group of abelian extensions of $K$, and that the link is given by the Artin map.
+    The idea of class field theory is that generalised ideal class groups are Galois groups of abelian extensions of $K$, and that the link is given by the Artin map.
 \end{remark}
 
 \noindent We need to know how the Artin map behaves in field towers:
@@ -565,7 +565,7 @@ We will prove surjectivity of $\Phi_\fm$ using density theorems later in the cou
 \noindent Artin reciprocity gives us information about the decomposition of primes:
 
 \begin{theorem}[Decomposition Theorem]\label{thm:3_11}
-    Let $L/K$ be an abelian extension of degree $n$. Let $\fp \subseteq \cO_K$ be unramified in $L$. Let $\fm$ be divisible by $\ff(L/K)$, but not divisible by $\fp$. Write $H = \ker \Phi_\fm$ for the congruence subgroup for $\fm$. Suppose $f$ is the smallest positive integer such that $\fp^f \in H$, i.e. the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. Then $\fp$ decomposes in $L$ into a product $\fp = \cp_1 \ldots \cp_g$, of $g = \frac{n}{f}$ distinct prime ideals of degree $f$ over $\fp$.
+    Let $L/K$ be abelian of degree $n$. Let $\fp \subseteq \cO_K$ be unramified in $L$. Let $\fm$ be divisible by $\ff(L/K)$, but not divisible by $\fp$. Write $H = \ker \Phi_\fm$ for the congruence subgroup for $\fm$. Suppose $f$ is the smallest positive integer such that $\fp^f \in H$, i.e. the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. Then $\fp$ decomposes in $L$ into a product $\fp = \cp_1 \ldots \cp_g$ of $g = \frac{n}{f}$ distinct prime ideals of inertia degree $f$ over $\fp$.
 \end{theorem}
 \begin{proof}
     Let $\fp = \cp_1 \ldots \cp_g$ be the prime decomposition of $\fp$ in $L$. The $\cp_i$ are distinct a $\fp$ is unramified. They have the same inertia degree $f$ (by \autoref{thm:1_2}). We know $f$ is the order of $\leg{L/K}{\fp}$, so under the isomorphism $I_K(\fm) / H \cong \Gal(L/K)$, this means that it is also the order of $\fp \pmod{H}$ in $I_K(\fm) / H$. The result follows from $n = fg$ by \autoref{thm:1_2}.
@@ -576,7 +576,7 @@ We will prove surjectivity of $\Phi_\fm$ using density theorems later in the cou
 Every generalised ideal class group is the Galois group of some abelian extension.
 
 \begin{theorem}[Existence Theorem]\label{thm:3_12}
-    Let $\fm$ be a modulus of $K$, and $H$ any congruence subgroup for $\fm$, i.e. $P_K(\fm) \subseteq H \subseteq I_K(\fm)$. Then there is a unique abelian extension $L/K$ with the property that all its ramified (finite and infinite) primes divide $\fm$, such that $H = N_{L/K}(I_L(\fm)) P_K(\fm)$ and $I_K(\fm) / H \xrightarrow{\sim} \Gal(L/K)$ under $\Phi_\fm$.
+    Let $\fm$ be a modulus of $K$, and $H$ any congruence subgroup for $\fm$. Then there is a unique abelian extension $L/K$ with the property that all its ramified (finite and infinite) primes divide $\fm$, such that $H = N_{L/K}(I_L(\fm)) P_K(\fm)$ and $I_K(\fm) / H \xrightarrow{\sim} \Gal(L/K)$ under $\Phi_\fm$.
 \end{theorem}
 
 \begin{definition}[Ray Class Field]\label{def:3_13}
