@@ -49,6 +49,10 @@
 \DeclareMathOperator{\mult}{mult}
 \DeclareMathOperator{\Frob}{Frob}
 
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+
 \newcommand{\bA}{\mathbb{A}}
 \newcommand{\II}{\mathbb{I}}
 \newcommand{\FF}{\mathbb{F}}
@@ -542,7 +546,7 @@ We will next describe the kernel.
 \end{notation}
 
 \begin{definition}\label{def:3_8}
-    Let $L/K$ be abelian, $\fm$ a modulus divisible by $\ff_{L/K}$. Then the \emph{norm group} (also known as \emph{Takagi group}) associated to $\fm$ is the congruence subgroup
+    Let $L/K$ be abelian, $\fm$ a modulus divisible by $\ff(L/K)$. Then the \emph{norm group} (also known as \emph{Takagi group}) associated to $\fm$ is the congruence subgroup
     \begin{equation*}
         T_{L/K}(\fm) = N_{L/K}(I_L(\fm))P_K(\fm)
     \end{equation*}
@@ -576,7 +580,7 @@ We will prove surjectivity of $\Phi_\fm$ using density theorems later in the cou
 Every generalised ideal class group is the Galois group of some abelian extension.
 
 \begin{theorem}[Existence Theorem]\label{thm:3_12}
-    Let $\fm$ be a modulus of $K$, and $H$ any congruence subgroup for $\fm$. Then there is a unique abelian extension $L/K$ with the property that all its ramified (finite and infinite) primes divide $\fm$, such that $H = N_{L/K}(I_L(\fm)) P_K(\fm)$ and $I_K(\fm) / H \xrightarrow{\sim} \Gal(L/K)$ under $\Phi_\fm$.
+    Let $\fm$ be a modulus of $K$, and $H$ any congruence subgroup for $\fm$. Then there is a unique abelian extension $L/K$ with the property that all its ramified (finite and infinite) primes divide $\fm$, such that $\ker \Phi_{L/K, \fm} = H$. In particular, $I_K(\fm) / H \xrightarrow{\sim} \Gal(L/K)$ under $\Phi_{L/K, \fm}$, and $H = N_{L/K}(I_L(\fm)) P_K(\fm)$.
 \end{theorem}
 
 \begin{definition}[Ray Class Field]\label{def:3_13}
@@ -600,13 +604,21 @@ Every generalised ideal class group is the Galois group of some abelian extensio
 
 \begin{proof}[Proof of \autoref{cor:3_15}]\phantom{}
 
-    ($\Rightarrow$) Suppose that $L \subseteq M$, so by Artin Reciprocity \autoref{thm:3_6}, there exist moduli $\fm_1$ and $\fm_2$ such that $P_K(\fm_1) \subseteq \ker \Phi_{L/K, \fm_1}$ and $P_K(\fm_2) \subseteq \ker \Phi_{M/K, \fm_2}$. Let $\fm$ be a modulus divisible by both $\fm_1$ and $\fm_2$. By \autoref{lem:3_1}, $P_K(\fm) \subseteq \ker \Phi_{L/K,\fm}$, and $P_K(\fm) \subseteq \ker \Phi_{M/K,\fm}$. By \autoref{prop:2_26}, $\Phi_{L/K, \fm} = \res \circ \Phi_{M/K, \fm}$, where $\res : \Gal(M/K) \to \Gal(L/K)$. The result follows.
+    ($\Rightarrow$) Suppose that $L \subseteq M$. Take $\fm = \ff(M/K)$. By \autoref{thm:3_2}, $P_K(\fm) \subseteq \ker \Phi_{M/K,\fm}$. By \autoref{prop:2_26}, $\ker\Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$.
 
-    ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. Then under $\Phi_{M/K, \fm} : I_K(\fm) \to \Gal(M/K)$, the subgroup $\ker \Phi_{L/K, \fm}$ maps to a subgroup $H \subseteq \Gal(M/K)$. By Galois theory, $H$ corresponds to an intermediate field $K \subseteq \widetilde{L} \subseteq M$. Now the first part of the proof applied to $\widetilde{L} \subseteq M$ gives
-        \begin{equation*}
-            \ker \Phi_{\widetilde{L}/K,\fm} = \Phi_{M/K,\fm}^{-1}\left(\Gal(M/\widetilde{L})\right) = \Phi_{M/K,\fm}^{-1}(H) = \ker \Phi_{L/K, \fm}
+    ($\Leftarrow$) Suppose $P_K(\fm) \subseteq \ker \Phi_{M/K, \fm} \subseteq \ker \Phi_{L/K, \fm}$ for some $\fm$. We have the following correspondences:
+    \begin{center}
+    \begin{tabular}{ccc}
+        $I_K(\fm)$ & $\xrightarrowdbl{\Phi_{M/K, \fm}}$ & $\Gal(M/K)$\\
+        $H = \ker_{L/K, \fm}$ & $\longleftrightarrow$ & $\Gal(M/\widetilde{L})$\\
+        $\ker_{M/K}$ & $\longleftrightarrow$ & $\{1\}$
+    \end{tabular}
+    \end{center}
+    for some $K \subseteq \widetilde{L} \subseteq M$. Thus
+    \begin{equation*}
+        I_K(\fm) / H \cong \Gal(M/K) / \Gal(M/\widetilde{L}) \cong \Gal(\widetilde{L}/K)
     \end{equation*}
-    Then by the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
+    with the isomorphism being induced by $\res \circ \Phi_{M/K, \fm} = \Phi_{\widetilde{L}/K, \fm}$. By the uniqueness part in the Existence \autoref{thm:3_12}, we have $L = \widetilde{L} \subseteq M$.
 \end{proof}
 
 \begin{theorem}\label{thm:3_17}
@@ -621,7 +633,7 @@ Every generalised ideal class group is the Galois group of some abelian extensio
 \subsection{Kronecker-Weber}
 
 \begin{theorem}\label{thm:4_1}
-    Let $L/\QQ$ be an abelian extension. Then there is a positive integer $\fm$ such that $L \subseteq \QQ(\zeta_m)$.
+    Let $L/\QQ$ be an abelian extension. Then there is a positive integer $m$ such that $L \subseteq \QQ(\zeta_m)$.
 \end{theorem}
 \begin{proof}
     By Artin reciprocity, there is a modulus $\fm$ such that $P_\QQ(\fm) \subseteq \ker \Phi_{L/\QQ, \fm}$. By \autoref{lem:3_1}, we may assume that $\fm = (m) \infty$. We have seen (see \autoref{remark:2_15}) that $P_\QQ(\fm) = \ker \Phi_{\QQ(\zeta_m)/\QQ, \fm}$, so $P_\QQ(\fm) = \ker \Phi_{\QQ(\zeta_m)/\QQ, \fm} \subseteq \ker \Phi_{L/\QQ, \fm}$. Then $L \subseteq \QQ(\zeta_m)$ by \autoref{cor:3_15}.
