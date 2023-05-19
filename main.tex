@@ -1511,7 +1511,11 @@ where the latter sum is analytic at $s=1$.
     Let $f(s), g(s)$ be functions defined for (at least) $\Re(s) > 1$. Then we write $f(s) \sim g(s)$ if $f(s) - g(s)$ has a finite limit as $s$ approaches $1$ (in the common domain).
 \end{notation}
 
-We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$, now since $\zeta_K(s)$ has a simple pole at $s=1$, $\zeta_K(s) \sim \frac{\kappa}{s-1}$, so $\sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so we can also write $d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\log \frac{1}{s-1}}$.
+We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$. Since $\zeta_K(s)$ has a simple pole at $s=1$,
+\begin{equation*}
+    \frac{\zeta_K(s)}{h\kappa/(s-1)} \to 1 \text{ as } s \to 1
+\end{equation*}
+Taking logs, we get $\sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so we can also write $d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\log \frac{1}{s-1}}$.
 
 \begin{lemma}\label{lem:8_3}
     The Dirichlet density has the following properties:
@@ -1534,16 +1538,16 @@ Recall a degree $1$ prime is a prime with residue field degree $1$ over $\QQ$, o
     The set $S$ of degree $1$ primes is infinite, and $d(S) = 1$.
 \end{lemma}
 \begin{proof}
-    We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s} = \sum_{\fp \in S} \frac{1}{N(\fp)^s} + \sum_{\fp \notin S} \frac{1}{N(\fp)^s}$. If $\fp \notin S$, then $N(\fp) = p^f \ge p^2$. There are at most $[K : \QQ]$ prime ideals in $\cO_K$ having a power of a prime $p$ as norm. We have
+    We have $\sum_{\fp} N(\fp)^{-s} = \sum_{\fp \in S} N(\fp)^{-s} + \sum_{\fp \notin S} N(\fp)^{-s}$. If $\fp \notin S$, then $N(\fp) = p^f \ge p^2$. There are at most $[K : \QQ]$ prime ideals in $\cO_K$ having a $p$-power norm. We have
     \begin{equation*}
-        \abs{\sum_{\fp \notin S} \frac{1}{N(\fp)^s}} \le [K : \QQ] \sum_{\fp} \frac{1}{p^{2 \sigma}}
+        \abs{\sum_{\fp \notin S} N(\fp)^{-s}} \le [K : \QQ] \sum_{p} p^{-2 \sigma}
     \end{equation*}
-    where $\sigma = \Re(s)$. The sum on the right is bounded at $s = 1$, so $\log \zeta_K(s) \sim \sum_{\fp \in S} \frac{1}{N(\fp)^s}$. We already saw $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so $\sum_{\fp \in S} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$. Since $\log \frac{1}{1-s}$ is not bounded at $s=1$, the sum on the left must have infinitely many terms, and $d(S) = 1$.
+    where $\sigma = \Re(s)$. The sum on the right is bounded at $s = 1$, so $\sum_{\fp} N(\fp)^{-s} \sim \sum_{\fp \in S} N(\fp)^{-s}$. Thus $d(S) = 1$.
 \end{proof}
 
 \subsection{Frobenius Density Theorem}
 
-We will prove and use the Frobenius density theorem to prove the surjectivity of the Artin map, later we will see the Cebotarev density theorem.
+We will prove the Frobenius density theorem and use it to prove the surjectivity of the Artin map. Later we will see the Cebotarev density theorem.
 
 Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 
@@ -1552,20 +1556,20 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 \end{definition}
 
 \begin{lemma}\label{lem:8_6}
-    Let $\sigma \in G$, $H = \langle \sigma \rangle$, and $t$ the number of elements in the division of $\sigma$. Then $t = \phi(n) [G : N_G(H)]$, where $\phi$ is the Euler totient function, and $N_G(H)$ is the normaliser of $H$ in $G$.
+    Let $\sigma \in G$ be of order $n$, $H = \langle \sigma \rangle$, and $t$ the number of elements in the division of $\sigma$. Then $t = \phi(n) [G : N_G(H)]$, where $\phi$ is the Euler totient function, and $N_G(H)$ is the normaliser of $H$ in $G$.
 \end{lemma}
 
 \begin{theorem}[Frobenius Density Theorem]\label{thm:8_7}
-    Let $\sigma \in \Gal(L/K)$. Let $S$ be the set of primes $\fp$ of $K$ such that there is a prime $\cp$ in $L$ lying above it such that $\leg{L/K}{\cp}$ is in the division of $\sigma$, i.e. $\leg{L/K}{\cp}$ is conjugate to $\sigma^m$ for some $m$ relatively prime to the order of $\sigma$. Then $d(S) = \frac{t}{\abs{G}}$.
+    Let $\sigma \in \Gal(L/K)$. Let $S$ be the set of unramified primes $\fp$ of $K$ such that there is a prime $\cp$ in $L$ lying above it such that $\leg{L/K}{\cp}$ is in the division of $\sigma$. Then $d(S) = \frac{t}{\abs{G}}$.
 \end{theorem}
 
 \noindent We will prove \autoref{lem:8_6} and \autoref{thm:8_7} later.
 
 \begin{theorem}\label{thm:8_8}
-    Let $L/K$ be abelian, and let $\fm$ be a modulus divisible by all ramified primes. Then $\Phi_\fm : I_K(\fm) \to \Gal(L/K)$ is surjective.
+    Let $L/K$ be abelian, and let $\fm$ be a modulus of K divisible by all ramified primes. Then $\Phi_\fm : I_K(\fm) \to \Gal(L/K)$ is surjective.
 \end{theorem}
 \begin{proof}
-    Let $\sigma \in \Gal(L/K)$. Since $\Gal(L/K)$ is abelian, the division of $\sigma$ consists of the elements that generate the cyclic group $\langle \sigma \rangle$. By the Frobenius density theorem, there exists infinitely many primes $\cp$ of $L$ such that $\leg{L/K}{\cp}$ generates $\langle \sigma \rangle$. Let $\cp$ be any such prime such that $\fp = \cp \cap \cO_K$ is not contained in $\fm$ (which is possible by the definition of a modulus). Then $\Phi_\fm(\fp)$ is a generator of $\langle \sigma \rangle$. Thus $\sigma$ is in the image of $\Phi_\fm$.
+    Let $\sigma \in \Gal(L/K)$. Since $\Gal(L/K)$ is abelian, the division of $\sigma$ is the set of generators of $\langle \sigma \rangle$. By the Frobenius density theorem, there exists infinitely many primes $\cp$ of $L$ such that $\leg{L/K}{\cp}$ generates $\langle \sigma \rangle$. Let $\cp$ be any such prime such that $\fp = \cp \cap \cO_K$ is not contained in $\fm$. Then $\Phi_\fm(\fp)$ is a generator of $\langle \sigma \rangle$, so $\sigma$ is in the image of $\Phi_\fm$.
 \end{proof}
 
 \begin{lemma}\label{lem:8_9}
@@ -1579,21 +1583,27 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
     \end{equation*}
     Then
     \begin{equation*}
-        \sum_{\fp \in S} N(\fp)^{-s} \sim \sum_{\fp \in S \cap \{\text{degree } 1 \text{ primes}\}} N(\fp)^{-s}
+        \sum_{\fp \in S} N(\fp)^{-s} \sim \sum_{\fp \in S \cap \{\text{degree } 1 \text{ primes}\}} N(\fp)^{-s} \qedhere
     \end{equation*}
 \end{proof}
 
-Let $K$ be a number field, $L/K$ a Galois extension. Let $G = \Gal(L/K)$. Recall that if $G$ is a finite group, for any $g \in G$, the number of elements in its conjugacy class equals $[G : C_G(g)]$, where $C_G(g) = \{a \in G \mid ag=ga\}$ is the centraliser of $g$.
-
 \begin{proof}[Proof of \autoref{lem:8_6}]
-    For $(m, n)=1$, $C_G(\sigma) = C_G(\sigma^m)$, so $\sigma^m$ has $[G : C_G(\sigma)]$ conjugates, so as $m$ ranges over all integers between $1$ and $n$ relatively prime to $n$, then we count $\phi(n)[G : C_G(\sigma)]$ conjugates. They are not all distinct, we count an element $q$ times if it is conjugate to $q$ different powers $\sigma^m$. The number of distinct powers of $\sigma^m$ that are conjugate to $\sigma$ is the number of distinct automorphisms of $H$ induced by conjugation, i.e. $q = [N_G(H) : C_G(\sigma)]$, so $t = \frac{\phi(n) [G : C_G(\sigma)]}{[N_G(H) : C_G(\sigma)]} = \phi(n)[G : N_G(H)]$.
+    We count $\#\{(\tau, m) \in G \times (\ZZ/n\ZZ)^\times \mid \tau \text{ is conjugate to } \sigma^m\}$ in two ways. On one hand, this is
+    \begin{equation*}
+        \sum_{\tau \in G} \#\{m \in (\ZZ/n\ZZ)^\times \mid \tau \text{ is conjugate to } \sigma^m\} = t [N_G(H) : C_G(\sigma)]
+    \end{equation*}
+    since $\tau$ being conjugate to some $\sigma^m$ means that $\tau$ is in the division of $\sigma$, and each $\sigma^m$ is conjugate to $[N_G(H) : C_G(\sigma^m)]$ other elements of $H$ (by orbit-stabiliser), where $C_G(\sigma)$ is the centraliser of $\sigma$. Note also that $C_G(\sigma^m) = C_G(\sigma)$. On the other hand, the number is also equal to
+    \begin{equation*}
+        \sum_{m \in (\ZZ/n\ZZ)^\times} \#\{\tau \in G \mid \tau \text{ is conjugate to } \sigma^m\} = \sum_{m \in (\ZZ/n\ZZ)^\times} [G : C_G(\sigma^m)] = \phi(n) [G : C_G(\sigma)]
+    \end{equation*}
+    Equating these give the result.
 \end{proof}
 
 \begin{proof}[Proof of \autoref{thm:8_7}]
     Let $S_1$ be the set $S$ in the statement.
     We proceed by induction on $n$, the order of $\sigma$.
 
-    Suppose $n = 1$. Then $S_1$ is the set of primes of $K$ that split completely in $L$ (by \autoref{cor:1_7}). Let $S_L$ be the set of primes of $L$ that lie above some prime in $S_1$. Then each prime $p$ in $S_1$ has exactly $[L:K] = \abs{G}$ primes in $S_L$ lying above it, and any such prime has norm $\fp$, so we find
+    Suppose $n = 1$. Then $S_1$ is the set of primes of $K$ that split completely in $L$ (by \autoref{cor:1_7}). Let $S_L$ be the set of primes of $L$ that lie above some prime in $S_1$. Then each prime $\fp$ in $S_1$ has exactly $[L:K] = \abs{G}$ primes in $S_L$ lying above it, and any such prime has norm $\fp$, so we find
     \begin{equation*}
         \sum_{\cp \in S_L} N_{L/\QQ}(\cp)^{-s}
         = \sum_{\cp \in S_L} N_{K/\QQ}(N_{L/K}(\cp))^{-s}
