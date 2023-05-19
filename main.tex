@@ -735,14 +735,14 @@ where $\mu_n \subseteq \CC^\times$ is the group of $n$\textsuperscript{th} roots
 If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \in K$, letting $L = K(\sqrt[n]{\alpha})$, $L/K$ is Galois and for $\sigma \in \Gal(L/K)$, $\sigma(\sqrt[n]{\alpha}) = \zeta \sqrt[n]{\alpha}$ for some $n$\textsuperscript{th} root of unity $\zeta$. Thus we have a map $\sigma \mapsto \zeta$. This gives an injective homomorphism $\Gal(L/K) \hookrightarrow \mu_n$.
 
 \begin{theorem}[Weak Reciprocity]\label{thm:4_11}
-    Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity. Let $L = K(\sqrt[n]{\alpha})$ for some non-zero $\alpha \in \cO_K$. Assume $\fm$ is divisible by all primes containing $n\alpha$ and assume $\ker(\Phi_{L/K, \fm})$ is a congruence subgroup for $\fm$. Then there is a commutative diagram
+    Let $K$ be a number field containing a primitive $n$\textsuperscript{th} root of unity. Let $L = K(\sqrt[n]{\alpha})$ for some non-zero $\alpha \in \cO_K$. Assume $\fm$ is divisible by all primes containing $n\alpha$. Then the diagram
     \begin{equation*}
     \begin{tikzcd}
         I_K(\fm) \arrow[r, "\Phi_{L/K, \fm}"] \arrow[rd, "\leg{\alpha}{\cdot}_n"'] & \Gal(L/K) \arrow[d, hookrightarrow]\\
                            & \mu_n
     \end{tikzcd}
     \end{equation*}
-    If $G$ is the image of $\Gal(L/K)$ in $\mu_n$, then $\leg{\alpha}{\cdot}_n$ induces a surjective homomorphism $\leg{\alpha}{\cdot} : I_K(\fm)/P_K(\fm) \to G \subseteq \mu_n$.
+    commutes. If furthermore $\ker(\Phi_{L/K, \fm})$ is a congruence subgroup for $\fm$, and $G$ is the image of $\Gal(L/K)$ in $\mu_n$, then $\leg{\alpha}{\cdot}_n$ induces a surjective homomorphism $I_K(\fm)/P_K(\fm) \to G \subseteq \mu_n$.
 \end{theorem}
 \begin{proof}
     Using the definition of the Artin symbol, we see that
@@ -755,13 +755,8 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
     \end{equation*}
     so
     \begin{equation*}
-        \leg{L/K}{\fp}(\sqrt[n]{\alpha}) = \leg{\alpha}{\fp}_n \sqrt[n]{\alpha}
+        \leg{L/K}{\fp}(\sqrt[n]{\alpha}) = \leg{\alpha}{\fp}_n \sqrt[n]{\alpha} \qedhere
     \end{equation*}
-    This gives commutativity. We have $P_K(\fm) \subseteq \ker \Phi_{L/K, \fm} \subseteq I_K(\fm)$, so we have a surjective homomorphism
-    \begin{equation*}
-        I_K(\fm) / P_K(\fm) \to I_K(\fm) / \ker \Phi_{L/K, \fm} \xrightarrow{\sim} \Gal(L/K)
-    \end{equation*}
-    The result follows from commutativity.
 \end{proof}
 
 \noindent Strong reciprocity gives a formula for $\leg{\alpha}{\fa}_n$ in terms of $n$\textsuperscript{th} power Hilbert symbols.
@@ -851,7 +846,7 @@ We see the series converges in the half plane to the right of the line $\sigma =
 \noindent By \autoref{thm:5_4}, we have $\sigma_1 = 1$, so $\zeta(s)$ converges for $\Re s > 1$.
 
 \begin{example}\label{eg:5_6}
-    We well show that $\zeta(s)$ has a meromorphic continuation to $\Re s > 0$, with a pole of first order and $\res_{s=1} \zeta(s) = 1$. Let $s > 1$, then we claim $\lim_{s \to 1^+} (s-1) \zeta(s) = 1$. By bounding $\int_1^\infty \frac{dx}{x^s} = \frac{1}{s-1}$ by rectangles, we see that
+    We will show that $\zeta(s)$ has a meromorphic continuation to $\Re s > 0$, with a pole of first order and $\res_{s=1} \zeta(s) = 1$. Let $s > 1$, then we claim $\lim_{s \to 1^+} (s-1) \zeta(s) = 1$. By bounding $\int_1^\infty \frac{dx}{x^s} = \frac{1}{s-1}$ by rectangles, we see that
     \begin{gather*}
         \zeta(s) - 1 \le \int_1^\infty \frac{dx}{x^s} \le \zeta(s)\\
         \frac{1}{s-1} \le \zeta(s) \le 1 + \frac{1}{s-1}\\
@@ -892,7 +887,7 @@ Then $\zeta(s) = \frac{\zeta_3(s)}{1-3^{1-s}}$, so similarly poles occur only wh
     \begin{equation*}
         \sum_p \sum_{n=1}^\infty \left(\frac{1}{p^{1+\delta}}\right)^n = \sum_p \frac{1}{p^{1+\delta}-1} \le 2 \sum_p \frac{1}{p^{1+\delta}}
     \end{equation*}
-    and this last sum converges. This implies absolute converge of the product $E(s) = \prod_p \frac{1}{1-p^{-s}} = \exp\left(\sum_p \sum_{n=1}^\infty \frac{1}{n p^{ns}}\right)$. Note that if we expand $\frac{1}{1-p^s} = 1+\frac{1}{p^s}+\frac{1}{p^{2s}}+\ldots$ for all prime numbers $p_1, \ldots, p_r \le N$, we find
+    and this last sum converges. This implies absolute convergence of the product $E(s) = \prod_p \frac{1}{1-p^{-s}} = \exp\left(\sum_p \sum_{n=1}^\infty \frac{1}{n p^{ns}}\right)$. Note that if we expand $\frac{1}{1-p^s} = 1+\frac{1}{p^s}+\frac{1}{p^{2s}}+\ldots$ for all prime numbers $p_1, \ldots, p_r \le N$, we find
     \begin{equation*}
         \prod_{p \le N} \frac{1}{1-p^{-s}} = \sum_{v_1, \ldots, v_r = 0}^{\infty} \frac{1}{(p_1^{v_1} \ldots p_r^{v_r})^s} = \sideset{}{'}\sum_n \frac{1}{n^s}
     \end{equation*}
