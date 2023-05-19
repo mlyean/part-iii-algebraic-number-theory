@@ -1319,23 +1319,23 @@ Since $\zeta(s)$ and $\zeta_K(s)$ both have simple poles at $s = 1$, so\footnote
         &= \sum_{b=1}^n \sum_\chi \chi(a^{-1}b)\sum_{p \equiv b \pmod{m}} \frac{1}{p^s} + g(s)\\
         &= \sum_{p \equiv a \pmod{m}} \frac{\phi(m)}{p^s} + g(s)
     \end{align*}
-    by using the orthogonality relations \autoref{prop:7_14}. Now let $s > 1$ be real. Then for $s \to 1$, we know that $\log L(\chi, s)$ stays bounded for $\chi \neq \chi_0$ as we know that $L(\chi, 1) \neq 0$. But $\log L(\chi_0, s)  = \sum_{p \mid m} \left(1 - \frac{1}{p^s}\right) + \log \zeta(s)$ goes to infinity as $s \to 1$ because $\zeta(s)$ has a pole at $s = 1$. Thus the first sum of the above equation tends to $\infty$. Since $g(s)$ is holomorphic at $s = 1$, we find $\lim_{s \to 1} \sum_{p \equiv a \pmod{m}} \frac{\phi(m)}{p^s} = \infty$.
+    by using the orthogonality relations \autoref{prop:7_14}. Now let $s > 1$ be real. Then for $s \to 1$, we know that $\log L(\chi, s)$ stays bounded for $\chi \neq \chi_0$ as we know that $L(\chi, 1) \neq 0$. But $\log L(\chi_0, s)  = \sum_{p \mid m} \log \left(1 - \frac{1}{p^s}\right) + \log \zeta(s)$ goes to infinity as $s \to 1$ because $\zeta(s)$ has a pole at $s = 1$. Thus the first sum of the above equation tends to $\infty$. Since $g(s)$ is holomorphic at $s = 1$, we find $\lim_{s \to 1} \sum_{p \equiv a \pmod{m}} \frac{\phi(m)}{p^s} = \infty$.
 \end{proof}
 
 \subsection{Explicit Class Number Formulae}
 
-Let $K$ be any number field. Then for $\Re(s) > 1$, we can write $\zeta_K(s) = \sum_{n=1}^\infty \frac{j_s}{n^s}$ with $j_n$ the number of integral ideals $\fa$ of $K$ with $N(\fa) = n$. Then
+Let $K$ be any number field. Then for $\Re(s) > 1$, we can write $\zeta_K(s) = \sum_{n=1}^\infty \frac{j_n}{n^s}$ with $j_n$ the number of integral ideals $\fa$ of $K$ with $N(\fa) = n$. Then
 \begin{equation*}
     \zeta_K(s) = \sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s} + h_K \kappa \zeta(s)
 \end{equation*}
 for $\Re(s) > 1$, where $\kappa$ is the term we defined in the analytic class number formula \autoref{cor:6_6}, and $h_K$ is the class number. The series $\sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s}$ converges for $\Re(s) = 1$ (in fact it converges for $\Re(s) > 1 - \frac{1}{[K : \QQ]}$). Now $h_K = \frac{\rho}{\kappa}$, where $\rho = \lim_{s \to 1} \frac{\zeta_K(s)}{\zeta(s)}$.
 
 \marginpar{\fbox{Lecture 12}}
-Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. Consider its image in $(\ZZ / m\ZZ)^\times$, then consider characters of $G$ as Dirichlet characters mod $m$, so we consider $\widehat{G}$ as a subgroup of $(\ZZ / m\ZZ)^\times$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
+Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. We consider $\widehat{G}$ as a subgroup\footnote{The exact sequence $(\ZZ / m \ZZ)^\times \to G \to 0$ gives an exact sequence $0 \to \widehat{G} \to \widehat{(\ZZ / m \ZZ)^\times}$} of $(\ZZ / m\ZZ)^\times$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
 \begin{equation*}
     \prod_{\chi \in \widehat{G}} \left(1 - \frac{\chi(p)}{p^s}\right) = \left(1 - \frac{1}{p^{fs}}\right)^r = \prod_{\fp \mid p} \left(1 - \frac{1}{N(\fp)^s}\right)
 \end{equation*}
-where now $f$ is the inertia degree of $p$ in $K$, and $r$ is the number of primes $\fp \subseteq \cO_K$ lying above $p$> Thus for $\Re(s) > 1$,
+where now $f$ is the inertia degree of $p$ in $K$, and $r$ is the number of primes $\fp \subseteq \cO_K$ lying above $p$. Thus for $\Re(s) > 1$,
 \begin{equation*}
     \prod_{\chi \in \widehat{G}} L(\chi, s) = \prod_{p \nmid m} \left(1 - \frac{1}{p^{fs}}\right)^{-r} = \prod_{p \nmid m} \prod_{\fp \mid p} \left(1 - \frac{1}{N(\fp)^s}\right)^{-1}
 \end{equation*}
@@ -1380,7 +1380,7 @@ Now we compute $L(\chi, 1)$.
     \begin{align*}
         L(\chi, s)
         &= \sum_{n=1}^\infty \frac{\chi(n)}{n^s}\\
-        &= \sum_{a \in (\ZZ / m\ZZ)^\times} \chi(a) \sum_{\substack{n \equiv a \pmod{m}\\n \ge 1}}\\
+        &= \sum_{a \in (\ZZ / m\ZZ)^\times} \chi(a) \sum_{\substack{n \equiv a \pmod{m}\\n \ge 1}} \frac{1}{n^s}\\
         &= \sum_{a \in (\ZZ / m\ZZ)^\times} \chi(a) \sum_{n=1}^\infty \frac{\frac{1}{m} \sum_{k=0}^{m-1} \zeta^{(a-n)k}}{n^s}\\
         &= \frac{1}{m} \sum_{k=0}^{m-1} \tau_k(\chi) \sum_{n=1}^\infty \frac{\zeta^{-nk}}{n^s}
     \end{align*}
@@ -1409,7 +1409,7 @@ Now we compute $L(\chi, 1)$.
     \begin{equation*}
         \log(1-\zeta^k) = \log 2 + \log \sin \frac{k \pi}{m} + \left(\frac{k}{m} - \frac{1}{2}\right) \pi i
     \end{equation*}
-    {\color{blue} This may be proven by writing $1 - \zeta^k = -\zeta^{\frac{k}{2}} (\zeta^{\frac{k}{2}} - \zeta^{-\frac{k}{2}}) = -2i \zeta^{\frac{k}{2}} \sin \frac{k \pi i}{m}$.}
+    {\color{blue} This may be proven by writing $1 - \zeta^k = -\zeta^{\frac{k}{2}} (\zeta^{\frac{k}{2}} - \zeta^{-\frac{k}{2}}) = -2i \zeta^{\frac{k}{2}} \sin \frac{k \pi}{m}$.}
 \end{remark}
 \noindent Now
 \begin{alignat*}{3}
@@ -1423,7 +1423,7 @@ Now we compute $L(\chi, 1)$.
         \displaystyle\frac{\pi i \tau_1(\chi)}{m^2} \sum_{k \in (\ZZ / m\ZZ)^\times} \overline{\chi}(k) k & \text{if } \chi \text{ is odd}
     \end{cases}
 \end{alignat*}
-The last equality holds since $\chi(-1) = 1$ implies $\sum_k \overline{\chi}(k) k = 0$, and $\chi(-1) = -1$ implies $\sum_k \overline{\chi}(k) \log \sin \frac{k \pi}{m} = 0$.
+The last equality holds since $\chi(-1) = 1$ implies $\sum_{k=1}^{m-1} \overline{\chi}(k) k = 0$, and $\chi(-1) = -1$ implies $\sum_{k=1}^{m-1} \overline{\chi}(k) \log \sin \frac{k \pi}{m} = 0$.
 
 \noindent Note also for odd $\chi$,
 \begin{equation*}
@@ -1433,9 +1433,9 @@ The last equality holds since $\chi(-1) = 1$ implies $\sum_k \overline{\chi}(k) 
     Indeed, let $S = \sum_{k \in (\ZZ / m\ZZ)^\times} \chi(k) k$. Then
     \begin{align*}
         S
-        &= \sum_{k=1}^{\frac{m-1}{2}} \chi(2k) 2k + \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k) (2k-m)\\
-        &= \sum_{k=1}^{m-1} \chi(2k) 2k - m \sum_{k=\frac{m+1}{2}}^{m-1} \chi(2k)\\
-        &= 2 \chi(2) S + \chi(2) m \sum_{k=1}^{\frac{m-1}{2}} \chi(k)
+        &= \sum_{0 \le 2k < m} \chi(2k) 2k + \sum_{m \le 2k < 2m} \chi(2k) (2k-m)\\
+        &= \sum_{k=0}^{m-1} \chi(2k) 2k - m \sum_{\frac{m}{2} \le k < m} \chi(2k)\\
+        &= 2 \chi(2) S + \chi(2) m \sum_{k < \frac{m}{2}} \chi(k)
     \end{align*}
     Rearranging gives the result.
 }
@@ -1452,7 +1452,7 @@ Putting this together,
 \end{theorem}
 
 \subsubsection*{The Quadratic Case}
-Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq \QQ(\zeta_m)$. By \autoref{thm:7_20}, we have\footnote{note that if $p \mid m$, then $p$ is ramified, so $f_p = r_p = 1$} $\rho = L(\chi, 1)$, where $\chi$ is the unique non-trivial character mod $m$ which corresponds to a character of $\Gal(K/\QQ)$. For $p \nmid m$,
+Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq \QQ(\zeta_m)$ (this can be shown using \autoref{thm:3_12}). By \autoref{thm:7_20}, we have\footnote{note that if $p \mid m$, then $p$ is ramified, so $f_p = r_p = 1$} $\rho = L(\chi, 1)$, where $\chi$ is the unique non-trivial character mod $m$ which corresponds to a character of $\Gal(K/\QQ)$. For $p \nmid m$,
 \begin{equation*}
     \chi(p) = \begin{cases}
         1 & \text{if } p \text{ splits}\\
@@ -1508,7 +1508,7 @@ so
 where the latter sum is analytic at $s=1$.
 
 \begin{notation}\label{not:8_2}
-    Let $f(s), g(s)$ be functions defined for (at least) $\Re(s) \ge 1$. Then we write $f(s) \sim g(s)$ if $f(s) - g(s)$ has a finite limit as $s$ approaches $1$ (in the common domain).
+    Let $f(s), g(s)$ be functions defined for (at least) $\Re(s) > 1$. Then we write $f(s) \sim g(s)$ if $f(s) - g(s)$ has a finite limit as $s$ approaches $1$ (in the common domain).
 \end{notation}
 
 We have $\log \zeta_K(s) \sim \sum_{\fp} \frac{1}{N(\fp)^s}$, now since $\zeta_K(s)$ has a simple pole at $s=1$, $\zeta_K(s) \sim \frac{\kappa}{s-1}$, so $\sum_{\fp} \frac{1}{N(\fp)^s} \sim \log \frac{1}{s-1}$, so we can also write $d(S) = \lim_{s \to 1^+} \frac{\sum_{\fp \in S} N(\fp)^{-s}}{\log \frac{1}{s-1}}$.
