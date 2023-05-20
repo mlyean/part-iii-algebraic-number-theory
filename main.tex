@@ -557,14 +557,11 @@ We will next describe the kernel.
     We have $\ker \Phi_\fm = T_{L/K}(\fm)$.
 \end{theorem}
 
-We will prove surjectivity of $\Phi_\fm$ using density theorems later in the course.
+We will prove surjectivity of $\Phi_\fm$ using density theorems later in the course. The proof of the following will be given later:
 
 \begin{proposition}\label{prop:3_10}
     Let $L/K$ be abelian, $\fm$ divisible by $\ff(L/K)$. Then $\ker \Phi_\fm \subseteq T_{L/K}(\fm)$.
 \end{proposition}
-\begin{proof}
-    We will prove if for primes, then the result follows\footnote{we will see why later} from multiplicativity of $\Phi_\fm$. Suppose that $\fp \subseteq \cO_K$ is such that $\fp \in \ker \Phi_\fm$. Then $\leg{L/K}{\fp} = 1$, so we know by \autoref{cor:1_7} that $\fp$ splits completely in $L$, and $f_{\cp / \fp} = 1$ for any $\cp \mid \fp$. Suppose $\cp \subseteq \cO_L$ is such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$, so $\fp \in N_{L/K}(I_L(\fm)) \subseteq T_{L/K}(\fm)$.
-\end{proof}
 
 \noindent Artin reciprocity gives us information about the decomposition of primes:
 
@@ -667,8 +664,7 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
     \end{equation*}
     If $M/K$ corresponds to $H \subseteq \Cl(K)$, then the Artin map induces an isomorphism $\Cl(K)/H \xrightarrow{\sim} \Gal(M/K)$.
 \end{corollary}
-{\color{blue}
-\begin{proof}
+\begin{proof}\color{blue}
     Let $F$ be the Hilbert class field of $K$. Subgroups of $\Cl(K)$ are identified with subgroups of $\Gal(F/K)$ via the isomorphism $\Cl(K) \xrightarrow{\sim} \Gal(F/K)$ induced by the Artin map. Unramified abelian extensions of $K$ are identified with subextensions of $F/K$. Then the correspondence in the statement is just the Galois correspondence.
 
     If $M/K$ corresponds to $H \subseteq \Cl(K)$, then
@@ -677,7 +673,6 @@ The Existence \autoref{thm:3_12} gives us an abelian extension that is unramifie
     \end{equation*}
     as required.
 \end{proof}
-}
 
 \begin{example}\label{eg:4_7}
     Let $K = \QQ(\sqrt{-5})$. We show that the Hilbert class field $F$ is equal to $L = \QQ(\sqrt{-5}, i)$.
@@ -1547,7 +1542,7 @@ Recall a degree $1$ prime is a prime with residue field degree $1$ over $\QQ$, o
 
 \subsection{Frobenius Density Theorem}
 
-We will prove the Frobenius density theorem and use it to prove the surjectivity of the Artin map. Later we will see the Cebotarev density theorem.
+We will prove the Frobenius density theorem and use it to prove the surjectivity of the Artin map. Later we will see the Chebotarev density theorem.
 
 Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 
@@ -1617,7 +1612,7 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 
     Now assume $\sigma$ has order $n > 1$. For each divisor $d$ of $n$, let $t_d$ be the number of elements in the division of $\sigma^d$. Let $S_d$ be the set of primes of $K$ lying under some prime $\cp$ of $L$ whose Artin symbol belongs to the division of $\sigma^d$ ($S_1$ is the set we are interested in). By induction, for $1 \neq d \mid n$ we know that $d(S_d) = \frac{t_d}{\abs{G}}$.
 
-    Let $E = L^H$, the subfield of $L$ fixed element-wise by $H = \langle \sigma \rangle$. The primes $\fp$ of $K$ which have at least one degree $1$ prime in $E$ lying above it are exactly those that lie under a prime $\fp \subseteq \cO_L$ such that $\leg{L/K}{\cp}$ is conjugate to some power of $\sigma$, so $\fp \in S_d$ for some $d \mid n$.
+    Let $E = L^H$, the subfield of $L$ fixed element-wise by $H = \langle \sigma \rangle$. The primes $\fp$ of $K$ which have at least one degree $1$ prime in $E$ lying above it are exactly those that lie under a prime $\cp \subseteq \cO_L$ such that $\leg{L/K}{\cp}$ is conjugate to some power of $\sigma$, so $\fp \in S_d$ for some $d \mid n$. %TODO: Why? There is a hole here, argument given in Janusz
 
     Next let $S_E$ denote the primes of $E$ having inertial degree $1$ over $K$. For each $\fp \subseteq S_d$, let $n(\fp)$ be the number of primes in $S_E$ lying above $\fp$, so $\fp \in S_d$ is the norm of exactly $n(\fp)$ distinct primes in $S_E$. Since $S_E$ contains all the degree $1$ primes of $L$ over $\QQ$, $d(S_L) = 1$, so
     \begin{equation}\label{eqn:8_7_star}
@@ -1650,7 +1645,7 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
 \end{proof}
 
 \begin{theorem}\label{thm:8_11}
-    Let $K$ be a number field, $\fm$ a modulus of $K$. Let $H$ be a congruence subgroup for $\fm$, i.e. $P_K(\fm) \subseteq H \subseteq I_K(\fm)$. Let $S$ be the set of prime ideals contained in $H$. If $S$ has a Dirichlet density, then $d(S) \le \frac{1}{[I_K(\fm):H]}$.
+    Let $K$ be a number field, $\fm$ a modulus of $K$. Let $H$ be a congruence subgroup for $\fm$. Let $S$ be the set of prime ideals contained in $H$. If $S$ has a Dirichlet density, then $d(S) \le \frac{1}{[I_K(\fm):H]}$.
 \end{theorem}
 \noindent The proof uses characters of the group $I_K(\fm) / H$.
 
@@ -1661,7 +1656,7 @@ Let $K$ be a number field and $L/K$ a Galois extension, and let $G = \Gal(L/K)$.
     \end{equation*}
 \end{theorem}
 \begin{proof}
-    Let $H = N_{L/K}(I_L(\fm)) P_K(\fm)$. Then except for a finite set of primes, the primes of $K$ that split completely in $L$ are in $N_{L/K}(I_L(\fm))$. The density of this set is $\frac{1}{[L:K]}$ by the Frobenius density theorem with $\sigma = 1$. By \autoref{thm:8_11}, we have $\frac{1}{[L:K]} \le \frac{1}{[I_K(\fm) : H]}$.
+    Let $H = N_{L/K}(I_L(\fm)) P_K(\fm)$. Then except for a finite set of primes (namely those that divide $\fm$), the primes of $K$ that split completely in $L$ are in $N_{L/K}(I_L(\fm))$. The density of this set is $\frac{1}{[L:K]}$ by the Frobenius density theorem with $\sigma = 1$. By \autoref{thm:8_11}, we have $\frac{1}{[L:K]} \le \frac{1}{[I_K(\fm) : H]}$.
 \end{proof}
 
 \noindent The second fundamental inequality is
@@ -1685,7 +1680,7 @@ Note that the Chebotarev density theorem can be stated in two ways, either with 
 \noindent Note that this also implies the surjectivity of the Artin map.
 
 \begin{proposition}\label{prop:8_15}
-    For any Galois extension $L/K$, there are infinity many primes of $L$ that split completely in $L$.
+    For any Galois extension $L/K$, there are infinity many primes of $K$ that split completely in $L$.
 \end{proposition}
 \begin{proof}
     Applying \autoref{thm:8_13} to $1 \in \Gal(L/K)$, the primes $\fp \subseteq \cO_K$ such that $\leg{L/K}{\fp} = 1$ has density $\frac{1}{[L:K]}$. The result follows since $\leg{L/K}{\fp} = 1$ iff $\fp$ splits completely in $L$.
@@ -1713,14 +1708,28 @@ We will see next that the primes that split completely in $L$ characterise the e
         \item If $L$ is Galois over $K$, then $L \subseteq M \iff \widetilde{S}_{M/K} \subsetdot S_{L/K}$, where $\widetilde{S}_{M/K} = \{\fp \subseteq \cO_K \mid \fp \text{ unramified in } M \text{ and } f_{\cp / \fp} = 1 \text{ for some } \cp \text{ in } M\}$.
     \end{enumerate}
 \end{proposition}
-\begin{proof}
-    We first prove ii). When $L \subseteq M$ it is not too hard to show $\widetilde{S}_{M/K} \subsetdot S_{L/K}$ (see Example Sheet 3 Exercise 5). Next assume $\widetilde{S}_{M/K} \subsetdot S_{L/K}$. Let $N$ be a Galois extension of $K$ containing both $L$ and $M$. To prove $L \subseteq M$, by Galois theory, it suffices to prove that $\Gal(N/M) \subseteq \Gal(N/L)$. Thus for any $\sigma \in \Gal(N/M)$, we need to show $\sigma \vert_L$ is the identity. By Chebotarev density theorem, there is a prime $\fp$ in $\cO_K$ (unramified in $N$) such that $\leg{N/K}{\cp}$ is the conjugacy class of $\sigma$. Hence there is a prime $\cp$ in $\cO_N$ containing $\fp$ such that $\leg{N/K}{\cp} = \sigma$. We claim $\fp \in S_{M/K}$. Let $\cp_M = \cp \cap \cO_M$. Then for $\alpha \in \cO_M$, we have $\alpha \equiv \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp_M}$. The first congruence holds since $\sigma \vert_M = 1$, and the second follows from the definition of the Artin symbol. This implies $\cO_M / \cp_M \cong \cO_K / \fp$, so that $f_{\cp_M / \fp} = 1$, so $\fp \in \widetilde{S}_{M/K}$. Now by Chebotarev density theorem, there are infinitely many such primes. Since we assumed $\widetilde{S}_{M/K} \subsetdot S_{L/K}$, this implies we can assume $\fp \in S_{L/K}$, i.e. $\leg{L/K}{\fp} = 1$. Since $\leg{L/K}{\fp} = \leg{N/K}{\cp} \vert_L$, and since $\sigma = \leg{N/K}{\cp}$, this implies $\sigma \vert_L = 1$.
+\begin{proof}\phantom{}
+    \begin{enumerate}[label=\roman*)]
+        \setcounter{enumi}{1}
+        \item ($\Rightarrow$) Straightforward.
 
-    Now to prove i), first note $L \subseteq M$ implies $S_{M/K} \subsetdot S_{L/K}$ (see Example Sheet 3 Exercise 5). Suppose $S_{M/K} \subsetdot S_{L/K}$, and let $L'$ be the Galois closure of $L$ over $K$.
-    \begin{fact}
-        A prime splits completely in $L$ iff it splits completely in $L'$.
-    \end{fact}
-    This means $S_{L/K} = S_{L'/K}$. Since $M$ is Galois over $K$, we have $\widetilde{S}_{M/K} = S_{M/K}$ (see Example Sheet 3 Exercise 6). So we may rewrite our assumption $S_{M/K} \subsetdot S_{L/K}$ as $\widetilde{S}_{M/K} \subsetdot S_{L'/K}$. Hence by part ii), we obtain $L' \subseteq M$, and in particular $L \subseteq M$.
+            ($\Leftarrow$) Assume $\widetilde{S}_{M/K} \subsetdot S_{L/K}$. Let $N/K$ be a Galois extension containing $L$ and $M$. It suffices to show that for $\sigma \in \Gal(N/M)$, we have $\sigma \vert_L = 1$.
+
+            By the Chebotarev density theorem, there are infinitely many primes $\fp$ in $\cO_K$ unramified in $N$ such that there is a prime $\cp$ in $\cO_N$ dividing $\fp$ with $\leg{N/K}{\cp} = \sigma$. We claim $\fp \in \widetilde{S}_{M/K}$. Let $\cp_M = \cp \cap \cO_M$. Then for $\alpha \in \cO_M$, we have
+            \begin{equation*}
+                \alpha = \sigma(\alpha) \equiv \alpha^{N(\fp)} \pmod{\cp_M}
+            \end{equation*}
+            This implies $\cO_M / \cp_M \cong \cO_K / \fp$, so that $f_{\cp_M / \fp} = 1$, so $\fp \in \widetilde{S}_{M/K}$. Since $\widetilde{S}_{M/K} \subsetdot S_{L/K}$ and there are infinitely many such $\fp$, we find one with $\fp \in S_{L/K}$, i.e. $\leg{L/K}{\fp} = 1$. Finally, $\sigma \vert_L = \leg{N/K}{\cp} \vert_L = \leg{L/K}{\fp} = 1$.
+
+        \setcounter{enumi}{0}
+    \item ($\Rightarrow$) Straightforward.
+
+        ($\Leftarrow$) Suppose $S_{M/K} \subsetdot S_{L/K}$, and let $L'$ be the Galois closure of $L/K$.
+            \begin{fact}
+                A prime splits completely in $L$ iff it splits completely in $L'$.
+            \end{fact}
+            This means $S_{L/K} = S_{L'/K}$. Since $M$ is Galois over $K$, we have $\widetilde{S}_{M/K} = S_{M/K} \subsetdot S_{L'/K}$. By ii), we obtain $L' \subseteq M$, so $L \subseteq M$. \qedhere
+    \end{enumerate}
 \end{proof}
 
 It is now easy to prove \autoref{thm:8_17}.
@@ -1732,7 +1741,7 @@ It is now easy to prove \autoref{thm:8_17}.
 
 \noindent Now we complete the proof of \autoref{prop:3_10}:
 \begin{proof}[Proof of \autoref{prop:3_10}]
-    Since $\ff_{L/K} \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For any $\fa \in I_K(\fm)$, the corresponding $\leg{L/K}{\fa}$ only depends on the class of $\fa$ modulo $P_K(\fm)$. Now by the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there is a prime $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. In fact, there are finitely many, so we can choose a prime $\fp$ such that $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_m / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
+    Since $\ff(L/K) \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For $\fa \in I_K(\fm)$, $\leg{L/K}{\fa}$ depends only on the class of $\fa$ modulo $P_K(\fm)$. By the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there are infinitely many primes $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. Choose such a prime $\fp$ with $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_\fm / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
 \end{proof}
 
 \section{Ideles and Adeles}
@@ -1742,7 +1751,7 @@ It is now easy to prove \autoref{thm:8_17}.
 
 Idele is a modification of the notion of ideal. The original term was `ideal element', abbreviated to idel. Adele was derived from the term `additive idele'.
 
-Let $K$ be a number field. Recall from the Local Fields course that any absolute value is equivalent to either $\abs{\cdot}_\fp$, $\fp$ a nonzero prime ideal, or $\abs{\cdot}_\sigma$, $\sigma : K \hookrightarrow \RR, \CC$. Now let $\fp$ be a prime, infinite or finite. Let $K_\fp$ be the completion at $\fp$. This is either a $p$-adic field, or the reals or the complex field. For a non-archimedian valued field $F$, define the valuation ring of $F$ to be $\cO_K = \{x \in F \mid \abs{x} \le 1\}$. This is an open subring of $F$, and $\cO_F^\times = \{x \in F \mid \abs{x} = 1\}$.
+Let $K$ be a number field. Recall from the Local Fields course that any absolute value is equivalent to either $\abs{\cdot}_\fp$, $\fp$ a nonzero prime ideal, or $\abs{\cdot}_\sigma$, $\sigma : K \hookrightarrow \RR, \CC$. Now let $\fp$ be a prime, infinite or finite. Let $K_\fp$ be the completion at $\fp$. This is either a $p$-adic field, $\RR$, or $\CC$. For a non-archimedian valued field $F$, define the valuation ring of $F$ to be $\cO_K = \{x \in F \mid \abs{x} \le 1\}$. This is an open subring of $F$, and $\cO_F^\times = \{x \in F \mid \abs{x} = 1\}$.
 
 To use local fields or valuation theory to study a number field $K$, it is useful to embed $K$ into all the completions $K_\fp$ simultaneously. However, $\prod_\fp K_\fp$ is not nice topologically (i.e. not locally compact). We make an adjustment to this.
 
@@ -1763,6 +1772,9 @@ Note that this is in general not the same as the subspace topology it inherits f
 \begin{proposition}\label{prop:9_2}
     Let $(X_i)_{i \in I}$ be a family of locally compact topological spaces and let $(U_i)_{i \in I}$ be a corresponding family of open subsets $U_i \subseteq X_i$, almost all of which are compact. Then the restricted product $X = \rprod(X_i, U_i)$ is locally compact.
 \end{proposition}
+\begin{proof}\color{blue}
+    Let $x = (x_i) \in \rprod(X_i, U_i)$. There is a finite subset $S \subseteq I$ such that for $i \in I \setminus S$, $x_i \in U_i$ and $U_i$ is compact. For $i \in S$, since $X_i$ is locally compact, we can find a compact neighbourhood $V_i$ of $x_i$. Then $\prod_{i \in I \setminus S} U_i \prod_{i \in S} V_i$ is a compact neighbourhood of $x$.
+\end{proof}
 
 \subsection{The Ring of Adeles}
 
@@ -1780,19 +1792,19 @@ Note for finite $\fp$, $\cO_{K_\fp}$ is the valuation ring, while for infinite $
 This is a subset of $\prod_{\fp} K_\fp$. For each $\alpha \in \bA_K$ as above, we write $\alpha_\fp$ for its projection in $K_\fp$. We make $\bA_K$ a ring by defining addition and multiplication componentwise.
 
 \begin{example}\label{eg:9_4}
-    Let $K = \QQ$. Then $\bA_\QQ = \RR \times \{(\alpha_\fp) \in \prod_{p \nmid \infty} \QQ_p \mid \text{for almost all } p, \alpha_p \in \ZZ_p\} = \rprod_{\fp} (\QQ_p, \ZZ_p)$. Thus $\bA_\QQ$ is the union of the rings $\RR \times \prod_{p \in S} \QQ_p \times \prod_{p \notin S} \ZZ_p$ as $S$ varies over all finite set of primes. Alternately, $\bA_\QQ = \RR \times \{(\alpha_p) \in \prod_p \QQ_p \mid \abs{\alpha_p} \le 1 \text{ for almost all } p\}$.
+    Let $K = \QQ$. Then $\bA_\QQ = \RR \times \{(\alpha_p) \in \prod_{p \nmid \infty} \QQ_p \mid \text{for almost all } p, \alpha_p \in \ZZ_p\} = \rprod_{p} (\QQ_p, \ZZ_p)$. Thus $\bA_\QQ$ is the union of the rings $\RR \times \prod_{p \in S} \QQ_p \times \prod_{p \notin S} \ZZ_p$ as $S$ varies over all finite set of primes. Alternately, $\bA_\QQ = \RR \times \{(\alpha_p) \in \prod_p \QQ_p \mid \abs{\alpha_p} \le 1 \text{ for almost all } p\}$.
 \end{example}
 
 \begin{proposition}\label{prop:9_5}
     The ring of adeles $\bA_K$ is locally compact and Hausdorff.
 \end{proposition}
 \begin{proof}
-    Local compactness follows from \autoref{prop:9_2}, since all local fields $K_\fp$ are locally compact and all but finitely many $\cO_{K_f}$ are valuation rings of a non-archimedian local field, hence compact.
+    Local compactness follows from \autoref{prop:9_2}, since all local fields $K_\fp$ are locally compact and all but finitely many $\cO_{K_\fp}$ are valuation rings of a non-archimedian local field, hence compact.
 
     Now $\prod_{\fp} K_\fp$ is Hausdorff, since each $K_\fp$ is Hausdorff. Since the topology on $\bA_K \subseteq \prod_{\fp} K_\fp$ is finer than the subspace topology, $\bA_K$ is also Hausdorff.
 \end{proof}
 
-Now for each finite set of primes $S$, we have the subring of \emph{$S$-adeles} $\bA_{K,S} = \prod_{\fp \in S} K_\fp \times \prod_{\fp \notin S} \cO_{K_\fp}$. The canonical embeddings $K \hookrightarrow K_\fp$ induce a canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$. For each $x \in K$, we have $x \in \cO_{K_\fp}$ for all but finitely many $\fp$. The image of $K$ in $\bA_K$ is the subring of \emph{principal adeles}.
+Now for each finite set of primes $S$, we have the subring of \emph{$S$-adeles} $\bA_{K,S} = \prod_{\fp \in S} K_\fp \times \prod_{\fp \notin S} \cO_{K_\fp}$. The canonical embeddings $K \hookrightarrow K_\fp$ induce a canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$, since for each $x \in K$, we have $x \in \cO_{K_\fp}$ for all but finitely many $\fp$. The image of $K$ in $\bA_K$ is the subring of \emph{principal adeles}.
 
 \subsection{The Idele Group}
 
@@ -1815,7 +1827,7 @@ As a subspace of $\bA_K$, $\bA_K^\times$ is not a topological group. We give it 
     The idele group $\II_K$ is locally compact and Hausdorff.
 \end{proposition}
 \begin{proof}
-    Now $\II_K$ is Hausdorff since the topology is finer than the topology of $\bA_K^\times \subseteq \bA_K$, which is Hausdorff by \autoref{prop:9_5}. For each finite prime, the set $\cO_{K_\fp}^\times = \{x \in K_\fp \mid \abs{x}_\fp = 1\}$ is a closed subset of the compact set $\cO_{K_\fp}$, hence compact. This applies to almost all primes, and the $K_\fp^\times$ are all locally compact by \autoref{prop:9_2}. Thus $\rprod_\fp (K_\fp^\times, \cO_K^\times) = \II_K$ is locally compact.
+    Now $\II_K$ is Hausdorff since the topology is finer than the topology of $\bA_K^\times \subseteq \bA_K$, which is Hausdorff by \autoref{prop:9_5}. For each finite prime, the set $\cO_{K_\fp}^\times = \{x \in K_\fp \mid \abs{x}_\fp = 1\}$ is a closed subset of the compact set $\cO_{K_\fp}$, hence compact. This applies to almost all primes, and the $K_\fp^\times$ are all locally compact. By \autoref{prop:9_2}, $\rprod_\fp (K_\fp^\times, \cO_K^\times) = \II_K$ is locally compact.
 \end{proof}
 
 \marginpar{\fbox{Lecture 18}}
@@ -1827,7 +1839,7 @@ The canonical embedding $K \hookrightarrow \bA_K$, $x \mapsto (x, x, \ldots)$ re
     We define the \emph{idele class group} of $K$ to be the quotient group $C_K = \II_K / K^\times$.
 \end{definition}
 
-Let for any finite set of primes $S$, the $S$-ideles be given by
+For any finite set of primes $S$, the \emph{$S$-ideles} is
 \begin{align*}
     \II_{K,S}
     &= \prod_{\fp \in S} K_{\fp}^\times \prod_{\fp \notin S} \cO_{K_\fp}^\times\\
@@ -1835,30 +1847,30 @@ Let for any finite set of primes $S$, the $S$-ideles be given by
 \end{align*}
 so $\II_K = \bigcup_{S} \II_{K,S}$ for varying finite sets of primes $S$.
 
-Next we study the relation with the ideal class group. As before, we let $I_K$ denote the group of fractional ideals of $K$. We have a surjective homomorphism
+Next we study the relation with the ideal class group $\Cl(K) = I_K / P_K$. We have a surjective homomorphism
 \begin{gather*}
     (\cdot) : \II_K \to I_K\\
     (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}
 \end{gather*}
-This has kernel $\II_{K, S_\infty} = \prod_{\fp \mid \infty} K_\fp^\times \times \prod_{\fp \nmid \infty} \cO_{K_\fp}^\times$ and is continuous for the discrete topology on $I_K$. Note that the composite $K^\times \hookrightarrow \II_K \to I_K$ has image $P_K$, the subgroup of $I_K$ of principal fractional ideals. {\color{blue} In fact, $(\cdot) : \II_K \to I_K$ extends the map $K^\times \to I_K$ sending an element to the principal fractional ideal it generates.} Thus we have a surjective homomorphism
+This has kernel $\II_{K, S_\infty} = \prod_{\fp \mid \infty} K_\fp^\times \times \prod_{\fp \nmid \infty} \cO_{K_\fp}^\times$ and is continuous for the discrete topology on $I_K$. Let $C_K = \II_K / K^\times$. We have a commutative diagram
 \begin{equation*}
-    C_K = \II_K / K^\times \twoheadrightarrow I_K / P_K = \Cl(K)
+\begin{tikzcd}
+    1 \arrow[r] & K^\times \arrow[r] \arrow[d, twoheadrightarrow, "(\cdot)"] & \II_K \arrow[r] \arrow[d, twoheadrightarrow, "(\cdot)"] & C_K \arrow[r] \arrow[d] & 1 \\
+    1 \arrow[r] & P_K \arrow[r] & I_K \arrow[r] & \Cl(K) \arrow[r] & 1
+\end{tikzcd}
 \end{equation*}
-which has kernel $\II_{K, S_\infty} K^\times$. {\color{blue} Indeed if $\alpha \in \II_K$ is such that $(\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)} \in P_K$, say equal to $(a)$ for some $a \in K^\times$, then $v_\fp(\alpha_\fp a^{-1}) = 0$ for all $\fp \nmid \infty$, i.e. $\alpha a^{-1} \in \II_{K, S_\infty}$, so $\alpha \in \II_{K, S_\infty} K^\times$. The reverse inclusion is clear.}
-
-We deduce that
-
+with exact rows. By the snake lemma, we see that the map $C_K \to \Cl(K)$ is surjective, with kernel $\II_{K, S_\infty} K^\times / K^\times$. We deduce that
 \begin{proposition}\label{prop:9_9}
-    We have $\Cl(K) \cong \II_K / \II_{K, S_\infty} K^\times$.
+    $\Cl(K) \cong \II_K / \II_{K, S_\infty} K^\times$.
 \end{proposition}
 
 In contrast to the ideal class group, the idele class group is \underline{not finite}. Note since $I_K / P_K$ is finite, we can enlarge $S_\infty$ to a set $S$ which contains enough primes to obtain $\II_K = \II_{K,S} K^\times$:
 
 \begin{proposition}\label{prop:9_10}
-    $\II_K = \II_{K,S} K^\times$, i.e. $C_K = \II_{K,S} K^\times / K^\times$ if $S$ is a sufficiently large set of primes of $K$.
+    There is a finite set $S$ of primes of $K$ such that $\II_K = \II_{K,S} K^\times$.
 \end{proposition}
 \begin{proof}
-    Let $\fa_1, \ldots, \fa_n$ be ideals representing the $h$ classes of $I_K / P_K$. They are composed of a finite number of prime ideals $\fp_1, \ldots, \fp_n$. Now if $S$ is any finite set of primes containing these primes and the primes at infinity, one has $\II_K = \II_{K,S} K^\times$. To see this, consider the isomorphism
+    Let $\fa_1, \ldots, \fa_h$ be ideals representing the $h$ classes of $\Cl(K)$. They are composed of a finite number of prime ideals $\fp_1, \ldots, \fp_n$. Let $S$ be a set of primes containing these primes and the primes at infinity. We claim that $\II_K = \II_{K,S} K^\times$. To see this, consider the isomorphism
     \begin{equation*}
         \II_K / \II_{K, S_\infty} \cong I_K
     \end{equation*}
@@ -1887,7 +1899,7 @@ Reacll from Local Fields the product formula $\prod_{\fp} \abs{x}_\fp = 1$ for $
     contradiction.
 \end{proof}
 
-In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient $C_K$ is therefore Hausdorff and locally compact. %TODO: Why?
+In particular, $K^\times \subseteq \II_K$ is a closed subgroup, and the quotient $C_K$ is therefore Hausdorff and locally compact\footnote{since $\II_K$ is locally compact, and the quotient map $\II_K \to C_K$ is open and surjective}. % Why?
 
 For any idele $\alpha = (\alpha_\fp) \in \II_K$, write $[\alpha]$ for the corresponding class in $C_K$. Define the \emph{absolute norm / idele norm} of $\alpha \in \II_K$ to be the real number $N(\alpha) = \prod_{\fp} \abs{\alpha_\fp}_\fp$. Let $\II_K^0 = \{\alpha \in \II_K \mid N(\alpha) = 1\}$ be the kernel. If $x \in K^\times$ is a principal idele, then we have by the product formula $N(x) = \prod_\fp \abs{x}_\fp = 1$, so we have a well-defined norm map $N : C_K \to \RR^\times_+$. Let $C_K^0$ be the kernel of this map, i.e. $C_K^0 = \{[\alpha] \in C_K \mid N(\alpha) = 1\}$.
 
@@ -2164,7 +2176,7 @@ Each norm group is the norm group of an abelian extension of $K$:
 
 The above proposition is also sometimes called the Existence theorem, because it says for each closed subgroup $N$ of finite index, there is an abelian extension $L$ such that $N_{L/K} = N$ (by \autoref{thm:9_27}).
 
-We can use the tdele class group to decompose prime ideals in abelian extensions.
+We can use the idele class group to decompose prime ideals in abelian extensions.
 
 \begin{theorem}[Decomposition Law]\label{thm:9_30}
     Let $L/K$ be an abelian extension of degree $n$, and let $\fp$ be an unramified prime ideal of $K$. If $\pi \in K_\fp$ is such that $\fp = \pi \cO_{K_\fp}$ (i.e. $\pi$ is a prime element / uniformiser), and if $f$ is the smallest number such that $\overline{n}_\fp(\pi) \in N_{L/K} C_L$, then the prime ideal factors in $L$ into $r = \frac{n}{f}$ distinct prime ideals $\cp_1, \ldots, \cp_r$ of inertial degree $f$.
