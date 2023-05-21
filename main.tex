@@ -2207,9 +2207,9 @@ For a real infinite prime $\fp$, $\abs{\alpha - \beta}_\fp < \varepsilon$ for sm
 \end{proposition}
 \begin{proof}
 \marginpar{\fbox{Lecture 23}}
-    Recall we had a map $(\cdot) : \II_K \to I_K$, $\alpha \mapsto (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}$ and an isomorphism $C_K/C_K(\fm) \cong \II_K / \II_K(\fm)K^\times$.
+    Recall we had a map $(\cdot) : \II_K \to I_K$, $\alpha \mapsto (\alpha) = \prod_{\fp \nmid \infty} \fp^{v_\fp(\alpha_\fp)}$, and an isomorphism $\II_K / \II_K(\fm)K^\times \cong C_K/C_K(\fm)$.
 
-    Let $\II_K^{\langle \fm \rangle} = \{\alpha \in \II_K \mid \alpha_\fp \equiv 1 \text{ for } \fp \mid \fm\}$, which is a subgroup of $\II_K$. We claim that $\II_K = \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times$. Let $\alpha \in \II_K$. Write $\fm = \prod_{\fp} \fp^{n_\fp}$. By the approximation theorem, there is an $x \in K^\times$ such that $\alpha_\fp x \equiv 1 \pmod{\fp^{n_\fp}}$ for $\fp \mid \fm$. Write $\alpha x = \alpha' \beta$, where
+    Let $\II_K^{\langle \fm \rangle} = \{\alpha \in \II_K \mid \alpha_\fp = 1 \text{ for } \fp \mid \fm\}$, which is a subgroup of $\II_K$. We claim that $\II_K = \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times$. Let $\alpha \in \II_K$. Write $\fm = \prod_{\fp} \fp^{n_\fp}$. By the approximation theorem, there is an $x \in K^\times$ such that $\alpha_\fp x \equiv 1 \pmod{\fp^{n_\fp}}$ for $\fp \mid \fm$. Write $\alpha x = \alpha' \beta$, where
     \begin{equation*}
         \alpha'_\fp = \begin{cases}
             1 & \text{ if } \fp \mid \fm\\
@@ -2228,9 +2228,9 @@ For a real infinite prime $\fp$, $\abs{\alpha - \beta}_\fp < \varepsilon$ for sm
         C_K / C_K(\fm)
         &\cong \II_K / \II_K(\fm) K^\times\\
         &= \II_K^{\langle \fm \rangle} \II_K(\fm) K^\times / \II_K(\fm) K^\times\\
-        &\cong \II_K^{\langle \fm \rangle} / \II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle}
+        &\cong \II_K^{\langle \fm \rangle} / (\II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle})
     \end{align*}
-    The homomorphism $\II_K^{\langle \fm \rangle} \to I_K(\fm)/P_K(\fm)$ given by $\alpha \mapsto (\alpha) \pmod{P_K(\fm)}$  is surjective with kernel $\II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle}$. This induces an isomorphism $\cong \II_K^{\langle \fm \rangle} / \II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle} \cong I_K(\fm)/P_K(\fm)$ as required. %TODO: Check
+    The homomorphism $\II_K^{\langle \fm \rangle} \to I_K(\fm)/P_K(\fm)$ given by $\alpha \mapsto (\alpha) \pmod{P_K(\fm)}$  is surjective with kernel $\II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle}$. This induces an isomorphism $\II_K^{\langle \fm \rangle} / \II_K(\fm) K^\times \cap \II_K^{\langle \fm \rangle} \cong I_K(\fm)/P_K(\fm)$ as required. %TODO: Check
 \end{proof}
 
 \begin{proposition}\label{prop:10.3}
@@ -2336,7 +2336,10 @@ For a principal idele $a \in K^\times$, we have the product formula $\prod_\fp (
 \end{remark*}
 
 \begin{proposition}\label{prop:11_6}
-    Let $L/K$ be a finite abelian extension of number field, then $\ff(L/K) = \prod_{\fp} \ff_\fp$, where $\ff_\fp$ is the local conductor.
+    Let $L/K$ be a finite abelian extension of number field, then
+    \begin{equation*}
+        \ff(L/K) = \prod_{\cp \mid \fp} \ff(L_\cp / K_\fp)
+    \end{equation*}
 \end{proposition}
 
 \end{document}
