@@ -775,7 +775,7 @@ If $K$ has a primitive $n$\textsuperscript{th} root of unity, then for $\alpha \
     \end{equation*}
 \end{theorem}
 \begin{proof}
-    This is equivalent to $\leg{p^*}{q} = \leg{q}{p}$, where $p^* = (-1)^{\frac{p-1}{2}} p$. Recall $\Gal(\QQ(\zeta_p)/\QQ)$ is a generalised class group for $\fm = p \infty$ (see \autoref{eg:2_24}), so the same holds for any subfield of $\QQ(\zeta_p)$ (Example Sheet 1 Exercise 5). Since $\Gal(\QQ(\zeta_p)/\QQ)$ is cyclic of order $p-1$, there is a unique subfield $\QQ \subseteq K \subseteq \QQ(\zeta_p)$ which is quadratic over $\QQ$, so $\Gal(K/\QQ)$ is a generalised ideal class group for $p \infty$. $p$ is the only finite prime of $\QQ$ ramified in $K$. Thus $K = \QQ(\sqrt{p^*})$ (Example Sheet 1 Exercise 11). Thus $\ker \Phi_{\QQ(p^*)/\QQ, p \infty}$ is a congruence subgroup for $p \infty$. By Weak Reciprocity \autoref{thm:4_11}, % TODO: Don't we need 2 dividing the modulus?
+    This is equivalent to $\leg{p^*}{q} = \leg{q}{p}$, where $p^* = (-1)^{\frac{p-1}{2}} p$. Recall $\Gal(\QQ(\zeta_p)/\QQ)$ is a generalised class group for $\fm = p \infty$ (see \autoref{eg:2_24}), so the same holds for any subfield of $\QQ(\zeta_p)$ (Example Sheet 1 Exercise 5). Since $\Gal(\QQ(\zeta_p)/\QQ)$ is cyclic of order $p-1$, there is a unique subfield $\QQ \subseteq K \subseteq \QQ(\zeta_p)$ which is quadratic over $\QQ$, so $\Gal(K/\QQ)$ is a generalised ideal class group for $p \infty$. $p$ is the only finite prime of $\QQ$ ramified in $K$. Thus $K = \QQ(\sqrt{p^*})$ (Example Sheet 1 Exercise 11). Thus $\ker \Phi_{K/\QQ, p \infty}$ is a congruence subgroup for $p \infty$. By Weak Reciprocity \autoref{thm:4_11}, % TODO: Don't we need 2 dividing the modulus?
     we have a surjective homomorphism
     \begin{equation}\label{eqn:4_12_star}
         \leg{p^*}{\cdot} : I_\QQ(p \infty) / P_\QQ(p \infty) \to \{\pm 1\}
@@ -1326,7 +1326,7 @@ Let $K$ be any number field. Then for $\Re(s) > 1$, we can write $\zeta_K(s) = \
 for $\Re(s) > 1$, where $\kappa$ is the term we defined in the analytic class number formula \autoref{cor:6_6}, and $h_K$ is the class number. The series $\sum_{n=1}^\infty \frac{j_n - h_K \kappa}{n^s}$ converges for $\Re(s) = 1$ (in fact it converges for $\Re(s) > 1 - \frac{1}{[K : \QQ]}$). Now $h_K = \frac{\rho}{\kappa}$, where $\rho = \lim_{s \to 1} \frac{\zeta_K(s)}{\zeta(s)}$.
 
 \marginpar{\fbox{Lecture 12}}
-Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. We consider $\widehat{G}$ as a subgroup\footnote{The exact sequence $(\ZZ / m \ZZ)^\times \to G \to 0$ gives an exact sequence $0 \to \widehat{G} \to \widehat{(\ZZ / m \ZZ)^\times}$} of $(\ZZ / m\ZZ)^\times$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
+Let $K$ be an abelian extension of $\QQ$. Then $K \subseteq \QQ(\zeta_m)$ for some $m$. Identify $\Gal(\QQ(\zeta_m) / \QQ)$ with $(\ZZ / m\ZZ)^\times$, and let $G = \Gal(K / \QQ)$. We consider $\widehat{G}$ as a subgroup\footnote{The exact sequence $(\ZZ / m \ZZ)^\times \to G \to 0$ gives an exact sequence $0 \to \widehat{G} \to \widehat{(\ZZ / m \ZZ)^\times}$} of $\widehat{(\ZZ / m\ZZ)^\times}$. Then we adapt the proof of \autoref{prop:7_17} to find for $p \nmid m$,
 \begin{equation*}
     \prod_{\chi \in \widehat{G}} \left(1 - \frac{\chi(p)}{p^s}\right) = \left(1 - \frac{1}{p^{fs}}\right)^r = \prod_{\fp \mid p} \left(1 - \frac{1}{N(\fp)^s}\right)
 \end{equation*}
@@ -1454,7 +1454,7 @@ Let $K = \QQ(\sqrt{d})$, $d$ squarefree. Let $m = \abs{d_K}$. Then $K \subseteq 
         -1 & \text{if } p \text{ is inert}
     \end{cases}
 \end{equation*}
-We define it for all $(m, n) = 1$ by extending multiplicatively. This $\chi$ is primitive mod $m$. It is even if $d > 0$ and odd if $d < 0$. % TODO: Why?
+We define it for all $(m, n) = 1$ by extending multiplicatively. It turns out that $\chi$ is primitive mod $m$, it is even if $d > 0$ and odd if $d < 0$. % TODO: Why?
 
 \begin{theorem}\label{thm:7_27}
     Let $K = \QQ(\sqrt{d})$, $d$ squarefree, $m = \abs{d_K}$. Then
@@ -1741,7 +1741,9 @@ It is now easy to prove \autoref{thm:8_17}.
 
 \noindent Now we complete the proof of \autoref{prop:3_10}:
 \begin{proof}[Proof of \autoref{prop:3_10}]
-    Since $\ff(L/K) \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For $\fa \in I_K(\fm)$, $\leg{L/K}{\fa}$ depends only on the class of $\fa$ modulo $P_K(\fm)$. By the Chebotarev density theorem, for any $\sigma \in \Gal(K_\fm / K)$, there are infinitely many primes $\fp$ in $\cO_K$ such that $\leg{L/K}{\fp} = \sigma$. Choose such a prime $\fp$ with $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_\fm / K)$, this implies that every $\fa \in I_K(\fm)$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$. Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if we have $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $N_{L/K}(\cp) = \fp^{f_{\cp/\fp}} = \fp$ since $f_{\cp/\fp} = 1$. Hence $\fp \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
+    Since $\ff(L/K) \mid \fm$, we know $P_K(\fm) \subseteq \ker \Phi_\fm \subseteq I_K(\fm)$. For $\fa \in I_K(\fm)$, $\leg{L/K}{\fa}$ depends only on the class of $\fa$ modulo $P_K(\fm)$. By the Chebotarev density theorem, there are infinitely many primes $\fp$ in $\cO_K$ such that $\leg{K_\fm/K}{\fp} = \leg{K_\fm/K}{\fa}$. Choose such a prime $\fp$ with $\fp \nmid \fm$. Since we have an isomorphism $I_K(\fm) / P_K(\fm) \cong \Gal(K_\fm / K)$, this implies that $\fa$ is equivalent to a prime $\fp$ modulo $P_K(\fm)$.
+
+    Now suppose $\fp \subseteq \cO_K$ is such that $\fp \in \ker(\Phi_\fm)$. Then $\leg{L/K}{\fp} = 1$, so $\fp$ splits completely in $L$. Thus if $\cp \subseteq \cO_L$ such that $\cp \mid \fp$, then $\fp = N_{L/K}(\cp) \in N_{L/K}(I_L(\fm)) \subseteq N_{L/K}(I_L(\fm)) P_K(\fm)$.
 \end{proof}
 
 \section{Ideles and Adeles}
