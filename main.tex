@@ -2274,7 +2274,7 @@ The goal of local class field theory is to classify finite abelian extensions of
 
 \subsection{Local Artin Reciprocity}
 
-Let $K$ be a local field. Let $K^\sep$ be a fixed separable closure. Then write $K^\ab$ for the maximal abelian extension of $K$ inside $K^\sep$, i.e. $K^\ab = \bigcup_{\substack{L/K \text{ finite} \\ L \subseteq K^\sep}} L$.
+Let $K$ be a local field. Let $K^\sep$ be a fixed separable closure. Then write $K^\ab$ for the maximal abelian extension of $K$ inside $K^\sep$, i.e. $K^\ab = \bigcup_{\substack{L/K \text{ finite abelian} \\ L \subseteq K^\sep}} L$.
 
 \begin{theorem}[Local Artin Reciprocity]\label{thm:11_1}
     Let $K$ be a local field. There is a unique continuous homomorphism
@@ -2299,7 +2299,7 @@ Here $\Frob_{L/K}$ is the preimage of the Frobenius $x \mapsto x^{\# \FF_\fp}$ i
 
 \subsection{Local Existence Theorem}
 
-A \emph{norm group} of a local field $K$ is a subgroup of $N_{L/K}(L^\times)$ for $L/K$ finite abelian.
+A \emph{norm group} of a local field $K$ is a subgroup of $K^\times$ of the form $N_{L/K}(L^\times)$ for some $L/K$ finite abelian.
 
 \begin{corollary}\label{cor:11_2}
     The map $L \mapsto N_{L/K}(L^\times)$ defines an inclusion reversing bijection between finite abelian extensions in $K^\ab$ and the norm groups in $K^\times$. Every norm group of $K$ has finite index in $K^\times$.
@@ -2330,8 +2330,12 @@ Let $L/K$ be a Galois extension of number fields. Let $\fp$ be a prime of $K$, $
     \begin{equation*}
         (\alpha, L/K) = \prod_{\fp} (\alpha_\fp, L_\cp / K_\fp) \qquad\text{for } \cp \mid \fp
     \end{equation*}
+    For a principal idele $a \in K^\times$, we have the product formula
+    \begin{equation*}
+        \prod_\fp (a, L_\cp / K_\fp) = 1
+    \end{equation*}
 \end{corollary}
-For a principal idele $a \in K^\times$, we have the product formula $\prod_\fp (a, L_\cp / K_\fp) = 1$. Note this implies if $\pi$ is a uniformiser of $K$, then $(\overline{n}_\fp(\pi), L/K) = (\pi, L_\cp / K_\fp) = \Frob_{L_\cp / K_\fp} = \leg{L/K}{\fp}$ (recalling that $D_{\cp/\fp} = \Gal(L_\cp / K_\fp)$). This then finishes the proof of \autoref{thm:10_4}.
+Note this implies if $\pi$ is a uniformiser of $K_\fp$, then $(\overline{n}_\fp(\pi), L/K) = (\pi, L_\cp / K_\fp) = \Frob_{L_\cp / K_\fp} = \leg{L/K}{\fp}$ (recalling that $D_{\cp/\fp} = \Gal(L_\cp / K_\fp)$). This then finishes the proof of \autoref{thm:10_4}.
 
 \begin{remark*}
     There is a notion of a \emph{local conductor}.
